@@ -1,9 +1,9 @@
 #ifndef CUSTOMLIGHT_INCLUDED
 #define CUSTOMLIGHT_INCLUDED
 
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 
 
 void MainLight_float(float3 WorldPos, float3 Normal, out float3 Direction, out float3 Color, out float DistanceAtten, out float ShadowAtten)

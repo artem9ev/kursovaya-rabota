@@ -63,8 +63,8 @@ public class CameraFollower : MonoBehaviour
 
     public void OnMouseLook(Vector2 delta)
     {
-        m_rotationX = Mathf.Clamp(m_rotationX + m_sensetivityX * delta.y, -89, 89);
-        m_rotationY += m_sensetivityY * delta.x;
+        m_rotationX = Mathf.Clamp(m_rotationX - m_sensetivityX / 10f * delta.y, -89, 89);
+        m_rotationY += m_sensetivityY / 10f * delta.x;
 
         m_transform.eulerAngles = new Vector2(m_rotationX, m_rotationY);
     }
