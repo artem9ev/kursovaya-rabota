@@ -184,4 +184,6 @@ public class CharacterMovement : MonoBehaviour
     {
         m_inputDirection = (dir.x * Vector3.right + dir.y * Vector3.forward).normalized;
     }
+
+    
 }
