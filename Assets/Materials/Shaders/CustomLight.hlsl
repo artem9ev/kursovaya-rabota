@@ -1,43 +1,34 @@
 #ifndef CUSTOMLIGHT_INCLUDED
 #define CUSTOMLIGHT_INCLUDED
 
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
+#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
 
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 
-void MainLight_float(float3 WorldPos, float3 Normal, out float3 Direction, out float3 Color, out float DistanceAtten, out float ShadowAtten)
+struct MainLightShadows{
+
+};
+
+Light MainLight_float(float3 WorldPos, float3 Normal)
 {
-#if SHADERGRAPH_PREVIEW
-    Direction = float3(0.5, 0.5, 0);
-    Color = 1;
-    DistanceAtten = 1;
-    ShadowAtten = 1;
-#else
 #if SHADOWS_SCREEN
     float4 clipPos = TransformWorldToHClip(WorldPos);
     float4 shadowCoord = ComputeScreenPos(clipPos);
 #else
     float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
 #endif
-    Light mainLight = GetMainLight(shadowCoord);
-    Direction = mainLight.direction;
-    Color = mainLight.color * dot(Normal, Direction);
-    DistanceAtten = mainLight.distanceAttenuation;
-    ShadowAtten = mainLight.shadowAttenuation;
-#endif
+    return GetMainLight(shadowCoord);
 }
 
-void DirectSpecular_float(float3 Specular, float Smoothness, float3 Direction, float3 Color, float3 WorldNormal, float3 WorldView, out float3 Out)
+float3 DirectSpecular_float(float3 lightColor, float3 lightDirection, float3 surfaceNormal, float3 viewDirection, float4 specularAmount, float smoothness)
 {
-#if SHADERGRAPH_PREVIEW
-    Out = 0;
-#else
-    Smoothness = exp2(10 * Smoothness + 1);
-    WorldNormal = normalize(WorldNormal);
-    WorldView = SafeNormalize(WorldView);
-    Out = LightingSpecular(Color, Direction, WorldNormal, WorldView, float4(Specular, 0), Smoothness);
-#endif
+    smoothness = exp2(10 * smoothness + 1);
+    surfaceNormal = normalize(surfaceNormal);
+    viewDirection = SafeNormalize(viewDirection);
+    //Out = LightingSpecular(Color, Direction, surfaceNormal, viewDirection, float4(Specular, 0), Smoothness);
+    return LightingSpecular(lightColor, lightDirection, surfaceNormal, viewDirection, specularAmount, smoothness);
 }
 
 void AdditionalLights_float(float3 SpecColor, float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView, out float3 Diffuse, out float3 Specular)

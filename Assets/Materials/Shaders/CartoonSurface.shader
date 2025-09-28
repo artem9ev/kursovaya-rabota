@@ -1,46 +1,72 @@
 Shader "Custom/CartoonSurface"
 {
-    // The properties block of the Unity shader. In this example this block is empty
-    // because the output color is predefined in the fragment shader code.
     Properties
-    { }
+    {
+         [HDR] _Color ("Color", Color) = (1, 0, 0, 1)
+         _SpecColor ("Specular", Color) = (1, 1, 1, 1)
+         _MainTex ("Texture", 2D) = "white" {}
 
-    // The SubShader block containing the Shader code.
+
+         _Smothness ("Smoothness", Range(0, 1)) = 0.5
+
+         _ShadowBorder ("Shadow Border", Range(0, 1)) = 0.5
+    }
+
     SubShader
     {
-        // SubShader Tags define when and under which conditions a SubShader block or
-        // a pass is executed.
-        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
+        Tags 
+        { 
+            "RenderType" = "Opaque" 
+            "RenderPipeline" = "UniversalPipeline" 
+        }
 
         Pass
         {
-            // The HLSL code block. Unity SRP uses the HLSL language.
             HLSLPROGRAM
-            // This line defines the name of the vertex shader.
+
             #pragma vertex vert
-            // This line defines the name of the fragment shader.
             #pragma fragment frag
 
-            // The Core.hlsl file contains definitions of frequently used HLSL
-            // macros and functions, and also contains #include references to other
-            // HLSL files (for example, Common.hlsl, SpaceTransforms.hlsl, etc.).
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "CustomLight.hlsl"
 
-            // The structure definition defines which variables it contains.
+            // The structure definition defines which variables it contains
             // This example uses the Attributes structure as an input structure in
             // the vertex shader.
             struct Attributes
             {
                 // The positionOS variable contains the vertex positions in object
                 // space.
-                float4 positionOS   : POSITION;
+                float4 positionOS : POSITION;
+                float3 normalOS : NORMAL;
+
+                float2 uv : TEXCOORD0;
             };
 
             struct Varyings
             {
                 // The positions in this struct must have the SV_POSITION semantic.
                 float4 positionHCS  : SV_POSITION;
+
+                float2 uv : TEXCOORD0;
+
+                float3 positionWS : TEXCOORD1;
+                float3 normalWS : TEXCOORD2;
+                float3 viewWS : TEXCOORD3;
             };
+
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+
+            CBUFFER_START(UnityPerMaterial)
+                float4 _Color;
+                float4 _MainTex_ST;
+
+                float4 _SpecColor;
+
+                float _Smothness;
+                float _ShadowBorder;
+            CBUFFER_END
 
             // The vertex shader definition with properties defined in the Varyings
             // structure. The type of the vert function must match the type (struct)
@@ -52,16 +78,36 @@ Shader "Custom/CartoonSurface"
                 // The TransformObjectToHClip function transforms vertex positions
                 // from object space to homogenous clip space.
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+
+                OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
+                OUT.viewWS = GetWorldSpaceNormalizeViewDir(OUT.positionWS);
+
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
                 // Returning the output.
                 return OUT;
             }
 
             // The fragment shader definition.
-            half4 frag() : SV_Target
+            float4 frag(Varyings IN) : SV_Target
             {
-                // Defining the color variable and returning it.
-                half4 customColor = half4(0.5, 0, 0, 1);
-                return customColor;
+                Light ml_data = MainLight_float(IN.positionWS, IN.normalWS);
+
+                //float main_shade = ceil(dot(ml_data.direction, IN.normalWS) * 4) / 4;
+                float ml_dot = dot(ml_data.direction, IN.normalWS);
+                float shadeStep = step(_ShadowBorder * 2 - 1, ml_dot);
+
+                float main_shade = shadeStep;
+
+                float4 color_shade = shadeStep;
+
+                float4 color_texture = _Color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+
+                float4 specColor = _SpecColor * clamp(ml_dot, 0, 1);
+                float3 color_specular = DirectSpecular_float(ml_data.color, ml_data.direction, IN.normalWS, IN.viewWS, specColor, _Smothness);
+
+                return (color_texture + float4(color_specular, 1)) * main_shade;
+                //return (ml_data.color * ml_data.distanceAttenuation * ml_data.shadowAttenuation, 1);
             }
             ENDHLSL
         }
