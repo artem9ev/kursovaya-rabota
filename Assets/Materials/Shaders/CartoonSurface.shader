@@ -68,6 +68,17 @@ Shader "Custom/CartoonSurface"
                 float _ShadowBorder;
             CBUFFER_END
 
+            
+            float4 getDiffuse(Light light, Varyings IN, float4 albedo)
+            {
+                return (LightingLambert(light.color, light.direction, IN.normalWS), 1) * albedo;
+            }
+
+            float4 getSpecular(Light light, Varyings IN, float4 specColor)
+            {
+                return (DirectSpecular_float(light.color, light.direction, IN.normalWS, IN.viewWS, specColor, _Smothness), 1);
+            }
+
             // The vertex shader definition with properties defined in the Varyings
             // structure. The type of the vert function must match the type (struct)
             // that it returns.
@@ -104,10 +115,13 @@ Shader "Custom/CartoonSurface"
                 float4 color_texture = _Color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
 
                 float4 specColor = _SpecColor * clamp(ml_dot, 0, 1);
-                float3 color_specular = DirectSpecular_float(ml_data.color, ml_data.direction, IN.normalWS, IN.viewWS, specColor, _Smothness);
+                float3 color_specular = getSpecular(ml_data, IN, specColor);
 
-                return (color_texture + float4(color_specular, 1)) * main_shade;
-                //return (ml_data.color * ml_data.distanceAttenuation * ml_data.shadowAttenuation, 1);
+                color_specular = step(_ShadowBorder, color_specular);
+
+                float4 color_diffuse = getDiffuse(ml_data, IN, color_texture);
+
+                return (color_diffuse + float4(color_specular, 1));
             }
             ENDHLSL
         }
