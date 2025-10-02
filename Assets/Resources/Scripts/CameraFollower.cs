@@ -13,6 +13,10 @@ public class CameraFollower : MonoBehaviour
     [SerializeField] private Vector3 m_offset = Vector3.zero;
 
     private Transform m_transform;
+    private CharacterMovement m_characterMovement;
+
+    private Vector3 m_pivotRight;
+    private Vector3 m_pivotForward;
 
     private Vector3 m_velocity;
     private Vector3 m_pivot;
@@ -27,11 +31,10 @@ public class CameraFollower : MonoBehaviour
         m_rotationX = m_angle;
         m_transform.rotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
         SetPosition();
-    }
 
-    private void Start()
-    {
-        Cursor.lockState= CursorLockMode.Locked;
+        m_characterMovement = m_target.GetComponent<CharacterMovement>();
+
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
@@ -67,5 +70,10 @@ public class CameraFollower : MonoBehaviour
         m_rotationY += m_sensetivityY / 10f * delta.x;
 
         m_transform.eulerAngles = new Vector2(m_rotationX, m_rotationY);
+
+        if (m_characterMovement != null)
+        {
+            m_characterMovement.OnCameraRotate(Quaternion.Euler(0, -90, 0) * m_transform.right, m_transform.right);
+        }
     }
 }

@@ -14,12 +14,16 @@ public class CharacterMovement : MonoBehaviour
 
     private ControllerColliderHit m_contact;
 
+    private Vector2 m_rawInput;
     private Vector3 m_inputDirection;
 
     private Vector3 m_velocity;
     private Vector3 m_flatVelocity;
     private Vector3 m_gravity;
     private Vector3 m_acceleration;
+
+    private Vector3 m_cameraRight;
+    private Vector3 m_cameraForward;
 
     private Vector3 m_lastMoveDirection;
 
@@ -46,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (m_flatVelocity.magnitude > 0.15f)
         {
-            //m_transform.forward = m_flatVelocity.normalized;
+            m_transform.forward = m_flatVelocity.normalized;
         }
 
         Debug.DrawRay(m_transform.position, m_inputDirection, Color.blue);
@@ -182,8 +186,15 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnMove(Vector2 dir)
     {
-        m_inputDirection = (dir.x * Vector3.right + dir.y * Vector3.forward).normalized;
+        m_rawInput = dir;
+        m_inputDirection = (dir.x * m_cameraRight + dir.y * m_cameraForward).normalized;
     }
 
-    
+    public void OnCameraRotate(Vector3 forward, Vector3 right)
+    {
+        m_cameraForward = forward;
+        m_cameraRight = right;
+
+        m_inputDirection = (m_rawInput.x * m_cameraRight + m_rawInput.y * m_cameraForward).normalized;
+    }
 }

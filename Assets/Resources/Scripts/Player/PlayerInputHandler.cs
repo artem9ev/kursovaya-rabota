@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] private Camera m_mainCamera;
+
     [SerializeField] private UnityEvent<Vector2> m_onMouseLook;
     [SerializeField] private UnityEvent<Vector2> m_onMove;
 
