@@ -1,0 +1,65 @@
+{
+    "Zebroid": {
+        "checkpoints": [
+            {
+                "steps": 2999954,
+                "file_path": "results\\Zebroid_Test_2\\Zebroid\\Zebroid-2999954.onnx",
+                "reward": 520.0880321155895,
+                "creation_time": 1760104322.0841937,
+                "auxillary_file_paths": [
+                    "results\\Zebroid_Test_2\\Zebroid\\Zebroid-2999954.pt"
+                ]
+            },
+            {
+                "steps": 3499919,
+                "file_path": "results\\Zebroid_Test_2\\Zebroid\\Zebroid-3499919.onnx",
+                "reward": 559.554866857696,
+                "creation_time": 1760105934.5273333,
+                "auxillary_file_paths": [
+                    "results\\Zebroid_Test_2\\Zebroid\\Zebroid-3499919.pt"
+                ]
+            },
+            {
+                "steps": 3999917,
+                "file_path": "results\\Zebroid_Test_2\\Zebroid\\Zebroid-3999917.onnx",
+                "reward": 769.2107209806089,
+                "creation_time": 1760107538.5999267,
+                "auxillary_file_paths": [
+                    "results\\Zebroid_Test_2\\Zebroid\\Zebroid-3999917.pt"
+                ]
+            },
+            {
+                "steps": 4499857,
+                "file_path": "results\\Zebroid_Test_2\\Zebroid\\Zebroid-4499857.onnx",
+                "reward": 769.8576339853221,
+                "creation_time": 1760108961.5344443,
+                "auxillary_file_paths": [
+                    "results\\Zebroid_Test_2\\Zebroid\\Zebroid-4499857.pt"
+                ]
+            },
+            {
+                "steps": 4584058,
+                "file_path": "results\\Zebroid_Test_2\\Zebroid\\Zebroid-4584058.onnx",
+                "reward": null,
+                "creation_time": 1760109169.7861228,
+                "auxillary_file_paths": [
+                    "results\\Zebroid_Test_2\\Zebroid\\Zebroid-4584058.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4584058,
+            "file_path": "results\\Zebroid_Test_2\\Zebroid.onnx",
+            "reward": null,
+            "creation_time": 1760109169.7861228,
+            "auxillary_file_paths": [
+                "results\\Zebroid_Test_2\\Zebroid\\Zebroid-4584058.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}
