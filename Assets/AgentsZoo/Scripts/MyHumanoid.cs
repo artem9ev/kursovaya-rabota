@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -7,10 +9,11 @@ public class MyHumanoid : Agent
 {
     [Header("Params")]
     [SerializeField] private float m_maxSpeed = 8f;
-    [SerializeField] private Transform m_orientationPoint;
+
+    [SerializeField][Range(0f, 1f)] private float m_spineNormal = 0.9f;
 
     [Header("Body")]
-    [SerializeField] private MyMainBodyPart m_mainBody;
+    [SerializeField] private MyMainBodyPart m_hips;
     [SerializeField] private MyJointPart m_spine;
     [SerializeField] private MyJointPart m_chest;
     [SerializeField] private MyJointPart m_head;
@@ -29,10 +32,8 @@ public class MyHumanoid : Agent
     [SerializeField] private MyJointPart m_lArm;
     [SerializeField] private MyJointPart m_lElbow;
 
-    [Header("Target")]
-    [SerializeField] private MyTarget m_target;
     [Header("Penalties")]
-    [SerializeField] private float m_fixedTimePenalty = -0.01f;
+    [SerializeField] private float m_groundTouchPenalty = -0.01f;
     [SerializeField] private float m_groundHitPenalty = -1;
     [Header("Rewards")]
     [SerializeField] private float m_lookAtTargetReward = 2f;
@@ -43,114 +44,140 @@ public class MyHumanoid : Agent
     [SerializeField] private float jointDampen;
     [SerializeField] private float maxJointForceLimit;
 
+    private Vector3 m_inputDirection;
+
     //The current target walking speed. Clamped because a value of zero will cause NaNs
     private float m_targetWalkingSpeed;
 
+    private List<MyJointPart> m_joints = new List<MyJointPart>();
+
     public float TargetWalkingSpeed
     {
-        get { return m_targetWalkingSpeed; }
+        get { return m_targetWalkingSpeed * m_inputDirection.magnitude; }
         set { m_targetWalkingSpeed = Mathf.Clamp(value, .1f, m_maxSpeed); }
     }
 
-    protected void Start()
+    public Vector3 FeetPos => (m_rFoot.Position + m_lFoot.Position) / 2;
+
+    protected override void Awake()
     {
-        m_spine.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_chest.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_head.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        base.Awake();
 
-        m_rLeg.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_rKnee.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_rFoot.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        m_joints.Add(m_spine);
+        m_joints.Add(m_chest);
+        m_joints.Add(m_head);
 
-        m_lLeg.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_lKnee.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_lFoot.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        m_joints.Add(m_rLeg);
+        m_joints.Add(m_rKnee);
+        m_joints.Add(m_rFoot);
 
-        m_rArm.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_rElbow.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        m_joints.Add(m_lLeg);
+        m_joints.Add(m_lKnee);
+        m_joints.Add(m_lFoot);
 
-        m_lArm.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
-        m_lElbow.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        m_joints.Add(m_rArm);
+        m_joints.Add(m_rElbow);
+
+        m_joints.Add(m_lArm);
+        m_joints.Add(m_lElbow);
+
+        foreach (var joint in m_joints)
+        {
+            joint.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+        }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        m_mainBody.Grounded += () => { GroundHitPenalty(true); };
+        m_hips.Grounded += () => { GroundHitPenalty(true); };
 
-        m_spine.GroundHitPenalty += GroundHitPenalty;
-        m_chest.GroundHitPenalty += GroundHitPenalty;
-        m_head.GroundHitPenalty += GroundHitPenalty;
-
-        m_rLeg.GroundHitPenalty += GroundHitPenalty;
-        m_rKnee.GroundHitPenalty += GroundHitPenalty;
-        m_rFoot.GroundHitPenalty += GroundHitPenalty;
-
-        m_lLeg.GroundHitPenalty += GroundHitPenalty;
-        m_lKnee.GroundHitPenalty += GroundHitPenalty;
-        m_lFoot.GroundHitPenalty += GroundHitPenalty;
-
-        m_rArm.GroundHitPenalty += GroundHitPenalty;
-        m_rElbow.GroundHitPenalty += GroundHitPenalty;
-
-        m_lArm.GroundHitPenalty += GroundHitPenalty;
-        m_lElbow.GroundHitPenalty += GroundHitPenalty;
+        foreach (var joint in m_joints) 
+        {
+            joint.GroundHitPenalty += GroundHitPenalty;
+        }
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
 
-        m_mainBody.Grounded -= () => { GroundHitPenalty(true); };
+        m_hips.Grounded -= () => { GroundHitPenalty(true); };
 
-        m_spine.GroundHitPenalty -= GroundHitPenalty;
-        m_chest.GroundHitPenalty -= GroundHitPenalty;
-        m_head.GroundHitPenalty -= GroundHitPenalty;
-
-        m_rLeg.GroundHitPenalty -= GroundHitPenalty;
-        m_rKnee.GroundHitPenalty -= GroundHitPenalty;
-        m_rFoot.GroundHitPenalty -= GroundHitPenalty;
-
-        m_lLeg.GroundHitPenalty -= GroundHitPenalty;
-        m_lKnee.GroundHitPenalty -= GroundHitPenalty;
-        m_lFoot.GroundHitPenalty -= GroundHitPenalty;
-
-        m_rArm.GroundHitPenalty -= GroundHitPenalty;
-        m_rElbow.GroundHitPenalty -= GroundHitPenalty;
-
-        m_lArm.GroundHitPenalty -= GroundHitPenalty;
-        m_lElbow.GroundHitPenalty -= GroundHitPenalty;
+        foreach (var joint in m_joints)
+        {
+            joint.GroundHitPenalty -= GroundHitPenalty;
+        }
     }
 
     private void FixedUpdate()
     {
-        AddReward(m_fixedTimePenalty);
+        float matchSpeedReward = GetMatchingVelocityReward(m_inputDirection * TargetWalkingSpeed, GetAvgVelocity());
 
-        Vector3 feetPos = (m_rFoot.Position + m_lFoot.Position) / 2;
+        var bodyOrientReward = Mathf.Clamp01(Vector3.Dot(m_spine.up, Vector3.up));
+        var chestOrientReward = Mathf.Clamp01(Vector3.Dot(m_chest.up, Vector3.up));
+        var headOrientReward = Mathf.Clamp01(Vector3.Dot(m_head.up, Vector3.up));
 
-        m_orientationPoint.position = new Vector3(feetPos.x, 0.5f, feetPos.z);
-        m_orientationPoint.forward = (m_target.Position - m_orientationPoint.position).normalized;
-
-        var matchSpeedReward = Mathf.Clamp(GetAvgVelocity().magnitude, 0, TargetWalkingSpeed) / TargetWalkingSpeed;
-
-        if (float.IsNaN(matchSpeedReward))
+        if (m_spine.up.y < m_spineNormal || m_chest.up.y < m_spineNormal || m_head.up.y < m_spineNormal)
         {
-            matchSpeedReward = 0;
+            bodyOrientReward = 0;
         }
-        var bodyOrientReward = Mathf.Clamp01((Vector3.Dot(m_spine.up, Vector3.up)));
-        var chestOrientReward = Mathf.Clamp01((Vector3.Dot(m_chest.up, Vector3.up)));
 
-        var lookAtTargetReward = (Vector3.Dot(m_orientationPoint.forward, m_mainBody.Forward) + 1) / 2;
-        var velocityForwardsReward = (Vector3.Dot(m_mainBody.Forward, GetAvgVelocity()) + 1) / 2;
+        var lookAtTargetReward = (Vector3.Dot(m_inputDirection, m_hips.forward) + 1) / 2;
+        var velocityForwardsReward = (Vector3.Dot(m_hips.forward, GetAvgVelocity()) + 1) / 2;
 
-        AddReward(lookAtTargetReward * m_lookAtTargetReward * matchSpeedReward * velocityForwardsReward * bodyOrientReward);
+        //AddReward(m_bodyOrientReward * velocityForwardsReward * bodyOrientReward * chestOrientReward * headOrientReward);
+
+        Vector3 spineUp = (m_hips.up + m_spine.up + m_chest.up + m_head.up) / 4;
+        Color rayColor = Color.red;
+
+        if (spineUp.y >= m_spineNormal)
+        {
+            AddReward(m_lookAtTargetReward * lookAtTargetReward * matchSpeedReward);
+            rayColor = Color.green;
+        }
+
+        Debug.DrawRay(m_hips.Position, spineUp, rayColor);
+
+        //GetGroundedPenalty();
+
+        if (GetCumulativeReward() < 0)
+        {
+            //EndEpisode();
+        }
+    }
+
+    public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
+    {
+        var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, TargetWalkingSpeed);
+
+        if (float.IsNaN(velDeltaMagnitude)) 
+        {
+            return 0;
+        }
+        if (TargetWalkingSpeed == 0)
+        {
+            return 0;
+        }
+        return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
+    }
+
+    private void GetGroundedPenalty()
+    {
+        bool isGrounded = m_hips.IsGrounded;
+
+        foreach (var joint in m_joints)
+        {
+            isGrounded |= joint.isGrounded & joint.DoGroundHitPenalty;
+        }
+
+        AddReward(m_groundTouchPenalty * (isGrounded ? 1 : -1));
     }
 
     private void GroundHitPenalty(bool endEpisode)
     {
         AddReward(m_groundHitPenalty);
-
         if (endEpisode)
         {
             EndEpisode();
@@ -161,149 +188,61 @@ public class MyHumanoid : Agent
     {
         Vector3 sum = Vector3.zero;
 
-        sum += m_mainBody.Velocity;
+        sum += m_hips.velocity;
 
-        sum += m_spine.Velocity;
-        sum += m_chest.Velocity;
-        sum += m_head.Velocity;
-
-        sum += m_rLeg.Velocity;
-        sum += m_rKnee.Velocity;
-        sum += m_rFoot.Velocity;
-
-        sum += m_lLeg.Velocity;
-        sum += m_lKnee.Velocity;
-        sum += m_lFoot.Velocity;
-
-        sum += m_rArm.Velocity;
-        sum += m_rElbow.Velocity;
-
-        sum += m_lArm.Velocity;
-        sum += m_lElbow.Velocity;
+        foreach (var joint in m_joints)
+        {
+            sum += joint.velocity;
+        }
 
         return sum / 14;
     }
 
     private void CollectObservationsJointPart(MyJointPart joint, VectorSensor sensor)
     {
-        sensor.AddObservation(joint.IsGrounded);
-
-        sensor.AddObservation(joint.Strenth / joint.MaxStrenth);
-    }
-
-    public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
-    {
-        //distance between our actual velocity and goal velocity
-        var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, TargetWalkingSpeed);
-
-        if (velDeltaMagnitude == 0)
-        {
-            return 0f;
-        }
-
-        //return the value on a declining sigmoid shaped curve that decays from 1 to 0
-        //This reward will approach 1 if it matches perfectly and approach zero as it deviates
-        return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
+        sensor.AddObservation(joint.isGrounded);
+        sensor.AddObservation(joint.strenth / joint.maxStrenth);
     }
 
     public override void OnEpisodeBegin()
     {
-        m_mainBody.ResetBody();
+        Debug.Log($"[Episode Begins] - {CompletedEpisodes}");
 
-        m_spine.ResetJoint();
-        m_chest.ResetJoint();
-        m_head.ResetJoint();
+        m_hips.ResetBody();
 
-        m_rLeg.ResetJoint();
-        m_rKnee.ResetJoint();
-        m_rFoot.ResetJoint();
+        foreach (var joint in m_joints)
+        {
+            joint.ResetJoint();
+        }
 
-        m_lLeg.ResetJoint();
-        m_lKnee.ResetJoint();
-        m_lFoot.ResetJoint();
-
-        m_rArm.ResetJoint();
-        m_rElbow.ResetJoint();
-
-        m_lArm.ResetJoint();
-        m_lElbow.ResetJoint();
-
-        //Set our goal walking speed
-        TargetWalkingSpeed = Random.Range(0.1f, m_maxSpeed);
+        TargetWalkingSpeed = Random.Range(m_maxSpeed / 3 * 2, m_maxSpeed);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //velocity we want to match
-        var velGoal = m_orientationPoint.forward * TargetWalkingSpeed;
-        //ragdoll's avg vel
+        var velGoal = m_inputDirection * TargetWalkingSpeed;
         var avgVel = GetAvgVelocity();
 
-        //current ragdoll velocity. normalized
-        sensor.AddObservation(Vector3.Distance(velGoal, avgVel)); // 1
+        sensor.AddObservation(velGoal);
+        sensor.AddObservation(avgVel);
 
-        sensor.AddObservation(m_orientationPoint.forward); // 3
-        sensor.AddObservation(m_mainBody.Forward); // 3
+        sensor.AddObservation(m_inputDirection); // 3
+        sensor.AddObservation(m_hips.forward); // 3
 
-        CollectObservationsJointPart(m_spine, sensor);
-        CollectObservationsJointPart(m_chest, sensor);
-        CollectObservationsJointPart(m_head, sensor);
-
-        CollectObservationsJointPart(m_rLeg, sensor); // 6
-        CollectObservationsJointPart(m_rKnee, sensor);
-        CollectObservationsJointPart(m_rFoot, sensor);
-
-        CollectObservationsJointPart(m_lLeg, sensor);
-        CollectObservationsJointPart(m_lKnee, sensor);
-        CollectObservationsJointPart(m_lFoot, sensor);
-
-        CollectObservationsJointPart(m_rArm, sensor);
-        CollectObservationsJointPart(m_rElbow, sensor);
-
-        CollectObservationsJointPart(m_lArm, sensor);
-        CollectObservationsJointPart(m_lElbow, sensor);
+        foreach (var joint in m_joints)
+        {
+            CollectObservationsJointPart(joint, sensor);
+        }
     }
 
-    public override void OnActionReceived(ActionBuffers actions)
+    public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
-        int i = -1;
-        var continuousActions = actions.ContinuousActions;
+        IEnumerator actions = actionsBuffer.ContinuousActions.GetEnumerator();
 
-        m_spine.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_chest.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_head.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 6
-
-        m_rLeg.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_rKnee.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_rFoot.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 5
-
-        m_lLeg.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 5
-        m_lKnee.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_lFoot.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-
-        m_rArm.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 3
-        m_rElbow.SetTargetRotation(continuousActions[++i], 0f, 0f);
-
-        m_lArm.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 3
-        m_lElbow.SetTargetRotation(continuousActions[++i], 0f, 0f);
-
-        m_spine.SetJointStrength(continuousActions[++i]); // 13
-        m_chest.SetJointStrength(continuousActions[++i]);
-        m_head.SetJointStrength(continuousActions[++i]);
-
-        m_rLeg.SetJointStrength(continuousActions[++i]);
-        m_rKnee.SetJointStrength(continuousActions[++i]);
-        m_rFoot.SetJointStrength(continuousActions[++i]);
-
-        m_lLeg.SetJointStrength(continuousActions[++i]);
-        m_lKnee.SetJointStrength(continuousActions[++i]);
-        m_lFoot.SetJointStrength(continuousActions[++i]);
-
-        m_rArm.SetJointStrength(continuousActions[++i]);
-        m_rElbow.SetJointStrength(continuousActions[++i]);
-
-        m_lArm.SetJointStrength(continuousActions[++i]);
-        m_lElbow.SetJointStrength(continuousActions[++i]);
+        foreach (var joint in m_joints)
+        {
+            joint.SetJointMove(actions);
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -311,8 +250,8 @@ public class MyHumanoid : Agent
 
     }
 
-    public void OnTouchTarget()
+    public void OnMove(Vector3 input)
     {
-        AddReward(1f);
+        m_inputDirection = input;
     }
 }

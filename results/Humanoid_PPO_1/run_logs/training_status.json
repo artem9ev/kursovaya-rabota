@@ -1,0 +1,65 @@
+{
+    "Humanoid": {
+        "checkpoints": [
+            {
+                "steps": 999978,
+                "file_path": "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-999978.onnx",
+                "reward": -6.424253257623728,
+                "creation_time": 1760366136.8840754,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-999978.pt"
+                ]
+            },
+            {
+                "steps": 1499981,
+                "file_path": "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-1499981.onnx",
+                "reward": -3.152518507259995,
+                "creation_time": 1760367193.377413,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-1499981.pt"
+                ]
+            },
+            {
+                "steps": 1999985,
+                "file_path": "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-1999985.onnx",
+                "reward": 0.18469514284312885,
+                "creation_time": 1760368257.5467749,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-1999985.pt"
+                ]
+            },
+            {
+                "steps": 2499969,
+                "file_path": "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-2499969.onnx",
+                "reward": 5.583078050522922,
+                "creation_time": 1760369287.5950553,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-2499969.pt"
+                ]
+            },
+            {
+                "steps": 2611886,
+                "file_path": "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-2611886.onnx",
+                "reward": 12.726432981698409,
+                "creation_time": 1760369513.6287098,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-2611886.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2611886,
+            "file_path": "results\\Humanoid_PPO_1\\Humanoid.onnx",
+            "reward": 12.726432981698409,
+            "creation_time": 1760369513.6287098,
+            "auxillary_file_paths": [
+                "results\\Humanoid_PPO_1\\Humanoid\\Humanoid-2611886.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

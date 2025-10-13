@@ -7,7 +7,6 @@ public class MyZebroid : Agent
 {
     [Header("Params")]
     [SerializeField] private float m_maxSpeed = 8f;
-    [SerializeField] private Transform m_orientationPoint;
     [SerializeField] private bool m_isInputControlled;
 
     [Header("Body")]
@@ -61,7 +60,9 @@ public class MyZebroid : Agent
         {
             if (!m_isInputControlled)
             {
-                return (m_target.Position - m_orientationPoint.position).normalized;
+                Vector3 feetPos = (m_rHand.Position + m_lHand.Position + m_rFoot.Position + m_lFoot.Position) / 4;
+
+                return (m_target.Position - new Vector3(feetPos.x, 0.5f, feetPos.z)).normalized;
             }
             return m_inputDirection;
         }
@@ -166,10 +167,8 @@ public class MyZebroid : Agent
     {
         AddReward(m_fixedTimePenalty);
 
-        Vector3 feetPos = (m_rHand.Position + m_lHand.Position + m_rFoot.Position + m_lFoot.Position) / 4;
-
-        m_orientationPoint.position = new Vector3(feetPos.x, 0.5f, feetPos.z);
-        m_orientationPoint.forward = MoveDirection;
+        
+        //m_orientationPoint.forward = MoveDirection;
 
         // Set reward for this step according to mixture of the following elements.
         // a. Match target speed
@@ -188,8 +187,8 @@ public class MyZebroid : Agent
 
         float limbsSyncRevard = limbsSyncReward1 * limbsSyncReward2 * m_limbSyncReward;
 
-        var lookAtTargetReward = (Vector3.Dot(MoveDirection, m_mainBody.Forward) + 1) / 2;
-        var velocityForwardsReward = (Vector3.Dot(m_mainBody.Forward, GetAvgVelocity()) + 1) / 2;
+        var lookAtTargetReward = (Vector3.Dot(MoveDirection, m_mainBody.forward) + 1) / 2;
+        var velocityForwardsReward = (Vector3.Dot(m_mainBody.forward, GetAvgVelocity()) + 1) / 2;
 
         AddReward(lookAtTargetReward * m_lookAtTargetReward * matchSpeedReward * velocityForwardsReward);
     }
@@ -208,41 +207,39 @@ public class MyZebroid : Agent
     {
         Vector3 sum = Vector3.zero;
 
-        sum += m_mainBody.Velocity;
+        sum += m_mainBody.velocity;
 
-        sum += m_palvis.Velocity;
-        sum += m_chest.Velocity;
-        sum += m_neck.Velocity;
+        sum += m_palvis.velocity;
+        sum += m_chest.velocity;
+        sum += m_neck.velocity;
 
-        sum += m_rLeg.Velocity;
-        sum += m_rKnee.Velocity;
-        sum += m_rFoot.Velocity;
+        sum += m_rLeg.velocity;
+        sum += m_rKnee.velocity;
+        sum += m_rFoot.velocity;
 
-        sum += m_lLeg.Velocity;
-        sum += m_lKnee.Velocity;
-        sum += m_lFoot.Velocity;
+        sum += m_lLeg.velocity;
+        sum += m_lKnee.velocity;
+        sum += m_lFoot.velocity;
 
-        sum += m_rArm.Velocity;
-        sum += m_rElbow.Velocity;
-        sum += m_rHand.Velocity;
+        sum += m_rArm.velocity;
+        sum += m_rElbow.velocity;
+        sum += m_rHand.velocity;
 
-        sum += m_lArm.Velocity;
-        sum += m_lElbow.Velocity;
-        sum += m_lHand.Velocity;
+        sum += m_lArm.velocity;
+        sum += m_lElbow.velocity;
+        sum += m_lHand.velocity;
 
-        sum += m_Tail0.Velocity;
-        sum += m_Tail1.Velocity;
-        sum += m_Tail2.Velocity;
+        sum += m_Tail0.velocity;
+        sum += m_Tail1.velocity;
+        sum += m_Tail2.velocity;
 
         return sum / 19;
     }
 
     private void CollectObservationsJointPart(MyJointPart joint, VectorSensor sensor)
     {
-        sensor.AddObservation(joint.IsGrounded);
-        //sensor.AddObservation(joint.Strenth);
-
-        sensor.AddObservation(joint.Strenth / joint.MaxStrenth);
+        sensor.AddObservation(joint.isGrounded);
+        sensor.AddObservation(joint.strenth / joint.maxStrenth);
     }
 
     public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
@@ -303,7 +300,7 @@ public class MyZebroid : Agent
         sensor.AddObservation(Vector3.Distance(velGoal, avgVel)); // 1
 
         sensor.AddObservation(MoveDirection); // 3
-        sensor.AddObservation(m_mainBody.Forward); // 3
+        sensor.AddObservation(m_mainBody.forward); // 3
 
         float maxRaycastDist = 10f;
         if (Physics.Raycast(m_mainBody.Position, Vector3.down, out RaycastHit hit, maxRaycastDist, LayerMask.GetMask("default")))
@@ -344,54 +341,6 @@ public class MyZebroid : Agent
     {
         int i = -1;
         var continuousActions = actions.ContinuousActions;
-
-        m_palvis.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_chest.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_neck.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 6
-
-        m_rLeg.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_rKnee.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_rFoot.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); // 5
-
-        m_lLeg.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_lKnee.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_lFoot.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-
-        m_rArm.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_rElbow.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_rHand.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-
-        m_lArm.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_lElbow.SetTargetRotation(continuousActions[++i], 0f, 0f);
-        m_lHand.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-
-        m_Tail0.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_Tail1.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f);
-        m_Tail2.SetTargetRotation(continuousActions[++i], continuousActions[++i], 0f); //  6
-
-        m_palvis.SetJointStrength(continuousActions[++i]); // 15
-        m_chest.SetJointStrength(continuousActions[++i]);
-        m_neck.SetJointStrength(continuousActions[++i]);
-
-        m_rLeg.SetJointStrength(continuousActions[++i]);
-        m_rKnee.SetJointStrength(continuousActions[++i]);
-        m_rFoot.SetJointStrength(continuousActions[++i]);
-
-        m_lLeg.SetJointStrength(continuousActions[++i]);
-        m_lKnee.SetJointStrength(continuousActions[++i]);
-        m_lFoot.SetJointStrength(continuousActions[++i]);
-
-        m_rArm.SetJointStrength(continuousActions[++i]);
-        m_rElbow.SetJointStrength(continuousActions[++i]);
-        m_rHand.SetJointStrength(continuousActions[++i]);
-
-        m_lArm.SetJointStrength(continuousActions[++i]);
-        m_lElbow.SetJointStrength(continuousActions[++i]);
-        m_lHand.SetJointStrength(continuousActions[++i]);
-
-        m_Tail0.SetJointStrength(continuousActions[++i]);
-        m_Tail1.SetJointStrength(continuousActions[++i]);
-        m_Tail2.SetJointStrength(continuousActions[++i]);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

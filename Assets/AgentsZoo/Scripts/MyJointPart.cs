@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,16 +24,17 @@ public class MyJointPart : MonoBehaviour
 
     private bool m_isGrounded;
 
-    public Vector3 Velocity => m_rb.linearVelocity;
+    public Vector3 velocity => m_rb.linearVelocity;
     public Vector3 Position => m_rb.position;
     public Vector3 Forward => (m_transform.forward.x * Vector3.right + m_transform.forward.z * Vector3.forward).normalized;
     public Quaternion Rotation => m_rb.rotation;
 
     public Vector3 up => m_transform.up;
 
-    public float Strenth => m_joint.slerpDrive.maximumForce;
-    public float MaxStrenth => m_maxJointForceLimit;
-    public bool IsGrounded => m_isGrounded;
+    public float strenth => m_joint.slerpDrive.maximumForce;
+    public float maxStrenth => m_maxJointForceLimit;
+    public bool isGrounded => m_isGrounded;
+    public bool DoGroundHitPenalty => m_groundHitPenalty;
 
     private void Awake()
     {
@@ -65,20 +67,7 @@ public class MyJointPart : MonoBehaviour
         }
     }
 
-    public void SetTargetRotation(float x, float y, float z)
-    {
-        x = (x + 1f) * 0.5f;
-        y = (y + 1f) * 0.5f;
-        z = (z + 1f) * 0.5f;
-
-        float xRot = Mathf.Lerp(m_joint.lowAngularXLimit.limit, m_joint.highAngularXLimit.limit, x);
-        float yRot = Mathf.Lerp(-m_joint.angularYLimit.limit, m_joint.angularYLimit.limit, y);
-        float zRot = Mathf.Lerp(-m_joint.angularZLimit.limit, m_joint.angularZLimit.limit, z);
-
-        m_joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
-    }
-
-    public void SetJointStrength(float strength)
+    private void SetJointStrength(float strength)
     {
         var rawVal = (strength + 1) / 2 * m_maxJointForceLimit;
         var jd = new JointDrive
@@ -88,6 +77,34 @@ public class MyJointPart : MonoBehaviour
             maximumForce = rawVal
         };
         m_joint.slerpDrive = jd;
+    }
+
+    private float TrySetMotion(IEnumerator actions, ConfigurableJointMotion motion)
+    {
+        float res = 0;
+        if (motion == ConfigurableJointMotion.Limited && actions.MoveNext())
+        {
+            res = ((float)actions.Current + 1f) * 0.5f;
+        }
+        return res;
+    }
+
+    public void SetJointMove(IEnumerator actions)
+    {
+        float x = TrySetMotion(actions, m_joint.angularXMotion);
+        float y = TrySetMotion(actions, m_joint.angularYMotion);
+        float z = TrySetMotion(actions, m_joint.angularZMotion);
+
+        float xRot = Mathf.Lerp(m_joint.lowAngularXLimit.limit, m_joint.highAngularXLimit.limit, x);
+        float yRot = Mathf.Lerp(-m_joint.angularYLimit.limit, m_joint.angularYLimit.limit, y);
+        float zRot = Mathf.Lerp(-m_joint.angularZLimit.limit, m_joint.angularZLimit.limit, z);
+
+        m_joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
+
+        if (actions.MoveNext()) 
+        {
+            SetJointStrength((float)actions.Current);
+        }
     }
 
     public void ResetJoint()

@@ -15,11 +15,11 @@ public class MyMainBodyPart : MonoBehaviour
     public Vector3 AngularVelocity => m_rb.angularVelocity;
     public Quaternion Rotation => m_rb.rotation;
 
-    public Vector3 Velocity => m_rb.linearVelocity;
+    public Vector3 velocity => m_rb.linearVelocity;
     public Vector3 Position => m_transform.position;
 
-    public Vector3 Forward => (m_transform.forward.x * Vector3.right + m_transform.forward.z * Vector3.forward).normalized;
-    public Vector3 Up => m_transform.up;
+    public Vector3 forward => (m_transform.forward.x * Vector3.right + m_transform.forward.z * Vector3.forward).normalized;
+    public Vector3 up => m_transform.up;
 
     public bool IsGrounded => m_isGrounded;
 
