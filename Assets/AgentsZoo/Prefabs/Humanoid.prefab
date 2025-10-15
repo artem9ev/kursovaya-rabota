@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 855112899317416996}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6532815, y: 0.27059805, z: -0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: -0.106, y: -0.49, z: 0.768}
+  m_LocalPosition: {x: -0.106, y: 0.01, z: 0.768}
   m_LocalScale: {x: 0.1, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,7 +164,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &438000257908156260
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ ConfigurableJoint:
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -212,7 +212,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -264,7 +264,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &1493797050158735249
@@ -402,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 1522495809939234985}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -487,7 +487,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &2860030363982945922
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -499,16 +499,16 @@ ConfigurableJoint:
   m_ConnectedBody: {fileID: 1236743100808237559}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0, y: -1, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_SecondaryAxis: {x: 0, y: 0, z: -1}
+  m_SecondaryAxis: {x: 0, y: -1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -520,11 +520,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -70
+    limit: -80
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 100
+    limit: 80
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -535,7 +535,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 80
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -587,7 +587,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &1905096166767111197
@@ -666,7 +666,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &3480889465811587971
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -678,16 +678,16 @@ ConfigurableJoint:
   m_ConnectedBody: {fileID: 1236743100808237559}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0, y: 1, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_SecondaryAxis: {x: 0, y: 0, z: 1}
+  m_SecondaryAxis: {x: 0, y: -1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -699,11 +699,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -70
+    limit: -80
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 100
+    limit: 80
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -714,7 +714,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 80
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -766,7 +766,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &1945459785439690750
@@ -1302,7 +1302,7 @@ ConfigurableJoint:
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -1329,7 +1329,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1381,7 +1381,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &2835158098159386591
@@ -1460,7 +1460,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &7564573857941617128
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1560,7 +1560,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &3113657226060956096
@@ -1592,7 +1592,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.457}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3615422373203956060}
@@ -1747,7 +1747,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &5129666109840308167
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1847,7 +1847,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &3175601897018116965
@@ -1907,7 +1907,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3175601897018116965}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1925,7 +1925,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &8721634366570916946
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,7 @@ ConfigurableJoint:
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -1973,7 +1973,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2025,7 +2025,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &3548429171647511471
@@ -2104,7 +2104,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &5467427280557726215
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2204,7 +2204,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &3603057503410746900
@@ -2283,7 +2283,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &7723371291515340883
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2383,7 +2383,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &3998618074577920355
@@ -3008,7 +3008,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &8090251888366149692
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3108,7 +3108,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &5475238013090906762
@@ -3405,7 +3405,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &4000117739372433183
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3426,7 +3426,7 @@ ConfigurableJoint:
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3453,7 +3453,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3505,7 +3505,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &5944509898343173516
@@ -3675,7 +3675,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6128080799427178924}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3693,7 +3693,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &8842340321956261391
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3714,7 +3714,7 @@ ConfigurableJoint:
   m_ZMotion: 0
   m_AngularXMotion: 1
   m_AngularYMotion: 1
-  m_AngularZMotion: 0
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3741,7 +3741,7 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3793,7 +3793,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &6220434417082477038
@@ -3823,7 +3823,7 @@ Transform:
   m_GameObject: {fileID: 6220434417082477038}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.49, z: 0.56}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0.56}
   m_LocalScale: {x: 0.14, y: 0.52, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3958,7 +3958,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &3636780146363940051
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -3978,7 +3978,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 1
   m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
@@ -4002,7 +4002,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -4058,7 +4058,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &6640639553347611596
@@ -4196,7 +4196,7 @@ Transform:
   m_GameObject: {fileID: 6716594651480695307}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6532815, y: -0.27059805, z: 0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: 0.106, y: -0.49, z: 0.768}
+  m_LocalPosition: {x: 0.106, y: 0.01, z: 0.768}
   m_LocalScale: {x: 0.1, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4441,7 +4441,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &5379163036790233367
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4461,7 +4461,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 1
   m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
@@ -4485,7 +4485,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -4541,7 +4541,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &6981399682350039623
@@ -4553,6 +4553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017623989797593285}
+  - component: {fileID: 9068447430941629599}
   - component: {fileID: 1341050814331226722}
   - component: {fileID: 8627841480180554071}
   - component: {fileID: 1173768051158215190}
@@ -4584,6 +4585,52 @@ Transform:
   - {fileID: 1486404751683568009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9068447430941629599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981399682350039623}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c7d6f27b5dbfd46a32e59e93408aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mainCamera: {fileID: 0}
+  m_onMouseLook:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1173768051158215190}
+        m_TargetAssemblyTypeName: MyHumanoid, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_onAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onJump:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onSprint:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onCrouch:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1341050814331226722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4613,7 +4660,6 @@ MonoBehaviour:
         m_CallState: 2
   m_target: {fileID: 6010484210851433064}
   m_humanoid: {fileID: 1173768051158215190}
-  m_orient: {fileID: 3898174808626544494}
   m_stayMinTime: 3
   m_stayMaxTime: 8
 --- !u!114 &8627841480180554071
@@ -4632,13 +4678,13 @@ MonoBehaviour:
     VectorObservationSize: 38
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 37
+      m_NumContinuousActions: 46
       BranchSizes: 
-    VectorActionSize: 25000000
+    VectorActionSize: 2e000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 5c9c9a36a04eff8458604ae5071c3328, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: c70254c70c90bdc4f85ba8fe050cdc93, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Humanoid
@@ -4664,7 +4710,8 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
   m_maxSpeed: 4
-  m_spineNormal: 0.866
+  m_spineNormal: 0.85
+  m_orient: {fileID: 3898174808626544494}
   m_hips: {fileID: 5651684396602941457}
   m_spine: {fileID: 4683607401026366431}
   m_chest: {fileID: 3711219988023895585}
@@ -4683,9 +4730,9 @@ MonoBehaviour:
   m_groundHitPenalty: -1
   m_lookAtTargetReward: 1
   m_bodyOrientReward: 0.01
-  maxJointSpring: 20000
-  jointDampen: 3000
-  maxJointForceLimit: 6000
+  maxJointSpring: 4000
+  jointDampen: 500
+  maxJointForceLimit: 3000
 --- !u!114 &5536583776021237040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4722,7 +4769,7 @@ MonoBehaviour:
     UseLocalSpaceRotations: 1
     UseModelSpaceLinearVelocity: 1
     UseLocalSpaceLinearVelocity: 0
-    UseJointPositionsAndAngles: 0
+    UseJointPositionsAndAngles: 1
     UseJointForces: 0
   sensorName: 
 --- !u!114 &1274487263920129540
@@ -4738,8 +4785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Record: 0
-  NumStepsToRecord: 40000
-  DemonstrationName: Humanoid
+  NumStepsToRecord: 200000
+  DemonstrationName: HumanoidMain1
   DemonstrationDirectory: Assets/AgentsZoo/Demos
 --- !u!1 &7037746429961424182
 GameObject:
@@ -4926,7 +4973,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!153 &8224291333626258427
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -5026,7 +5073,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &7937534315109419442
@@ -5212,7 +5259,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!1 &8792924568642631530
 GameObject:
   m_ObjectHideFlags: 0
@@ -5352,7 +5399,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.457}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5714354581648262850}

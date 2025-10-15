@@ -1,0 +1,38 @@
+{
+    "Humanoid": {
+        "checkpoints": [
+            {
+                "steps": 499990,
+                "file_path": "results\\Humanoid_Main_2_BehClone\\Humanoid\\Humanoid-499990.onnx",
+                "reward": -0.47540109427594346,
+                "creation_time": 1760528199.3577297,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_2_BehClone\\Humanoid\\Humanoid-499990.pt"
+                ]
+            },
+            {
+                "steps": 783869,
+                "file_path": "results\\Humanoid_Main_2_BehClone\\Humanoid\\Humanoid-783869.onnx",
+                "reward": -0.2449994914490601,
+                "creation_time": 1760529062.277227,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_2_BehClone\\Humanoid\\Humanoid-783869.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 783869,
+            "file_path": "results\\Humanoid_Main_2_BehClone\\Humanoid.onnx",
+            "reward": -0.2449994914490601,
+            "creation_time": 1760529062.277227,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Main_2_BehClone\\Humanoid\\Humanoid-783869.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

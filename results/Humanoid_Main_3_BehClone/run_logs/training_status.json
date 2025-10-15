@@ -1,0 +1,56 @@
+{
+    "Humanoid": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-499999.onnx",
+                "reward": 0.16521532678604126,
+                "creation_time": 1760530469.7856514,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-499999.pt"
+                ]
+            },
+            {
+                "steps": 999980,
+                "file_path": "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-999980.onnx",
+                "reward": 0.36448571224822185,
+                "creation_time": 1760531821.5752974,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-999980.pt"
+                ]
+            },
+            {
+                "steps": 1499981,
+                "file_path": "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-1499981.onnx",
+                "reward": 0.23817084157789076,
+                "creation_time": 1760533201.961111,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-1499981.pt"
+                ]
+            },
+            {
+                "steps": 1605838,
+                "file_path": "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-1605838.onnx",
+                "reward": 0.14714805253090396,
+                "creation_time": 1760533491.6019003,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-1605838.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1605838,
+            "file_path": "results\\Humanoid_Main_3_BehClone\\Humanoid.onnx",
+            "reward": 0.14714805253090396,
+            "creation_time": 1760533491.6019003,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Main_3_BehClone\\Humanoid\\Humanoid-1605838.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

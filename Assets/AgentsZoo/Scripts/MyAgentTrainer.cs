@@ -4,10 +4,9 @@ using UnityEngine.Events;
 
 public class MyAgentTrainer : MonoBehaviour
 {
-    [SerializeField] UnityEvent<Vector3> m_onInput;
+    [SerializeField] UnityEvent<Vector2> m_onInput;
     [SerializeField] MyTarget m_target;
     [SerializeField] MyHumanoid m_humanoid;
-    [SerializeField] Transform m_orient;
 
     [SerializeField][Min(0f)] private float m_stayMinTime = 3f;
     [SerializeField] private float m_stayMaxTime = 8f;
@@ -36,7 +35,7 @@ public class MyAgentTrainer : MonoBehaviour
     {
         if (m_isStaing)
         {
-            m_onInput?.Invoke(Vector3.zero);
+            m_onInput?.Invoke(Vector2.zero);
 
             return;
         }
@@ -46,10 +45,9 @@ public class MyAgentTrainer : MonoBehaviour
 
         Vector3 direction = (m_target.Position - agentPos).normalized;
 
-        m_orient.position = agentPos;
-        m_orient.forward = direction;
+        Vector2 input = new Vector2(direction.x, direction.z);
 
-        m_onInput?.Invoke(direction);
+        m_onInput?.Invoke(input);
     }
 
     private IEnumerator StayRoutine()

@@ -11,6 +11,7 @@ public class MyHumanoid : Agent
     [SerializeField] private float m_maxSpeed = 8f;
 
     [SerializeField][Range(0f, 1f)] private float m_spineNormal = 0.9f;
+    [SerializeField] private Transform m_orient;
 
     [Header("Body")]
     [SerializeField] private MyMainBodyPart m_hips;
@@ -113,6 +114,9 @@ public class MyHumanoid : Agent
 
     private void FixedUpdate()
     {
+        m_orient.position = FeetPos;
+        m_orient.forward = m_inputDirection;
+
         float matchSpeedReward = GetMatchingVelocityReward(m_inputDirection * TargetWalkingSpeed, GetAvgVelocity());
 
         var bodyOrientReward = Mathf.Clamp01(Vector3.Dot(m_spine.up, Vector3.up));
@@ -138,14 +142,7 @@ public class MyHumanoid : Agent
             rayColor = Color.green;
         }
 
-        Debug.DrawRay(m_hips.Position, spineUp, rayColor);
-
-        //GetGroundedPenalty();
-
-        if (GetCumulativeReward() < 0)
-        {
-            //EndEpisode();
-        }
+        Debug.DrawRay(m_hips.Position, spineUp * 1.5f, rayColor);
     }
 
     public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
@@ -237,11 +234,16 @@ public class MyHumanoid : Agent
 
     public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
-        IEnumerator actions = actionsBuffer.ContinuousActions.GetEnumerator();
+        MyCountedEnumerator actions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
         foreach (var joint in m_joints)
         {
             joint.SetJointMove(actions);
+        }
+
+        if (actions.Count != actionsBuffer.ContinuousActions.Length)
+        {
+            Debug.Log($"Actions count does not match: {actions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
         }
     }
 
@@ -250,8 +252,9 @@ public class MyHumanoid : Agent
 
     }
 
-    public void OnMove(Vector3 input)
+
+    public void OnMove(Vector2 input)
     {
-        m_inputDirection = input;
+        m_inputDirection = input.x * Vector3.right + input.y * Vector3.forward;
     }
 }
