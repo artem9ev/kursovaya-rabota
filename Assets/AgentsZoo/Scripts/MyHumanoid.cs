@@ -10,8 +10,10 @@ public class MyHumanoid : Agent
     [Header("Params")]
     [SerializeField] private float m_maxSpeed = 8f;
 
-    [SerializeField][Range(0f, 1f)] private float m_spineNormal = 0.9f;
+    [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 30f;
+    [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 30f;
     [SerializeField] private Transform m_orient;
+    [SerializeField] private Transform m_root;
 
     [Header("Body")]
     [SerializeField] private MyMainBodyPart m_hips;
@@ -52,13 +54,16 @@ public class MyHumanoid : Agent
 
     private List<MyJointPart> m_joints = new List<MyJointPart>();
 
-    public float TargetWalkingSpeed
+    public float targetWalkingSpeed
     {
         get { return m_targetWalkingSpeed * m_inputDirection.magnitude; }
         set { m_targetWalkingSpeed = Mathf.Clamp(value, .1f, m_maxSpeed); }
     }
 
-    public Vector3 FeetPos => (m_rFoot.Position + m_lFoot.Position) / 2;
+    public Vector3 feetPos => (m_rFoot.position + m_lFoot.position) / 2;
+
+    public float velocity => GetAvgVelocity().magnitude;
+    public float maxSpeed => m_maxSpeed;
 
     protected override void Awake()
     {
@@ -92,7 +97,7 @@ public class MyHumanoid : Agent
     {
         base.OnEnable();
 
-        m_hips.Grounded += () => { GroundHitPenalty(true); };
+        m_hips.GroundHitPenalty += GroundHitPenalty;
 
         foreach (var joint in m_joints) 
         {
@@ -104,7 +109,7 @@ public class MyHumanoid : Agent
     {
         base.OnDisable();
 
-        m_hips.Grounded -= () => { GroundHitPenalty(true); };
+        m_hips.GroundHitPenalty -= GroundHitPenalty;
 
         foreach (var joint in m_joints)
         {
@@ -114,59 +119,67 @@ public class MyHumanoid : Agent
 
     private void FixedUpdate()
     {
-        m_orient.position = FeetPos;
-        m_orient.forward = m_inputDirection;
 
-        float matchSpeedReward = GetMatchingVelocityReward(m_inputDirection * TargetWalkingSpeed, GetAvgVelocity());
+        Color rayColorForward = Color.red;
+        Color rayColorUp = Color.red;
 
-        var bodyOrientReward = Mathf.Clamp01(Vector3.Dot(m_spine.up, Vector3.up));
-        var chestOrientReward = Mathf.Clamp01(Vector3.Dot(m_chest.up, Vector3.up));
-        var headOrientReward = Mathf.Clamp01(Vector3.Dot(m_head.up, Vector3.up));
-
-        if (m_spine.up.y < m_spineNormal || m_chest.up.y < m_spineNormal || m_head.up.y < m_spineNormal)
-        {
-            bodyOrientReward = 0;
-        }
-
-        var lookAtTargetReward = (Vector3.Dot(m_inputDirection, m_hips.forward) + 1) / 2;
-        var velocityForwardsReward = (Vector3.Dot(m_hips.forward, GetAvgVelocity()) + 1) / 2;
-
-        //AddReward(m_bodyOrientReward * velocityForwardsReward * bodyOrientReward * chestOrientReward * headOrientReward);
-
+        Vector3 spineForward = (m_hips.forward + m_spine.forward + m_chest.forward + m_head.forward) / 4;
         Vector3 spineUp = (m_hips.up + m_spine.up + m_chest.up + m_head.up) / 4;
-        Color rayColor = Color.red;
 
-        if (spineUp.y >= m_spineNormal)
+        m_root.position = feetPos;
+        m_root.forward = spineForward;
+        m_orient.position = feetPos;
+        m_orient.forward = m_inputDirection != Vector3.zero ? m_inputDirection : Vector3.down;
+
+        float matchSpeedReward = GetMatchingVelocityReward();
+        //float lookAtTargetReward = 0;
+        float lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2;
+        //var velocityForwardsReward = (Vector3.Dot(spineForward, GetAvgVelocity()) + 1) / 2;
+
+        if (targetWalkingSpeed == 0 || Vector3.Angle(spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
         {
-            AddReward(m_lookAtTargetReward * lookAtTargetReward * matchSpeedReward);
-            rayColor = Color.green;
+            rayColorForward = Color.green;
+            //lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2 ;
         }
 
-        Debug.DrawRay(m_hips.Position, spineUp * 1.5f, rayColor);
+        if (spineUp.y >= Mathf.Cos(m_spineUpDeflectionAngle * Mathf.Deg2Rad))
+        {
+            //AddReward(m_bodyOrientReward);
+            AddReward(m_lookAtTargetReward * lookAtTargetReward * matchSpeedReward);
+            rayColorUp = Color.green;
+        }
+
+        //Debug.Log($"\t{lookAtTargetReward:f4} \t{matchSpeedReward:f4} \t{lookAtTargetReward * matchSpeedReward:f4}");
+
+        Debug.DrawRay(m_hips.position, spineUp * 1.5f, rayColorUp);
+        Debug.DrawRay(m_hips.position, spineForward * 1.5f, rayColorForward);
     }
 
-    public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
+    public float GetMatchingVelocityReward()
     {
-        var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, TargetWalkingSpeed);
+        float velDeltaMagnitude = Vector3.Distance(m_inputDirection * targetWalkingSpeed, GetAvgVelocity());
+        float clampedDelta = 0;
+        float clampHighBorder = targetWalkingSpeed == 0 ? m_maxSpeed : targetWalkingSpeed;
 
         if (float.IsNaN(velDeltaMagnitude)) 
         {
             return 0;
         }
-        if (TargetWalkingSpeed == 0)
-        {
-            return 0;
-        }
-        return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
+
+        clampedDelta = Mathf.Clamp(velDeltaMagnitude, 0, clampHighBorder * 2) / clampHighBorder;
+
+        return Mathf.Tan(Mathf.PI / 4 * (1 - clampedDelta));
+
+        return Mathf.Pow(1 - Mathf.Pow(clampedDelta, 2), 2);
     }
 
     private void GetGroundedPenalty()
     {
-        bool isGrounded = m_hips.IsGrounded;
+        bool isGrounded = m_hips.isGrounded;
 
         foreach (var joint in m_joints)
         {
-            isGrounded |= joint.isGrounded & joint.DoGroundHitPenalty;
+            isGrounded |= joint.isGrounded & joint.doGroundHitPenalty;
         }
 
         AddReward(m_groundTouchPenalty * (isGrounded ? 1 : -1));
@@ -192,39 +205,46 @@ public class MyHumanoid : Agent
             sum += joint.velocity;
         }
 
-        return sum / 14;
+        return sum / (1 + m_joints.Count);
     }
 
     private void CollectObservationsJointPart(MyJointPart joint, VectorSensor sensor)
     {
         sensor.AddObservation(joint.isGrounded);
-        sensor.AddObservation(joint.strenth / joint.maxStrenth);
+        if (joint.maxStrenth > 0)
+        {
+            sensor.AddObservation(joint.strenth / joint.maxStrenth);
+        }
+        else 
+        {
+            sensor.AddObservation(0f);
+        }
     }
 
     public override void OnEpisodeBegin()
     {
-        Debug.Log($"[Episode Begins] - {CompletedEpisodes}");
-
         m_hips.ResetBody();
 
         foreach (var joint in m_joints)
         {
-            joint.ResetJoint();
+            joint.ResetBody();
         }
 
-        TargetWalkingSpeed = Random.Range(m_maxSpeed / 3 * 2, m_maxSpeed);
+        Physics.SyncTransforms();
+
+        targetWalkingSpeed = Random.Range(m_maxSpeed / 3 * 2, m_maxSpeed);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        var velGoal = m_inputDirection * TargetWalkingSpeed;
+        var velGoal = m_inputDirection * targetWalkingSpeed;
         var avgVel = GetAvgVelocity();
 
         sensor.AddObservation(velGoal);
         sensor.AddObservation(avgVel);
 
         sensor.AddObservation(m_inputDirection); // 3
-        sensor.AddObservation(m_hips.forward); // 3
+        sensor.AddObservation(m_hips.flatForward); // 3
 
         foreach (var joint in m_joints)
         {

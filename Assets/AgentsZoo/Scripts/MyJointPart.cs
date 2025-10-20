@@ -1,70 +1,25 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(ConfigurableJoint))]
-public class MyJointPart : MonoBehaviour
+public class MyJointPart : AgentBodyPart
 {
-    [Header("Penalty")]
-    [SerializeField] private bool m_groundHitPenalty;
-    [SerializeField] private bool m_endEpisodPenalty;
-
-    public UnityAction<bool> GroundHitPenalty;
-
     private ConfigurableJoint m_joint;
-    private Rigidbody m_rb;
-    private Transform m_transform;
-
-    private Vector3 m_startPos;
-    private Quaternion m_startRot;
 
     private float m_maxJointSpring;
     private float m_jointDampen;
     private float m_maxJointForceLimit;
 
-    private bool m_isGrounded;
-
-    public Vector3 velocity => m_rb.linearVelocity;
-    public Vector3 Position => m_rb.position;
-    public Vector3 Forward => (m_transform.forward.x * Vector3.right + m_transform.forward.z * Vector3.forward).normalized;
-    public Quaternion Rotation => m_rb.rotation;
-
-    public Vector3 up => m_transform.up;
-
     public float strenth => m_joint.slerpDrive.maximumForce;
     public float maxStrenth => m_maxJointForceLimit;
-    public bool isGrounded => m_isGrounded;
-    public bool DoGroundHitPenalty => m_groundHitPenalty;
 
-    private void Awake()
+    protected override void Awake()
     {
-        m_transform = transform;
-        m_rb = GetComponent<Rigidbody>();
+        base.Awake();
+
         m_joint = GetComponent<ConfigurableJoint>();
-
-        m_startPos = m_transform.localPosition;
-        m_startRot = m_transform.localRotation;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("ground")) 
-        {
-            m_isGrounded = true;
-
-            if (m_groundHitPenalty)
-            {
-                GroundHitPenalty?.Invoke(m_endEpisodPenalty);
-            }
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.CompareTag("ground"))
-        {
-            m_isGrounded = false;
-        }
     }
 
     private void SetJointStrength(float strength)
@@ -107,7 +62,7 @@ public class MyJointPart : MonoBehaviour
         }
     }
 
-    public void ResetJoint()
+    public override void ResetBody()
     {
         m_joint.slerpDrive = new JointDrive
         {
@@ -118,15 +73,7 @@ public class MyJointPart : MonoBehaviour
 
         m_joint.targetRotation = Quaternion.Euler(0, 0, 0);
 
-        m_rb.linearVelocity = Vector3.zero;
-        m_rb.angularVelocity = Vector3.zero;
-
-        m_transform.localPosition = m_startPos;
-        m_transform.localRotation = m_startRot;
-
-        Physics.SyncTransforms();
-
-        m_isGrounded = false;
+        base.ResetBody();
 
         m_joint.slerpDrive = new JointDrive
         {
@@ -141,8 +88,5 @@ public class MyJointPart : MonoBehaviour
         m_maxJointSpring = spring;
         m_jointDampen = dampen;
         m_maxJointForceLimit = maxForce;
-
-        //m_joint.angularXLimitSpring = new SoftJointLimitSpring { spring = spring, damper = dampen };
-        //m_joint.angularYZLimitSpring = new SoftJointLimitSpring { spring = spring, damper = dampen };
     }
 }

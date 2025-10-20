@@ -4,47 +4,47 @@ behaviors:
     hyperparameters:
       batch_size: 2048
       buffer_size: 20480
-      learning_rate: 0.00025
-      beta: 0.01
-      epsilon: 0.25
-      lambd: 0.9
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
       num_epoch: 5
       learning_rate_schedule: linear
     network_settings:
       normalize: true
-      hidden_units: 512
+      hidden_units: 640
       num_layers: 3
       vis_encode_type: simple
     reward_signals:
       extrinsic:
-        gamma: 0.95
+        gamma: 0.955
         strength: 1.0
         network_settings:
           normalize: true
           hidden_units: 256
           num_layers: 2
-      curiosity:
-        gamma: 0.99
-        strength: 0.03
-        network_settings:
-          normalize: true
-          hidden_units: 256
-          num_layers: 2
-          vis_encode_type: simple
-          memory: null
-          goal_conditioning_type: hyper
-          deterministic: false
-        learning_rate: 0.0003
-        encoding_size: 256
+      # curiosity:
+      #   gamma: 0.99
+      #   strength: 0.04
+      #   network_settings:
+      #     normalize: true
+      #     hidden_units: 400
+      #     num_layers: 2
+      #     vis_encode_type: simple
+      #     memory: null
+      #     goal_conditioning_type: hyper
+      #     deterministic: false
+      #   learning_rate: 0.0003
+      #   encoding_size: 256
       gail:
-        strength: 0.02
+        strength: 0.04
         gamma: 0.99
         network_settings:
           normalize: true
-          hidden_units: 256
+          hidden_units: 400
           num_layers: 2
         encoding_size: 128
-        demo_path: Assets/AgentsZoo/Demos/Humanoid.demo
+        demo_path: Assets/AgentsZoo/Demos/HumanoidTest.demo
         learning_rate: 3.0e-4
         use_actions: false
         use_vail: false

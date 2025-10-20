@@ -1,0 +1,63 @@
+behaviors:
+  Humanoid:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 5
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 512
+      num_layers: 3
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.955
+        strength: 1.0
+        network_settings:
+          normalize: true
+          hidden_units: 256
+          num_layers: 2
+      curiosity:
+        gamma: 0.99
+        strength: 0.02
+        network_settings:
+          normalize: true
+          hidden_units: 256
+          num_layers: 2
+          vis_encode_type: simple
+          memory: null
+          goal_conditioning_type: hyper
+          deterministic: false
+        learning_rate: 0.0003
+        encoding_size: 256
+      # gail:
+      #   strength: 0.02
+      #   gamma: 0.99
+      #   network_settings:
+      #     normalize: true
+      #     hidden_units: 256
+      #     num_layers: 2
+      #   encoding_size: 128
+      #   demo_path: Assets/AgentsZoo/Demos/Humanoid.demo
+      #   learning_rate: 3.0e-4
+      #   use_actions: false
+      #   use_vail: false
+    # behavior cloning
+    behavioral_cloning:
+      demo_path: Assets/AgentsZoo/Demos/HumanoidTest.demo
+      strength: 0.3
+      steps: 0
+      batch_size: 2048
+      num_epoch: 5
+      samples_per_update: 40
+    keep_checkpoints: 20
+    max_steps: 50000000
+    time_horizon: 1000
+    summary_freq: 10000
+    threaded: true

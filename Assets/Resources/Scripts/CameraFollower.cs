@@ -26,11 +26,7 @@ public class CameraFollower : MonoBehaviour
 
     private void Awake()
     {
-        m_transform = transform;
-        m_pivot = m_target.position + m_offset;
-        m_rotationX = m_angle;
-        m_transform.rotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
-        SetPosition();
+        Initialize();
 
         m_characterMovement = m_target.GetComponent<CharacterMovement>();
 
@@ -40,8 +36,16 @@ public class CameraFollower : MonoBehaviour
 
     private void OnValidate()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         m_transform = transform;
-        m_pivot = m_target.position + m_offset;
+        if (m_target != null)
+        {
+            m_pivot = m_target.position + m_offset;
+        }
         m_rotationX = m_angle;
         m_transform.rotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
         SetPosition();
@@ -61,7 +65,7 @@ public class CameraFollower : MonoBehaviour
 
     private void SetPosition()
     {
-        m_transform.position = m_pivot + m_offset - transform.forward * m_range;
+        m_transform.position = m_pivot + m_offset - m_transform.forward * m_range;
     }
 
     public void OnMouseLook(Vector2 delta)

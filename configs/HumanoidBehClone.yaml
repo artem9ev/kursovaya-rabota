@@ -33,7 +33,7 @@ behaviors:
       #   use_vail: false
     # behavior cloning
     behavioral_cloning:
-      demo_path: Assets/AgentsZoo/Demos/HumanoidMain1.demo
+      demo_path: Assets/AgentsZoo/Demos/HumanoidTest.demo
       strength: 0.2
       steps: 0
       batch_size: 2048

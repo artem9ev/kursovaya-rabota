@@ -1,0 +1,101 @@
+{
+    "Humanoid": {
+        "checkpoints": [
+            {
+                "steps": 499998,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-499998.onnx",
+                "reward": 4.908782432112714,
+                "creation_time": 1760885308.0217738,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-499998.pt"
+                ]
+            },
+            {
+                "steps": 999989,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-999989.onnx",
+                "reward": 21.906447013810244,
+                "creation_time": 1760886383.1237855,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-999989.pt"
+                ]
+            },
+            {
+                "steps": 1499985,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-1499985.onnx",
+                "reward": 37.566111724240386,
+                "creation_time": 1760887198.913381,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-1499985.pt"
+                ]
+            },
+            {
+                "steps": 1999985,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-1999985.onnx",
+                "reward": 53.17142544626287,
+                "creation_time": 1760887816.429305,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-1999985.pt"
+                ]
+            },
+            {
+                "steps": 2499984,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2499984.onnx",
+                "reward": 60.43459997177124,
+                "creation_time": 1760888422.1365864,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2499984.pt"
+                ]
+            },
+            {
+                "steps": 2751218,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2751218.onnx",
+                "reward": 70.93624021281367,
+                "creation_time": 1760888714.905663,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2751218.pt"
+                ]
+            },
+            {
+                "steps": 2999978,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2999978.onnx",
+                "reward": 66.64524604561173,
+                "creation_time": 1760889615.0292182,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-2999978.pt"
+                ]
+            },
+            {
+                "steps": 3499997,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-3499997.onnx",
+                "reward": 71.73619455524853,
+                "creation_time": 1760890188.317549,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-3499997.pt"
+                ]
+            },
+            {
+                "steps": 3901370,
+                "file_path": "results\\Humanoid_Test_3\\Humanoid\\Humanoid-3901370.onnx",
+                "reward": 83.8008779146338,
+                "creation_time": 1760890653.7636576,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_3\\Humanoid\\Humanoid-3901370.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3901370,
+            "file_path": "results\\Humanoid_Test_3\\Humanoid.onnx",
+            "reward": 83.8008779146338,
+            "creation_time": 1760890653.7636576,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Test_3\\Humanoid\\Humanoid-3901370.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

@@ -1,0 +1,200 @@
+{
+    "Humanoid": {
+        "checkpoints": [
+            {
+                "steps": 34499888,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-34499888.onnx",
+                "reward": 239.07190999806485,
+                "creation_time": 1760946211.5235171,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-34499888.pt"
+                ]
+            },
+            {
+                "steps": 34999994,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-34999994.onnx",
+                "reward": 242.30433148221124,
+                "creation_time": 1760946717.5794654,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-34999994.pt"
+                ]
+            },
+            {
+                "steps": 35499856,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-35499856.onnx",
+                "reward": 242.30631603017267,
+                "creation_time": 1760947216.520683,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-35499856.pt"
+                ]
+            },
+            {
+                "steps": 35999904,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-35999904.onnx",
+                "reward": 249.56393207694887,
+                "creation_time": 1760947711.8367147,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-35999904.pt"
+                ]
+            },
+            {
+                "steps": 36499996,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-36499996.onnx",
+                "reward": 225.66571335216145,
+                "creation_time": 1760948215.051216,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-36499996.pt"
+                ]
+            },
+            {
+                "steps": 36999888,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-36999888.onnx",
+                "reward": 240.71638646627727,
+                "creation_time": 1760948709.6576552,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-36999888.pt"
+                ]
+            },
+            {
+                "steps": 37499916,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-37499916.onnx",
+                "reward": 247.38537944025464,
+                "creation_time": 1760949229.189468,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-37499916.pt"
+                ]
+            },
+            {
+                "steps": 37999905,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-37999905.onnx",
+                "reward": 258.2245976148726,
+                "creation_time": 1760949734.734089,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-37999905.pt"
+                ]
+            },
+            {
+                "steps": 38499964,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-38499964.onnx",
+                "reward": 252.39294711920405,
+                "creation_time": 1760950257.8430092,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-38499964.pt"
+                ]
+            },
+            {
+                "steps": 38999974,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-38999974.onnx",
+                "reward": 250.4634167148221,
+                "creation_time": 1760950768.8299553,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-38999974.pt"
+                ]
+            },
+            {
+                "steps": 39499977,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-39499977.onnx",
+                "reward": 246.58882183364676,
+                "creation_time": 1760951261.650495,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-39499977.pt"
+                ]
+            },
+            {
+                "steps": 39999913,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-39999913.onnx",
+                "reward": 255.3988884826501,
+                "creation_time": 1760951766.760227,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-39999913.pt"
+                ]
+            },
+            {
+                "steps": 40499941,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-40499941.onnx",
+                "reward": 252.42913943058565,
+                "creation_time": 1760952268.534244,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-40499941.pt"
+                ]
+            },
+            {
+                "steps": 40999989,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-40999989.onnx",
+                "reward": 266.71793818019825,
+                "creation_time": 1760952801.5584557,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-40999989.pt"
+                ]
+            },
+            {
+                "steps": 41499977,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-41499977.onnx",
+                "reward": 297.91145254436293,
+                "creation_time": 1760953337.6316233,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-41499977.pt"
+                ]
+            },
+            {
+                "steps": 41999912,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-41999912.onnx",
+                "reward": 270.21382757910976,
+                "creation_time": 1760953847.0754788,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-41999912.pt"
+                ]
+            },
+            {
+                "steps": 42499923,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-42499923.onnx",
+                "reward": 278.91533880929154,
+                "creation_time": 1760954351.9904037,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-42499923.pt"
+                ]
+            },
+            {
+                "steps": 42999974,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-42999974.onnx",
+                "reward": 257.93465689077874,
+                "creation_time": 1760954850.2873561,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-42999974.pt"
+                ]
+            },
+            {
+                "steps": 43499995,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-43499995.onnx",
+                "reward": 260.7735963196804,
+                "creation_time": 1760955345.7642596,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-43499995.pt"
+                ]
+            },
+            {
+                "steps": 43597370,
+                "file_path": "results\\Humanoid_Test_7\\Humanoid\\Humanoid-43597370.onnx",
+                "reward": 250.11530838317648,
+                "creation_time": 1760955466.3359876,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Test_7\\Humanoid\\Humanoid-43597370.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 43597370,
+            "file_path": "results\\Humanoid_Test_7\\Humanoid.onnx",
+            "reward": 250.11530838317648,
+            "creation_time": 1760955466.3359876,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Test_7\\Humanoid\\Humanoid-43597370.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

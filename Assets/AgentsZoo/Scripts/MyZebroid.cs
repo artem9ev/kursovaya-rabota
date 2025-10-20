@@ -60,7 +60,7 @@ public class MyZebroid : Agent
         {
             if (!m_isInputControlled)
             {
-                Vector3 feetPos = (m_rHand.Position + m_lHand.Position + m_rFoot.Position + m_lFoot.Position) / 4;
+                Vector3 feetPos = (m_rHand.position + m_lHand.position + m_rFoot.position + m_lFoot.position) / 4;
 
                 return (m_target.Position - new Vector3(feetPos.x, 0.5f, feetPos.z)).normalized;
             }
@@ -105,7 +105,7 @@ public class MyZebroid : Agent
     {
         base.OnEnable();
 
-        m_mainBody.Grounded += () => { GroundHitPenalty(true); };
+        m_mainBody.GroundHitPenalty += GroundHitPenalty;
 
         m_palvis.GroundHitPenalty += GroundHitPenalty;
         m_chest.GroundHitPenalty += GroundHitPenalty;
@@ -136,7 +136,7 @@ public class MyZebroid : Agent
     {
         base.OnDisable();
 
-        m_mainBody.Grounded -= () => { GroundHitPenalty(true); };
+        m_mainBody.GroundHitPenalty -= GroundHitPenalty;
 
         m_palvis.GroundHitPenalty -= GroundHitPenalty;
         m_chest.GroundHitPenalty -= GroundHitPenalty;
@@ -187,8 +187,8 @@ public class MyZebroid : Agent
 
         float limbsSyncRevard = limbsSyncReward1 * limbsSyncReward2 * m_limbSyncReward;
 
-        var lookAtTargetReward = (Vector3.Dot(MoveDirection, m_mainBody.forward) + 1) / 2;
-        var velocityForwardsReward = (Vector3.Dot(m_mainBody.forward, GetAvgVelocity()) + 1) / 2;
+        var lookAtTargetReward = (Vector3.Dot(MoveDirection, m_mainBody.flatForward) + 1) / 2;
+        var velocityForwardsReward = (Vector3.Dot(m_mainBody.flatForward, GetAvgVelocity()) + 1) / 2;
 
         AddReward(lookAtTargetReward * m_lookAtTargetReward * matchSpeedReward * velocityForwardsReward);
     }
@@ -261,29 +261,29 @@ public class MyZebroid : Agent
     {
         m_mainBody.ResetBody();
 
-        m_palvis.ResetJoint();
-        m_chest.ResetJoint();
-        m_neck.ResetJoint();
+        m_palvis.ResetBody();
+        m_chest.ResetBody();
+        m_neck.ResetBody();
 
-        m_rLeg.ResetJoint();
-        m_rKnee.ResetJoint();
-        m_rFoot.ResetJoint();
+        m_rLeg.ResetBody();
+        m_rKnee.ResetBody();
+        m_rFoot.ResetBody();
 
-        m_lLeg.ResetJoint();
-        m_lKnee.ResetJoint();
-        m_lFoot.ResetJoint();
+        m_lLeg.ResetBody();
+        m_lKnee.ResetBody();
+        m_lFoot.ResetBody();
 
-        m_rArm.ResetJoint();
-        m_rElbow.ResetJoint();
-        m_rHand.ResetJoint();
+        m_rArm.ResetBody();
+        m_rElbow.ResetBody();
+        m_rHand.ResetBody();
 
-        m_lArm.ResetJoint();
-        m_lElbow.ResetJoint();
-        m_lHand.ResetJoint();
+        m_lArm.ResetBody();
+        m_lElbow.ResetBody();
+        m_lHand.ResetBody();
 
-        m_Tail0.ResetJoint();
-        m_Tail1.ResetJoint();
-        m_Tail2.ResetJoint();
+        m_Tail0.ResetBody();
+        m_Tail1.ResetBody();
+        m_Tail2.ResetBody();
 
         //Set our goal walking speed
         TargetWalkingSpeed = Random.Range(0.1f, m_maxSpeed);
@@ -300,10 +300,10 @@ public class MyZebroid : Agent
         sensor.AddObservation(Vector3.Distance(velGoal, avgVel)); // 1
 
         sensor.AddObservation(MoveDirection); // 3
-        sensor.AddObservation(m_mainBody.forward); // 3
+        sensor.AddObservation(m_mainBody.flatForward); // 3
 
         float maxRaycastDist = 10f;
-        if (Physics.Raycast(m_mainBody.Position, Vector3.down, out RaycastHit hit, maxRaycastDist, LayerMask.GetMask("default")))
+        if (Physics.Raycast(m_mainBody.position, Vector3.down, out RaycastHit hit, maxRaycastDist, LayerMask.GetMask("default")))
         {
             sensor.AddObservation(hit.distance / maxRaycastDist); // 1
         }

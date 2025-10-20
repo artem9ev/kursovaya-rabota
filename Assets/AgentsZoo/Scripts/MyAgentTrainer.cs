@@ -40,7 +40,7 @@ public class MyAgentTrainer : MonoBehaviour
             return;
         }
 
-        Vector3 agentPos = m_humanoid.FeetPos;
+        Vector3 agentPos = m_humanoid.feetPos;
         agentPos.y = 0.5f;
 
         Vector3 direction = (m_target.Position - agentPos).normalized;
