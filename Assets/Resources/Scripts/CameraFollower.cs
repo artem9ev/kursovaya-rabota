@@ -74,10 +74,5 @@ public class CameraFollower : MonoBehaviour
         m_rotationY += m_sensetivityY / 10f * delta.x;
 
         m_transform.eulerAngles = new Vector2(m_rotationX, m_rotationY);
-
-        if (m_characterMovement != null)
-        {
-            m_characterMovement.OnCameraRotate(Quaternion.Euler(0, -90, 0) * m_transform.right, m_transform.right);
-        }
     }
 }

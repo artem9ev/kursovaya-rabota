@@ -1,0 +1,110 @@
+{
+    "NavigationBeh": {
+        "checkpoints": [
+            {
+                "steps": 499991,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-499991.onnx",
+                "reward": 0.25,
+                "creation_time": 1761755468.2101512,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-499991.pt"
+                ]
+            },
+            {
+                "steps": 999981,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-999981.onnx",
+                "reward": 0.0,
+                "creation_time": 1761756595.241159,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-999981.pt"
+                ]
+            },
+            {
+                "steps": 1454431,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1454431.onnx",
+                "reward": 0.14285714285714285,
+                "creation_time": 1761757701.9049833,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1454431.pt"
+                ]
+            },
+            {
+                "steps": 1472290,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1472290.onnx",
+                "reward": 0.07317073170731707,
+                "creation_time": 1761757815.5282557,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1472290.pt"
+                ]
+            },
+            {
+                "steps": 1499909,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1499909.onnx",
+                "reward": 0.3333333333333333,
+                "creation_time": 1761762163.161781,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1499909.pt"
+                ]
+            },
+            {
+                "steps": 1999930,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1999930.onnx",
+                "reward": 0.3,
+                "creation_time": 1761763308.636142,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-1999930.pt"
+                ]
+            },
+            {
+                "steps": 2499979,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-2499979.onnx",
+                "reward": 0.09090909090909091,
+                "creation_time": 1761764457.593859,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-2499979.pt"
+                ]
+            },
+            {
+                "steps": 2999922,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-2999922.onnx",
+                "reward": 0.0,
+                "creation_time": 1761765601.2748058,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-2999922.pt"
+                ]
+            },
+            {
+                "steps": 3499978,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-3499978.onnx",
+                "reward": 0.4,
+                "creation_time": 1761766760.9359674,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-3499978.pt"
+                ]
+            },
+            {
+                "steps": 3622774,
+                "file_path": "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-3622774.onnx",
+                "reward": 0.0,
+                "creation_time": 1761767057.85172,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-3622774.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3622774,
+            "file_path": "results\\NavAgent_Simple_1\\NavigationBeh.onnx",
+            "reward": 0.0,
+            "creation_time": 1761767057.85172,
+            "auxillary_file_paths": [
+                "results\\NavAgent_Simple_1\\NavigationBeh\\NavigationBeh-3622774.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

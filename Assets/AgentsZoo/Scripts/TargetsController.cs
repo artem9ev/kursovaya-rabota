@@ -26,11 +26,13 @@ public class TargetsController : MonoBehaviour
     private void OnEnable()
     {
         m_agent.OnBegin += OnEpisodeBegin;
+        m_agent.OnHitTarget += OnHitTarget;
     }
 
     private void OnDisable()
     {
         m_agent.OnBegin -= OnEpisodeBegin;
+        m_agent.OnHitTarget -= OnHitTarget;
     }
 
     private void OnEpisodeBegin()
@@ -46,17 +48,29 @@ public class TargetsController : MonoBehaviour
         {
             GameObject target = m_targets[Random.Range(0, m_targets.Count - 1)];
 
-            if (m_active.Contains(target)) 
+            if (m_active.Contains(target))
             {
                 continue;
             }
 
             m_active.Add(target);
+            target.SetActive(true);
         }
+    }
 
-        foreach (var a in m_active)
+    private void OnHitTarget()
+    {
+        while (m_active.Count < m_targets.Count * m_fill)
         {
-            a.SetActive(true);
+            GameObject target = m_targets[Random.Range(0, m_targets.Count - 1)];
+
+            if (m_active.Contains(target))
+            {
+                continue;
+            }
+
+            m_active.Add(target);
+            target.SetActive(true);
         }
     }
 }

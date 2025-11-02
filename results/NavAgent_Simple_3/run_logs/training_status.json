@@ -1,0 +1,56 @@
+{
+    "NavigationBeh": {
+        "checkpoints": [
+            {
+                "steps": 499943,
+                "file_path": "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-499943.onnx",
+                "reward": 1.244999885559082,
+                "creation_time": 1761941873.3874469,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-499943.pt"
+                ]
+            },
+            {
+                "steps": 999903,
+                "file_path": "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-999903.onnx",
+                "reward": 1.2150000035762787,
+                "creation_time": 1761942908.5968144,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-999903.pt"
+                ]
+            },
+            {
+                "steps": 1499951,
+                "file_path": "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-1499951.onnx",
+                "reward": 1.6512499349191785,
+                "creation_time": 1761943943.3100967,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-1499951.pt"
+                ]
+            },
+            {
+                "steps": 1543382,
+                "file_path": "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-1543382.onnx",
+                "reward": null,
+                "creation_time": 1761944035.898755,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-1543382.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1543382,
+            "file_path": "results\\NavAgent_Simple_3\\NavigationBeh.onnx",
+            "reward": null,
+            "creation_time": 1761944035.898755,
+            "auxillary_file_paths": [
+                "results\\NavAgent_Simple_3\\NavigationBeh\\NavigationBeh-1543382.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

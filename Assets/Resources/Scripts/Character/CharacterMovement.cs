@@ -40,6 +40,21 @@ public class CharacterMovement : MonoBehaviour
     public float maxMoveAngle => m_maxMoveAngle;
     public float radius => m_controller.radius;
     public bool isGrounded => m_controller.isGrounded;
+    public bool controllerEnabled
+    {
+        get
+        {
+            return m_controller.enabled;
+        }
+        set
+        {
+            if (m_controller == null)
+            {
+                return;
+            }
+            m_controller.enabled = value;
+        }
+    }
 
     private void Awake()
     {
@@ -117,6 +132,11 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
+        if (m_controller == null || m_controller.enabled == false) 
+        {
+            return;
+        }
+
         Fall();
         Slide();
         Acceleration();
@@ -214,6 +234,10 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnRotate(float r)
     {
+        if (m_controller == null || m_controller.enabled == false)
+        {
+            return;
+        }
         Vector3 axis = Vector3.up;
 
         if (r < 0)
@@ -230,5 +254,13 @@ public class CharacterMovement : MonoBehaviour
         m_cameraRight = right;
 
         //m_inputDirection = (m_rawInput.x * m_cameraRight + m_rawInput.y * m_cameraForward).normalized;
+    }
+    public void ResetVelocity()
+    {
+        m_controller.Move(Vector3.zero);
+
+        m_velocity = Vector3.zero;
+        m_acceleration = Vector3.zero;
+        m_inputDirection = Vector3.zero;
     }
 }
