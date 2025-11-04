@@ -1,0 +1,47 @@
+{
+    "NavigationBeh": {
+        "checkpoints": [
+            {
+                "steps": 499888,
+                "file_path": "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-499888.onnx",
+                "reward": null,
+                "creation_time": 1762205306.662276,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-499888.pt"
+                ]
+            },
+            {
+                "steps": 999978,
+                "file_path": "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-999978.onnx",
+                "reward": -5.4306900203228,
+                "creation_time": 1762206370.086238,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-999978.pt"
+                ]
+            },
+            {
+                "steps": 1212810,
+                "file_path": "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-1212810.onnx",
+                "reward": null,
+                "creation_time": 1762206831.5791955,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-1212810.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1212810,
+            "file_path": "results\\NavAgent_Test_1\\NavigationBeh.onnx",
+            "reward": null,
+            "creation_time": 1762206831.5791955,
+            "auxillary_file_paths": [
+                "results\\NavAgent_Test_1\\NavigationBeh\\NavigationBeh-1212810.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

@@ -464,7 +464,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4065
+  m_VersionIndex: 4131
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4065
+  m_VersionIndex: 4131
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4065
+  m_VersionIndex: 4131
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4047
+  m_VersionIndex: 4113
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3590,7 +3590,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4065
+  m_VersionIndex: 4131
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4269,10 +4269,10 @@ PrefabInstance:
     - target: {fileID: 2841751435636792313, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: ff8cf313a7878ff40b51298d89f29f1b, type: 3}
     - target: {fileID: 2841751435636792313, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2841751435636792313, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_BrainParameters.VectorActionSize.Array.size
@@ -4359,6 +4359,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+      propertyPath: m_lookAtReward
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+      propertyPath: m_moveToReward
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_rayPerception
       value: 
       objectReference: {fileID: 9047373741097335844}
@@ -4367,12 +4375,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+      propertyPath: m_wallAvoidRange
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_wallHitPenalty
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_targetHitReward
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+      propertyPath: m_actionsMemorySize
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6491575603125726465, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       propertyPath: m_headRotationSpeed
@@ -4454,7 +4470,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -175
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2302881909148716406, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+    - {fileID: 4117791572569720726, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7352892059140257924, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
@@ -4463,6 +4481,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8102030663303623018, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
       insertIndex: 3
+      addedObject: {fileID: 8899156146176440932}
+    - targetCorrespondingSourceObject: {fileID: 8102030663303623018, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 5642023152964692295}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
 --- !u!4 &876195994106612782 stripped
@@ -4475,6 +4496,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8102030663303623018, guid: 2b5dbc71be681634c99ee5eb3e95377c, type: 3}
   m_PrefabInstance: {fileID: 7647789207104009386}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8899156146176440932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896673181444916672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf6e8a5e22d218428c23a9d99213537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rayPerception: {fileID: 9047373741097335844}
+  m_wallAvoidRange: 0.2
+  m_finishEpisodeReward: -10
+  m_fallOutPenalty: 5
+  m_wallHitPenalty: 0.05
+  m_timePenalty: 0.0005
+  m_targetHitReward: 1
+  m_lookAtTargetReward: 0.005
+  m_moveToTargetReward: 0.005
 --- !u!114 &5642023152964692295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class CharacterMovement : MonoBehaviour
     public float maxSpeed => m_maxSpeed;
     public float maxMoveAngle => m_maxMoveAngle;
     public float radius => m_controller.radius;
+    public float height => m_controller.height;
     public bool isGrounded => m_controller.isGrounded;
     public bool controllerEnabled
     {

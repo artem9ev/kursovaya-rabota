@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class TargetsController : MonoBehaviour
 {
@@ -60,6 +61,17 @@ public class TargetsController : MonoBehaviour
 
     private void OnHitTarget()
     {
+        print("hitted");
+        m_active.Clear();
+
+        foreach (var t in m_targets)
+        {
+            if (t.activeSelf)
+            {
+                m_active.Add(t);
+            }
+        }
+
         while (m_active.Count < m_targets.Count * m_fill)
         {
             GameObject target = m_targets[Random.Range(0, m_targets.Count - 1)];
