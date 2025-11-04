@@ -61,7 +61,6 @@ public class TargetsController : MonoBehaviour
 
     private void OnHitTarget()
     {
-        print("hitted");
         m_active.Clear();
 
         foreach (var t in m_targets)

@@ -54,7 +54,12 @@ public class NavigationAgentRewarder : MonoBehaviour
     {
         if (m_detectedTarget != null && (m_transform.position - m_detectedTarget.position).magnitude < m_rangeToDetectedTarget)
         {
+            m_rangeToDetectedTarget = (m_transform.position - m_detectedTarget.position).magnitude;
             m_agent.AddReward(m_moveToTargetReward);
+        }
+        else
+        {
+            m_agent.AddReward(-m_timePenalty);
         }
 
         RaycastHit hit;
@@ -75,8 +80,6 @@ public class NavigationAgentRewarder : MonoBehaviour
             m_detectedTarget = hit.transform;
             m_rangeToDetectedTarget = (m_transform.position - m_detectedTarget.position).magnitude;
         }
-
-        m_agent.AddReward(-m_timePenalty);
 
         if (!Physics.SphereCast(m_transform.position + m_transform.up * m_movement.radius * 1.5f, m_movement.radius, Vector3.down * 20, out hit, 20))
         {

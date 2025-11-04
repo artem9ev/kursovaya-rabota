@@ -1,0 +1,29 @@
+{
+    "NavigationBeh": {
+        "checkpoints": [
+            {
+                "steps": 353655,
+                "file_path": "results\\NavAgent_Test_7_NoMem\\NavigationBeh\\NavigationBeh-353655.onnx",
+                "reward": null,
+                "creation_time": 1762276383.3702056,
+                "auxillary_file_paths": [
+                    "results\\NavAgent_Test_7_NoMem\\NavigationBeh\\NavigationBeh-353655.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 353655,
+            "file_path": "results\\NavAgent_Test_7_NoMem\\NavigationBeh.onnx",
+            "reward": null,
+            "creation_time": 1762276383.3702056,
+            "auxillary_file_paths": [
+                "results\\NavAgent_Test_7_NoMem\\NavigationBeh\\NavigationBeh-353655.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

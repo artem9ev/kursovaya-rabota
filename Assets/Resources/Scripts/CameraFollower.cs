@@ -30,8 +30,8 @@ public class CameraFollower : MonoBehaviour
 
         m_characterMovement = m_target.GetComponent<CharacterMovement>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     private void OnValidate()

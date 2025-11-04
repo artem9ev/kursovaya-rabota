@@ -141,8 +141,8 @@ public class NavigationAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(m_movement.velocity); // 3
-        sensor.AddObservation(m_transform.position); // 3
+        sensor.AddObservation(m_movement.velocity / m_movement.maxSpeed); // 3
+        //sensor.AddObservation(m_transform.position); // 3
 
         sensor.AddObservation(m_transform.rotation); // 4
         sensor.AddObservation(m_head.localRotation); // 4

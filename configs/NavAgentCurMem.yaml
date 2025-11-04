@@ -14,56 +14,56 @@ behaviors:
     network_settings:
       normalize: false
       hidden_units: 256
-      num_layers: 1
+      num_layers: 2
       vis_encode_type: simple
       memory:
-        memory_size: 64
+        memory_size: 128
         sequence_length: 64
     reward_signals:
       extrinsic:
         gamma: 0.955
         strength: 1.0
         network_settings:
-          normalize: true
+          normalize: false
           hidden_units: 256
           num_layers: 2
       curiosity:
         gamma: 0.99
         strength: 0.025
         network_settings:
-          normalize: true
+          normalize: false
           hidden_units: 256
           num_layers: 2
         learning_rate: 0.0003
     keep_checkpoints: 20
-    max_steps: 10000000
+    max_steps: 7000000
     time_horizon: 128
-    summary_freq: 10000
+    summary_freq: 5000
     threaded: true
 
 env_settings:
-  #env_path: FoodCollector
+  env_path: NavAgentBuild
   env_args: null
   base_port: 5005
   num_envs: 1
-  timeout_wait: 10
+  num_areas: 4
+  timeout_wait: 60
   seed: -1
   max_lifetime_restarts: 10
   restarts_rate_limit_n: 1
   restarts_rate_limit_period_s: 60
-  
+
 engine_settings:
-  width: 84
-  height: 84
+  width: 200
+  height: 200
   quality_level: 5
-  time_scale: 12
+  time_scale: 14
   target_frame_rate: -1
   capture_frame_rate: 60
-  no_graphics: false
-    
-# trainer_parameters:
-#   batch_size: 1  # или другой размер, если требуется
-#   sequence_length: 64
-#   memory_size: 50000
-#   use_recurrent: true
-#   memory_type: A2C
+  no_graphics: false  
+  no_graphics_monitor: false
+
+torch_settings:
+  device: cuda
+
+debug: false
