@@ -18,7 +18,9 @@ public abstract class AgentBodyPart : MonoBehaviour
     protected Vector3 m_startPos;
     protected Quaternion m_startRot;
 
+    public Quaternion localRotation => m_transform.localRotation;
     public Vector3 velocity => m_rb.linearVelocity;
+    public Vector3 angularVelocity => m_rb.angularVelocity;
     public Vector3 position => m_rb.position;
     public Vector3 forward => m_transform.forward;
     public Vector3 up => m_transform.up;

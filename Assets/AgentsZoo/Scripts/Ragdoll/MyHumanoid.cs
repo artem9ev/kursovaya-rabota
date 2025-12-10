@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -13,7 +12,7 @@ public class MyHumanoid : Agent
     [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 30f;
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 30f;
     [SerializeField] private Transform m_orient;
-    [SerializeField] private Transform m_root;
+    //[SerializeField] private Transform m_root;
 
     [Header("Body")]
     [SerializeField] private MyMainBodyPart m_hips;
@@ -36,10 +35,10 @@ public class MyHumanoid : Agent
     [SerializeField] private MyJointPart m_lElbow;
 
     [Header("Penalties")]
-    [SerializeField] private float m_groundTouchPenalty = -0.01f;
     [SerializeField] private float m_groundHitPenalty = -1;
     [Header("Rewards")]
     [SerializeField] private float m_lookAtTargetReward = 2f;
+    [SerializeField] private float m_matchSpeedReward = 2f;
 
     [Header("Joint Drive Settings")]
     [SerializeField] private float maxJointSpring;
@@ -117,37 +116,36 @@ public class MyHumanoid : Agent
 
     private void FixedUpdate()
     {
-
         Color rayColorForward = Color.red;
         Color rayColorUp = Color.red;
 
         Vector3 spineForward = (m_hips.forward + m_spine.forward + m_chest.forward + m_head.forward) / 4;
         Vector3 spineUp = (m_hips.up + m_spine.up + m_chest.up + m_head.up) / 4;
 
-        m_root.position = feetPos;
-        m_root.forward = spineForward;
-        m_orient.position = feetPos;
+        /*m_root.position = m_hips.position;
+        m_root.forward = new Vector3(spineForward.x, 0, spineForward.z);*/
+        m_orient.position = m_hips.position;
         m_orient.forward = m_inputDirection != Vector3.zero ? m_inputDirection : Vector3.down;
 
         float matchSpeedReward = GetMatchingVelocityReward();
-        //float lookAtTargetReward = 0;
-        float lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2;
-        //var velocityForwardsReward = (Vector3.Dot(spineForward, GetAvgVelocity()) + 1) / 2;
+        //float lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2;
+        float lookAtTargetReward = Vector3.Dot(m_inputDirection, spineForward);
 
         if (targetWalkingSpeed == 0 || Vector3.Angle(spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
         {
             rayColorForward = Color.green;
-            //lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2 ;
         }
 
-        if (spineUp.y >= Mathf.Cos(m_spineUpDeflectionAngle * Mathf.Deg2Rad))
+        if (spineUp.y >= Mathf.Cos(m_spineUpDeflectionAngle * Mathf.Deg2Rad) && lookAtTargetReward > 0)
         {
-            //AddReward(m_bodyOrientReward);
-            AddReward(m_lookAtTargetReward * lookAtTargetReward * matchSpeedReward);
+            AddReward(m_lookAtTargetReward * lookAtTargetReward);
+
             rayColorUp = Color.green;
         }
 
-        //Debug.Log($"\t{lookAtTargetReward:f4} \t{matchSpeedReward:f4} \t{lookAtTargetReward * matchSpeedReward:f4}");
+        AddReward(m_matchSpeedReward * matchSpeedReward);
+
+        //print($"l:\t{m_lookAtTargetReward * lookAtTargetReward:f4} | m:\t{m_matchSpeedReward * matchSpeedReward:f4}");
 
         Debug.DrawRay(m_hips.position, spineUp * 1.5f, rayColorUp);
         Debug.DrawRay(m_hips.position, spineForward * 1.5f, rayColorForward);
@@ -156,22 +154,21 @@ public class MyHumanoid : Agent
     public float GetMatchingVelocityReward()
     {
         float velDeltaMagnitude = Vector3.Distance(m_inputDirection * targetWalkingSpeed, GetAvgVelocity());
-        float clampedDelta = 0;
-        float clampHighBorder = targetWalkingSpeed == 0 ? m_maxSpeed : targetWalkingSpeed;
 
         if (float.IsNaN(velDeltaMagnitude)) 
         {
             return 0;
         }
 
-        clampedDelta = Mathf.Clamp(velDeltaMagnitude, 0, clampHighBorder * 2) / clampHighBorder;
+        float clampHighBorder = targetWalkingSpeed == 0 ? m_maxSpeed : targetWalkingSpeed;
+        float clampedDelta = Mathf.Clamp01(Mathf.Clamp(velDeltaMagnitude, 0, clampHighBorder) / clampHighBorder);
 
-        return Mathf.Tan(Mathf.PI / 4 * (1 - clampedDelta));
+        //return Mathf.Tan(Mathf.PI / 4 * (1 - clampedDelta));
 
-        //return Mathf.Pow(1 - Mathf.Pow(clampedDelta, 2), 2);
+        return Mathf.Pow(1 - Mathf.Pow(clampedDelta, 2), 2);
     }
 
-    private void GetGroundedPenalty()
+    /*private void GetGroundedPenalty()
     {
         bool isGrounded = m_hips.isGrounded;
 
@@ -180,12 +177,13 @@ public class MyHumanoid : Agent
             isGrounded |= joint.isGrounded & joint.doGroundHitPenalty;
         }
 
-        AddReward(m_groundTouchPenalty * (isGrounded ? 1 : -1));
-    }
+        AddReward(m_groundTouchPenalty * (isGrounded ? 0 : -1));
+    }*/
 
     private void GroundHitPenalty(bool endEpisode)
     {
         AddReward(m_groundHitPenalty);
+
         if (endEpisode)
         {
             EndEpisode();
@@ -208,15 +206,18 @@ public class MyHumanoid : Agent
 
     private void CollectObservationsJointPart(MyJointPart joint, VectorSensor sensor)
     {
-        sensor.AddObservation(joint.isGrounded);
-        if (joint.maxStrenth > 0)
-        {
-            sensor.AddObservation(joint.strenth / joint.maxStrenth);
-        }
-        else 
-        {
-            sensor.AddObservation(0f);
-        }
+        sensor.AddObservation(joint.isGrounded); // +1
+        sensor.AddObservation(joint.maxStrenth > 0 ? joint.strenth / joint.maxStrenth : 0f); // +1
+
+        //Get velocities in the context of our orientation cube's space
+        //Note: You can get these velocities in world space as well but it may not train as well.
+        sensor.AddObservation(m_orient.transform.InverseTransformDirection(joint.velocity));
+        sensor.AddObservation(m_orient.transform.InverseTransformDirection(joint.angularVelocity));
+
+        //Get position relative to hips in the context of our orientation cube's space
+        sensor.AddObservation(m_orient.transform.InverseTransformDirection(joint.position - m_hips.position));
+
+        sensor.AddObservation(joint.localRotation);
     }
 
     public override void OnEpisodeBegin()
@@ -238,11 +239,28 @@ public class MyHumanoid : Agent
         var velGoal = m_inputDirection * targetWalkingSpeed;
         var avgVel = GetAvgVelocity();
 
-        sensor.AddObservation(velGoal);
-        sensor.AddObservation(avgVel);
+        float velNormalized = Vector3.Distance(velGoal, avgVel) / targetWalkingSpeed;
 
-        sensor.AddObservation(m_inputDirection); // 3
-        sensor.AddObservation(m_hips.flatForward); // 3
+        if (float.IsNaN(velNormalized))
+        {
+            velNormalized = 0f;
+        }
+
+        sensor.AddObservation(velNormalized); // + 1
+
+        sensor.AddObservation(m_orient.transform.InverseTransformDirection(avgVel));
+        sensor.AddObservation(m_orient.transform.InverseTransformDirection(velGoal)); // + 6
+
+        sensor.AddObservation(Quaternion.FromToRotation(m_hips.forward, m_orient.transform.forward));
+        sensor.AddObservation(Quaternion.FromToRotation(m_spine.forward, m_orient.transform.forward));
+        sensor.AddObservation(Quaternion.FromToRotation(m_chest.forward, m_orient.transform.forward));
+        sensor.AddObservation(Quaternion.FromToRotation(m_head.forward, m_orient.transform.forward)); // + 16
+
+        sensor.AddObservation(velGoal);
+        sensor.AddObservation(avgVel); // +6
+
+        sensor.AddObservation(m_inputDirection);
+        sensor.AddObservation(m_hips.flatForward); // +6
 
         foreach (var joint in m_joints)
         {
@@ -261,7 +279,7 @@ public class MyHumanoid : Agent
 
         if (actions.Count != actionsBuffer.ContinuousActions.Length)
         {
-            Debug.Log($"Actions count does not match: {actions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
+            Debug.LogWarning($"Actions count does not match: {actions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
         }
     }
 
@@ -269,7 +287,6 @@ public class MyHumanoid : Agent
     {
 
     }
-
 
     public void OnMove(Vector2 input)
     {
