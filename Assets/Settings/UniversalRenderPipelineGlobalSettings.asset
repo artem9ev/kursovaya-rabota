@@ -59,12 +59,12 @@ MonoBehaviour:
       - rid: 8144797565849436163
       - rid: 8144797565849436164
       - rid: 8144797565849436165
-      - rid: 7345115052236079104
-      - rid: 7345115052236079105
-      - rid: 7345115052236079106
-      - rid: 7345115052236079107
-      - rid: 7345115052236079108
-      - rid: 7345115052236079109
+      - rid: 7345115023292760064
+      - rid: 7345115023292760065
+      - rid: 7345115023292760066
+      - rid: 7345115023292760067
+      - rid: 7345115023292760068
+      - rid: 7345115023292760069
     m_RuntimeSettings:
       m_List: []
   m_AssetVersion: 9
@@ -256,7 +256,7 @@ MonoBehaviour:
         m_version: 0
         m_EnableCompilationCaching: 1
         m_EnableValidityChecks: 1
-    - rid: 7345115052236079104
+    - rid: 7345115023292760064
       type: {class: RayTracingRenderPipelineResources, ns: UnityEngine.Rendering.UnifiedRayTracing, asm: Unity.UnifiedRayTracing.Runtime}
       data:
         m_Version: 1
@@ -269,26 +269,26 @@ MonoBehaviour:
         m_BuildHlbvh: {fileID: 7200000, guid: 2d70cd6be91bd7843a39a54b51c15b13, type: 3}
         m_RestructureBvh: {fileID: 7200000, guid: 56641cb88dcb31a4398a4997ef7a7a8c, type: 3}
         m_Scatter: {fileID: 7200000, guid: a2eaeefdac4637a44b734e85b7be9186, type: 3}
-    - rid: 7345115052236079105
+    - rid: 7345115023292760065
       type: {class: URPReflectionProbeSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         version: 1
         useReflectionProbeRotation: 0
-    - rid: 7345115052236079106
+    - rid: 7345115023292760066
       type: {class: OnTilePostProcessResource, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
         m_UberPostShader: {fileID: 4800000, guid: fe4f13c1004a07d4ea1e30bfd0326d9e, type: 3}
-    - rid: 7345115052236079107
+    - rid: 7345115023292760067
       type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
       data:
         m_version: 0
-    - rid: 7345115052236079108
+    - rid: 7345115023292760068
       type: {class: LightmapSamplingSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
       data:
         m_Version: 1
         m_UseBicubicLightmapSampling: 0
-    - rid: 7345115052236079109
+    - rid: 7345115023292760069
       type: {class: VrsRenderPipelineRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
       data:
         m_TextureComputeShader: {fileID: 7200000, guid: cacb30de6c40c7444bbc78cb0a81fd2a, type: 3}

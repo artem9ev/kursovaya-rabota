@@ -1,0 +1,33 @@
+behaviors:
+  NavigationBeh:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 4096
+      buffer_size: 40960
+      learning_rate: 0.0002
+      beta: 0.007
+      epsilon: 0.25
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 512
+      num_layers: 2
+      memory:
+        memory_size: 128
+        sequence_length: 64
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.955
+        strength: 1.0
+        network_settings:
+          normalize: true
+          hidden_units: 256
+          num_layers: 2
+    keep_checkpoints: 20
+    max_steps: 50000000
+    time_horizon: 1000
+    summary_freq: 10000
+    threaded: true

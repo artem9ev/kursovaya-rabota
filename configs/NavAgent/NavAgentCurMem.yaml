@@ -1,0 +1,69 @@
+behaviors:
+  NavigationBeh:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 128
+      buffer_size: 2048
+      learning_rate: 0.0003
+      learning_rate_schedule: linear
+
+      beta: 0.01
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 5
+    network_settings:
+      normalize: false
+      hidden_units: 512
+      num_layers: 2
+      vis_encode_type: simple
+      memory:
+        memory_size: 32
+        sequence_length: 64
+    reward_signals:
+      extrinsic:
+        gamma: 0.955
+        strength: 1.0
+        network_settings:
+          normalize: false
+          hidden_units: 256
+          num_layers: 2
+      curiosity:
+        gamma: 0.99
+        strength: 0.025
+        network_settings:
+          normalize: false
+          hidden_units: 256
+          #num_layers: 2
+        learning_rate: 0.0003
+    keep_checkpoints: 20
+    max_steps: 50000000
+    time_horizon: 128
+    summary_freq: 25000
+    threaded: true
+
+env_settings:
+  #env_path: FoodCollector
+  env_args: null
+  base_port: 5005
+  num_envs: 1
+  timeout_wait: 10
+  seed: -1
+  max_lifetime_restarts: 10
+  restarts_rate_limit_n: 1
+  restarts_rate_limit_period_s: 60
+  
+engine_settings:
+  width: 84
+  height: 84
+  quality_level: 5
+  time_scale: 8
+  target_frame_rate: -1
+  capture_frame_rate: 60
+  no_graphics: false
+    
+# trainer_parameters:
+#   batch_size: 1  # или другой размер, если требуется
+#   sequence_length: 64
+#   memory_size: 50000
+#   use_recurrent: true
+#   memory_type: A2C

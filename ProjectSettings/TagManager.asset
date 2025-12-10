@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - target
-  - ground
+  - layout
+  - entity
   - agent
+  - ground
+  - block
+  - wall
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField, Min(1f)] private float m_maxSpeed = 5f;
     [SerializeField, Min(1f)] private float m_accelerationValue = 3f;
     [SerializeField, Range(0f, 90f)] private float m_maxMoveAngle = 45f;
-    [SerializeField, Min(1f)] private float m_mass = 80f;
+
+    [SerializeField, Range(0f, 360f)] private float m_maxRotationSpeed = 45f;
 
     private Transform m_transform;
     private CharacterController m_controller;
@@ -33,9 +34,12 @@ public class CharacterMovement : MonoBehaviour
 
     private LayerMask m_groundMask;
 
-    public Vector3 Velocity => m_velocity;
-    public Vector3 FlatVelocity => m_flatVelocity;
-    public float MaxSpeed => m_maxSpeed;
+    public Vector3 velocity => m_velocity;
+    public Vector3 flatVelocity => m_flatVelocity;
+    public float maxSpeed => m_maxSpeed;
+    public float maxMoveAngle => m_maxMoveAngle;
+    public float radius => m_controller.radius;
+    public bool isGrounded => m_controller.isGrounded;
 
     private void Awake()
     {
@@ -50,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (m_flatVelocity.magnitude > 0.15f)
         {
-            m_transform.forward = m_flatVelocity.normalized;
+            //m_transform.forward = m_flatVelocity.normalized;
         }
 
         Debug.DrawRay(m_transform.position, m_inputDirection, Color.blue);
@@ -125,6 +129,7 @@ public class CharacterMovement : MonoBehaviour
         if (m_controller.velocity.magnitude * Time.deltaTime >= 0.00001f)
         {
             m_velocity = new Vector3(m_controller.velocity.x, 0f, m_controller.velocity.z);
+            //m_velocity = m_controller.velocity;
             m_lastMoveDirection = m_controller.velocity.normalized;
         }
         else
@@ -165,7 +170,11 @@ public class CharacterMovement : MonoBehaviour
 
         if (m_contactAngle > m_maxMoveAngle)
         {
-            Debug.Log("SLIDE");
+            if (m_controller.velocity.y > 0)
+            {
+                m_acceleration -= m_controller.velocity * Time.deltaTime / 10f;
+            }
+
             Vector3 projectedGravity = Vector3.ProjectOnPlane(Physics.gravity * Time.deltaTime * Time.deltaTime, m_contact.normal);
             m_acceleration += projectedGravity.x * Vector3.right + projectedGravity.z * Vector3.forward;
         }
@@ -187,7 +196,32 @@ public class CharacterMovement : MonoBehaviour
     public void OnMove(Vector2 dir)
     {
         m_rawInput = dir;
-        m_inputDirection = (dir.x * m_cameraRight + dir.y * m_cameraForward).normalized;
+
+        dir.x /= 2;
+
+        if (dir.y < 0)
+        {
+            dir.y /= 2;
+        }
+
+        m_inputDirection = dir.x * m_transform.right + dir.y * m_transform.forward;
+
+        if (m_inputDirection.magnitude > 1)
+        {
+            m_inputDirection /= m_inputDirection.magnitude;
+        }
+    }
+
+    public void OnRotate(float r)
+    {
+        Vector3 axis = Vector3.up;
+
+        if (r < 0)
+        {
+            axis *= -1;
+        }
+
+        m_transform.Rotate(axis, r * m_maxRotationSpeed * Time.fixedDeltaTime);
     }
 
     public void OnCameraRotate(Vector3 forward, Vector3 right)
@@ -195,6 +229,6 @@ public class CharacterMovement : MonoBehaviour
         m_cameraForward = forward;
         m_cameraRight = right;
 
-        m_inputDirection = (m_rawInput.x * m_cameraRight + m_rawInput.y * m_cameraForward).normalized;
+        //m_inputDirection = (m_rawInput.x * m_cameraRight + m_rawInput.y * m_cameraForward).normalized;
     }
 }
