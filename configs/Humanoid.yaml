@@ -7,14 +7,14 @@ behaviors:
       learning_rate: 0.005
       learning_rate_schedule: linear
 
-      beta: 0.008
+      beta: 0.05
       epsilon: 0.25
       lambd: 0.95
       num_epoch: 3
     network_settings:
       normalize: true
       hidden_units: 512
-      num_layers: 2
+      num_layers: 3
       vis_encode_type: simple
     reward_signals:
       extrinsic:

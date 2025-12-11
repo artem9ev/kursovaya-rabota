@@ -1,0 +1,200 @@
+{
+    "HumanoidWalk": {
+        "checkpoints": [
+            {
+                "steps": 9999999,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-9999999.onnx",
+                "reward": -7.943084997201116,
+                "creation_time": 1765426696.407899,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-9999999.pt"
+                ]
+            },
+            {
+                "steps": 10499987,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-10499987.onnx",
+                "reward": -7.656010368626292,
+                "creation_time": 1765427886.8234649,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-10499987.pt"
+                ]
+            },
+            {
+                "steps": 10999992,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-10999992.onnx",
+                "reward": -7.662440951917824,
+                "creation_time": 1765429075.5894132,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-10999992.pt"
+                ]
+            },
+            {
+                "steps": 11499991,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-11499991.onnx",
+                "reward": -7.352927039236144,
+                "creation_time": 1765430261.1963375,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-11499991.pt"
+                ]
+            },
+            {
+                "steps": 11999997,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-11999997.onnx",
+                "reward": -7.093566949705039,
+                "creation_time": 1765431450.0819774,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-11999997.pt"
+                ]
+            },
+            {
+                "steps": 12499983,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-12499983.onnx",
+                "reward": -7.075303464077999,
+                "creation_time": 1765432656.5186403,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-12499983.pt"
+                ]
+            },
+            {
+                "steps": 12999991,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-12999991.onnx",
+                "reward": -6.982112021176976,
+                "creation_time": 1765433842.3513634,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-12999991.pt"
+                ]
+            },
+            {
+                "steps": 13499986,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-13499986.onnx",
+                "reward": -6.591659847403952,
+                "creation_time": 1765435030.1811402,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-13499986.pt"
+                ]
+            },
+            {
+                "steps": 13999989,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-13999989.onnx",
+                "reward": -6.4853040569073315,
+                "creation_time": 1765436215.4626665,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-13999989.pt"
+                ]
+            },
+            {
+                "steps": 14499989,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-14499989.onnx",
+                "reward": -6.622273999747442,
+                "creation_time": 1765437409.753677,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-14499989.pt"
+                ]
+            },
+            {
+                "steps": 14999999,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-14999999.onnx",
+                "reward": -6.594915784112939,
+                "creation_time": 1765438615.4372861,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-14999999.pt"
+                ]
+            },
+            {
+                "steps": 15499987,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-15499987.onnx",
+                "reward": -5.976212322073323,
+                "creation_time": 1765439803.3000355,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-15499987.pt"
+                ]
+            },
+            {
+                "steps": 15999989,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-15999989.onnx",
+                "reward": -6.120086794229992,
+                "creation_time": 1765440997.2660787,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-15999989.pt"
+                ]
+            },
+            {
+                "steps": 16499997,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-16499997.onnx",
+                "reward": -6.220624038045145,
+                "creation_time": 1765442196.332373,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-16499997.pt"
+                ]
+            },
+            {
+                "steps": 16999982,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-16999982.onnx",
+                "reward": -6.044268351222587,
+                "creation_time": 1765443390.97522,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-16999982.pt"
+                ]
+            },
+            {
+                "steps": 17499997,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-17499997.onnx",
+                "reward": -6.24596993581251,
+                "creation_time": 1765444610.5489078,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-17499997.pt"
+                ]
+            },
+            {
+                "steps": 17999998,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-17999998.onnx",
+                "reward": -6.314030108578641,
+                "creation_time": 1765445814.1743314,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-17999998.pt"
+                ]
+            },
+            {
+                "steps": 18499997,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-18499997.onnx",
+                "reward": -6.5981692996838035,
+                "creation_time": 1765447014.1327786,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-18499997.pt"
+                ]
+            },
+            {
+                "steps": 18999990,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-18999990.onnx",
+                "reward": -6.545167374974502,
+                "creation_time": 1765448213.5770402,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-18999990.pt"
+                ]
+            },
+            {
+                "steps": 19133194,
+                "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-19133194.onnx",
+                "reward": -5.611311292648315,
+                "creation_time": 1765448553.5277338,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-19133194.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19133194,
+            "file_path": "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk.onnx",
+            "reward": -5.611311292648315,
+            "creation_time": 1765448553.5277338,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Walk_7_NoCur\\HumanoidWalk\\HumanoidWalk-19133194.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

@@ -12,7 +12,6 @@ public class MyHumanoid : Agent
     [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 30f;
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 30f;
     [SerializeField] private Transform m_orient;
-    //[SerializeField] private Transform m_root;
 
     [Header("Body")]
     [SerializeField] private MyMainBodyPart m_hips;
@@ -122,30 +121,27 @@ public class MyHumanoid : Agent
         Vector3 spineForward = (m_hips.forward + m_spine.forward + m_chest.forward + m_head.forward) / 4;
         Vector3 spineUp = (m_hips.up + m_spine.up + m_chest.up + m_head.up) / 4;
 
-        /*m_root.position = m_hips.position;
-        m_root.forward = new Vector3(spineForward.x, 0, spineForward.z);*/
         m_orient.position = m_hips.position;
         m_orient.forward = m_inputDirection != Vector3.zero ? m_inputDirection : Vector3.down;
 
         float matchSpeedReward = GetMatchingVelocityReward();
-        //float lookAtTargetReward = (Vector3.Dot(m_inputDirection, spineForward) + 1) / 2;
         float lookAtTargetReward = Vector3.Dot(m_inputDirection, spineForward);
-        //var velocityForwardsReward = (Vector3.Dot(spineForward, GetAvgVelocity()) + 1) / 2;
-        //var velocityForwardsReward = (Vector3.Dot(spineForward, GetAvgVelocity()) + 1) / 2;
 
         if (targetWalkingSpeed == 0 || Vector3.Angle(spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
         {
             rayColorForward = Color.green;
         }
 
+        if (Vector3.Angle(spineUp, Vector3.up) <= m_spineUpDeflectionAngle && lookAtTargetReward > 0)
+        {
             AddReward(m_lookAtTargetReward * lookAtTargetReward);
             AddReward(m_matchSpeedReward * matchSpeedReward);
 
             //AddReward(m_bodyOrientReward);
             AddReward(m_lookAtTargetReward * lookAtTargetReward * matchSpeedReward);
             rayColorUp = Color.green;
-        //print($"l:\t{m_lookAtTargetReward * lookAtTargetReward:f4} | m:\t{m_matchSpeedReward * matchSpeedReward:f4}");
-
+        }
+      
         //print($"l:\t{m_lookAtTargetReward * lookAtTargetReward:f4} | m:\t{m_matchSpeedReward * matchSpeedReward:f4}");
 
         Debug.DrawRay(m_hips.position, spineUp * 1.5f, rayColorUp);
@@ -178,8 +174,6 @@ public class MyHumanoid : Agent
             isGrounded |= joint.isGrounded & joint.doGroundHitPenalty;
         AddReward(m_groundTouchPenalty * (isGrounded ? 0 : -1));
     }*/
-        AddReward(m_groundTouchPenalty * (isGrounded ? 1 : -1));
-    }
 
     private void GroundHitPenalty(bool endEpisode)
     {

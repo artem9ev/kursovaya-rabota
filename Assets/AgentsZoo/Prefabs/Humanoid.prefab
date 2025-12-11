@@ -150,7 +150,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856941188655562477}
   serializedVersion: 5
-  m_Mass: 6
+  m_Mass: 4
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1050,7 +1050,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.06, z: 0.07}
-  m_LocalScale: {x: 0.13, y: 0.06, z: 0.3}
+  m_LocalScale: {x: 0.13, y: 0.06, z: 0.34}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7014650194853321057}
@@ -1276,7 +1276,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.06, z: 0.07}
-  m_LocalScale: {x: 0.13, y: 0.06, z: 0.3}
+  m_LocalScale: {x: 0.13, y: 0.06, z: 0.34}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8711972354409894317}
@@ -1793,7 +1793,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2835158098159386591}
   serializedVersion: 5
-  m_Mass: 8
+  m_Mass: 7
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2084,7 +2084,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135358819340201021}
   serializedVersion: 5
-  m_Mass: 8
+  m_Mass: 7
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2262,7 +2262,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3175601897018116965}
   serializedVersion: 5
-  m_Mass: 2
+  m_Mass: 1.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2324,7 +2324,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 15
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -2441,7 +2441,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3548429171647511471}
   serializedVersion: 5
-  m_Mass: 4
+  m_Mass: 3.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2620,7 +2620,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603057503410746900}
   serializedVersion: 5
-  m_Mass: 4
+  m_Mass: 3.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3496,7 +3496,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448825732642625263}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4224,7 +4224,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6128080799427178924}
   serializedVersion: 5
-  m_Mass: 2
+  m_Mass: 1.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4286,7 +4286,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 15
+    limit: 20
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
@@ -4493,7 +4493,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6528725036445756786}
   serializedVersion: 5
-  m_Mass: 1.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4988,7 +4988,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6975571499405217441}
   serializedVersion: 5
-  m_Mass: 1.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5275,7 +5275,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
-  m_maxSpeed: 2
+  m_maxSpeed: 4
   m_spineUpDeflectionAngle: 35
   m_spineForwardDeflectionAngle: 15
   m_orient: {fileID: 3898174808626544494}
@@ -5293,12 +5293,11 @@ MonoBehaviour:
   m_rElbow: {fileID: 4672259272968911792}
   m_lArm: {fileID: 1823649585267210013}
   m_lElbow: {fileID: 1568213182034370979}
-  m_groundTouchPenalty: -0.1
   m_groundHitPenalty: -10
   m_lookAtTargetReward: 0.1
   m_matchSpeedReward: 1
   maxJointSpring: 16000
-  jointDampen: 3000
+  jointDampen: 2000
   maxJointForceLimit: 10000
 --- !u!114 &5536583776021237040
 MonoBehaviour:
@@ -5312,7 +5311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 4
   DecisionStep: 0
   TakeActionsBetweenDecisions: 1
 --- !u!114 &1274487263920129540
@@ -5502,7 +5501,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7784922953665831866}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5794,7 +5793,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8510502164522174511}
   serializedVersion: 5
-  m_Mass: 16
+  m_Mass: 8
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
