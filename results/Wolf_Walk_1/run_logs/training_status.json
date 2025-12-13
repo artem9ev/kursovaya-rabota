@@ -1,0 +1,65 @@
+{
+    "WolfWalk": {
+        "checkpoints": [
+            {
+                "steps": 999995,
+                "file_path": "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-999995.onnx",
+                "reward": 6.246888174952884,
+                "creation_time": 1765557964.2079017,
+                "auxillary_file_paths": [
+                    "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-999995.pt"
+                ]
+            },
+            {
+                "steps": 1499972,
+                "file_path": "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-1499972.onnx",
+                "reward": 5.982828075890659,
+                "creation_time": 1765559049.3894804,
+                "auxillary_file_paths": [
+                    "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-1499972.pt"
+                ]
+            },
+            {
+                "steps": 1999987,
+                "file_path": "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-1999987.onnx",
+                "reward": 5.0881244632351486,
+                "creation_time": 1765560126.3735383,
+                "auxillary_file_paths": [
+                    "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-1999987.pt"
+                ]
+            },
+            {
+                "steps": 2499992,
+                "file_path": "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-2499992.onnx",
+                "reward": 4.994948464601445,
+                "creation_time": 1765561213.4115317,
+                "auxillary_file_paths": [
+                    "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-2499992.pt"
+                ]
+            },
+            {
+                "steps": 2716111,
+                "file_path": "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-2716111.onnx",
+                "reward": 5.260490213427817,
+                "creation_time": 1765561722.5260782,
+                "auxillary_file_paths": [
+                    "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-2716111.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2716111,
+            "file_path": "results\\Wolf_Walk_1\\WolfWalk.onnx",
+            "reward": 5.260490213427817,
+            "creation_time": 1765561722.5260782,
+            "auxillary_file_paths": [
+                "results\\Wolf_Walk_1\\WolfWalk\\WolfWalk-2716111.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

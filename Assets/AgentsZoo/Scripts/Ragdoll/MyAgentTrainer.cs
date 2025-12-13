@@ -6,7 +6,7 @@ public class MyAgentTrainer : MonoBehaviour
 {
     [SerializeField] UnityEvent<Vector2> m_onInput;
     [SerializeField] DirectionalTarget m_target;
-    [SerializeField] MyHumanoid m_humanoid;
+    [SerializeField] WolfJointsDriver m_jointsDriver;
 
     [SerializeField][Min(0f)] private float m_stayMinTime = 3f;
     [SerializeField] private float m_stayMaxTime = 8f;
@@ -40,7 +40,7 @@ public class MyAgentTrainer : MonoBehaviour
             return;
         }
 
-        Vector3 agentPos = m_humanoid.feetPos;
+        Vector3 agentPos = m_jointsDriver.position;
         agentPos.y = 0.5f;
 
         Vector3 direction = (m_target.Position - agentPos).normalized;

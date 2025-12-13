@@ -60,7 +60,7 @@ public class MyJointPart : AgentBodyPart
         }
     }
 
-    public override void ResetBody()
+    public void ResetBody(bool randRotation = false)
     {
         m_joint.slerpDrive = new JointDrive
         {
@@ -72,6 +72,11 @@ public class MyJointPart : AgentBodyPart
         m_joint.targetRotation = Quaternion.Euler(0, 0, 0);
 
         base.ResetBody();
+
+        if (randRotation) 
+        {
+            m_transform.localRotation = Quaternion.Euler(0, Random.value * 360f, 0);
+        }
 
         m_joint.slerpDrive = new JointDrive
         {
@@ -86,5 +91,13 @@ public class MyJointPart : AgentBodyPart
         m_maxJointSpring = spring;
         m_jointDampen = dampen;
         m_maxJointForceLimit = maxForce;
+    }
+
+    public void SetProjectionSettings(float angle, float distance)
+    {
+        m_joint = m_joint != null ? m_joint : GetComponent<ConfigurableJoint>();
+
+        m_joint.projectionAngle = angle;
+        m_joint.projectionDistance = distance;
     }
 }

@@ -1,0 +1,56 @@
+{
+    "HumanoidWalk": {
+        "checkpoints": [
+            {
+                "steps": 499995,
+                "file_path": "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-499995.onnx",
+                "reward": 11.419099427999988,
+                "creation_time": 1765538700.4444401,
+                "auxillary_file_paths": [
+                    "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-499995.pt"
+                ]
+            },
+            {
+                "steps": 999993,
+                "file_path": "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-999993.onnx",
+                "reward": 14.151143864873001,
+                "creation_time": 1765539486.063711,
+                "auxillary_file_paths": [
+                    "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-999993.pt"
+                ]
+            },
+            {
+                "steps": 1499977,
+                "file_path": "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-1499977.onnx",
+                "reward": 13.605624318122864,
+                "creation_time": 1765540273.8629513,
+                "auxillary_file_paths": [
+                    "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-1499977.pt"
+                ]
+            },
+            {
+                "steps": 1885744,
+                "file_path": "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-1885744.onnx",
+                "reward": null,
+                "creation_time": 1765540958.4178483,
+                "auxillary_file_paths": [
+                    "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-1885744.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1885744,
+            "file_path": "results\\HumanoidWalk_3\\HumanoidWalk.onnx",
+            "reward": null,
+            "creation_time": 1765540958.4178483,
+            "auxillary_file_paths": [
+                "results\\HumanoidWalk_3\\HumanoidWalk\\HumanoidWalk-1885744.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

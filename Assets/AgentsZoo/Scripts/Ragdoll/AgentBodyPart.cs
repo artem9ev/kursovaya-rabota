@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,6 +41,11 @@ public abstract class AgentBodyPart : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.parent != null && collision.transform.parent.TryGetComponent(out MyJointPart joint))
+        {
+            return;
+        }
+
         for (int i = 0; i < collision.contactCount; i++)
         {
             ContactPoint point = collision.GetContact(i);

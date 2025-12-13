@@ -18,10 +18,11 @@ public class MyCountedEnumerator : IEnumerator
     
     public bool MoveNext()
     {
+        m_countGetted++;
+
         if (m_enumerator.MoveNext())
         {
             m_current = m_enumerator.Current;
-            m_countGetted++;
             return true;
         }
         return false;

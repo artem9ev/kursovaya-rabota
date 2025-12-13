@@ -56,7 +56,7 @@ public class AgentTextFollower : MonoBehaviour
 
             m_transform.LookAt(camera.transform.position);
 
-            m_textMeshPro.text = $"{m_agent.velocity:f2}\n{m_agent.targetWalkingSpeed:f2}";
+            m_textMeshPro.text = $"{m_agent.velocity.magnitude:f2}\n{m_agent.targetWalkingSpeed:f2}";
         }
 
         DrawVelocityGraph();
@@ -69,7 +69,7 @@ public class AgentTextFollower : MonoBehaviour
             m_velocities[i - 1] = m_velocities[i];
         }
 
-        m_velocities[m_velocities.Count - 1] = m_agent.velocity / m_agent.maxSpeed;
+        m_velocities[m_velocities.Count - 1] = m_agent.velocity.magnitude / m_agent.maxSpeed;
     }
 
     private void DrawVelocityGraph()
