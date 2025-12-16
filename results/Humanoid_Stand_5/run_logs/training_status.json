@@ -1,0 +1,65 @@
+{
+    "Humanoid_stand_up": {
+        "checkpoints": [
+            {
+                "steps": 499724,
+                "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-499724.onnx",
+                "reward": 58.669900978873315,
+                "creation_time": 1765808423.476671,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-499724.pt"
+                ]
+            },
+            {
+                "steps": 999724,
+                "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-999724.onnx",
+                "reward": 182.72424185276031,
+                "creation_time": 1765809260.1376557,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-999724.pt"
+                ]
+            },
+            {
+                "steps": 1499724,
+                "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-1499724.onnx",
+                "reward": null,
+                "creation_time": 1765810081.8623235,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-1499724.pt"
+                ]
+            },
+            {
+                "steps": 1999724,
+                "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-1999724.onnx",
+                "reward": 374.0006918770249,
+                "creation_time": 1765810900.5626538,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-1999724.pt"
+                ]
+            },
+            {
+                "steps": 2382284,
+                "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-2382284.onnx",
+                "reward": null,
+                "creation_time": 1765811541.3048549,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-2382284.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2382284,
+            "file_path": "results\\Humanoid_Stand_5\\Humanoid_stand_up.onnx",
+            "reward": null,
+            "creation_time": 1765811541.3048549,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Stand_5\\Humanoid_stand_up\\Humanoid_stand_up-2382284.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

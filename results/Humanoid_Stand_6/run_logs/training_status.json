@@ -1,0 +1,92 @@
+{
+    "Humanoid_stand_up": {
+        "checkpoints": [
+            {
+                "steps": 499548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-499548.onnx",
+                "reward": 6.970937432509682,
+                "creation_time": 1765813178.369855,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-499548.pt"
+                ]
+            },
+            {
+                "steps": 999548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-999548.onnx",
+                "reward": 15.897336745843859,
+                "creation_time": 1765814041.3033483,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-999548.pt"
+                ]
+            },
+            {
+                "steps": 1499548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-1499548.onnx",
+                "reward": 14.317928717780282,
+                "creation_time": 1765814915.096676,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-1499548.pt"
+                ]
+            },
+            {
+                "steps": 1999548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-1999548.onnx",
+                "reward": 47.667779159998254,
+                "creation_time": 1765815759.5285275,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-1999548.pt"
+                ]
+            },
+            {
+                "steps": 2499548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-2499548.onnx",
+                "reward": 56.78978900502261,
+                "creation_time": 1765816610.1527052,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-2499548.pt"
+                ]
+            },
+            {
+                "steps": 2999548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-2999548.onnx",
+                "reward": 43.30944445548377,
+                "creation_time": 1765817458.2996056,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-2999548.pt"
+                ]
+            },
+            {
+                "steps": 3499548,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-3499548.onnx",
+                "reward": 43.99234823511991,
+                "creation_time": 1765818310.4416058,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-3499548.pt"
+                ]
+            },
+            {
+                "steps": 3930000,
+                "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-3930000.onnx",
+                "reward": 25.388231936354714,
+                "creation_time": 1765819051.4735668,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-3930000.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3930000,
+            "file_path": "results\\Humanoid_Stand_6\\Humanoid_stand_up.onnx",
+            "reward": 25.388231936354714,
+            "creation_time": 1765819051.4735668,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Stand_6\\Humanoid_stand_up\\Humanoid_stand_up-3930000.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

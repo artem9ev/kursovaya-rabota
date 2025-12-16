@@ -1,0 +1,119 @@
+{
+    "Humanoid_stand_up": {
+        "checkpoints": [
+            {
+                "steps": 499548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-499548.onnx",
+                "reward": 51.84538167561742,
+                "creation_time": 1765799337.4764876,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-499548.pt"
+                ]
+            },
+            {
+                "steps": 999548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-999548.onnx",
+                "reward": 209.1743529391994,
+                "creation_time": 1765800146.3179975,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-999548.pt"
+                ]
+            },
+            {
+                "steps": 1499548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-1499548.onnx",
+                "reward": 164.0282711802623,
+                "creation_time": 1765800942.3246715,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-1499548.pt"
+                ]
+            },
+            {
+                "steps": 1999548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-1999548.onnx",
+                "reward": 274.82279830018837,
+                "creation_time": 1765801723.3340967,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-1999548.pt"
+                ]
+            },
+            {
+                "steps": 2499548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-2499548.onnx",
+                "reward": 728.3522120884487,
+                "creation_time": 1765802511.444567,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-2499548.pt"
+                ]
+            },
+            {
+                "steps": 2999548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-2999548.onnx",
+                "reward": 931.7179718017578,
+                "creation_time": 1765803298.8726304,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-2999548.pt"
+                ]
+            },
+            {
+                "steps": 3499548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-3499548.onnx",
+                "reward": 1007.5506998697916,
+                "creation_time": 1765804086.9425035,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-3499548.pt"
+                ]
+            },
+            {
+                "steps": 3999548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-3999548.onnx",
+                "reward": 1104.500760759626,
+                "creation_time": 1765804869.8554132,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-3999548.pt"
+                ]
+            },
+            {
+                "steps": 4499548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-4499548.onnx",
+                "reward": 1190.0431714739118,
+                "creation_time": 1765805687.90119,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-4499548.pt"
+                ]
+            },
+            {
+                "steps": 4999548,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-4999548.onnx",
+                "reward": 1257.950932820638,
+                "creation_time": 1765806533.7242994,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-4999548.pt"
+                ]
+            },
+            {
+                "steps": 5088192,
+                "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-5088192.onnx",
+                "reward": null,
+                "creation_time": 1765806677.3399925,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-5088192.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5088192,
+            "file_path": "results\\Humanoid_Stand_4\\Humanoid_stand_up.onnx",
+            "reward": null,
+            "creation_time": 1765806677.3399925,
+            "auxillary_file_paths": [
+                "results\\Humanoid_Stand_4\\Humanoid_stand_up\\Humanoid_stand_up-5088192.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}
