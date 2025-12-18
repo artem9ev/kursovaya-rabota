@@ -8,8 +8,8 @@ PhysicsMaterial:
   m_PrefabAsset: {fileID: 0}
   m_Name: Humanoid Materal
   serializedVersion: 2
-  m_DynamicFriction: 47.09
-  m_StaticFriction: 25.58
+  m_DynamicFriction: 0.58
+  m_StaticFriction: 0.73
   m_Bounciness: 0
   m_FrictionCombine: 0
   m_BounceCombine: 0

@@ -130,6 +130,7 @@ public class HumanoidJointsDriver : MonoBehaviour
     public void ResetRagdoll()
     {
         m_hips.ResetBody();
+        m_hips.RandomRotateY();
 
         foreach (var joint in m_joints)
         {

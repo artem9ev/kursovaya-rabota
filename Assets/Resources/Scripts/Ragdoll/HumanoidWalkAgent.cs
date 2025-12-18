@@ -12,10 +12,11 @@ public class HumanoidWalkAgent : Agent
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 15f;
 
     [Header("Penalties")]
-    [SerializeField] private float m_groundHitPenalty = -1;
+    [SerializeField, Min(0f)] private float m_groundHitPenalty = 1;
+    [SerializeField, Min(0f)] private float m_energyPenalty = 1f;
     [Header("Rewards")]
-    [SerializeField] private float m_lookAtTargetReward = 2f;
-    [SerializeField] private float m_matchSpeedReward = 2f;
+    [SerializeField, Min(0f)] private float m_lookAtTargetReward = 2f;
+    [SerializeField, Min(0f)] private float m_matchSpeedReward = 2f;
 
     private Vector3 m_inputDirection;
 
@@ -68,7 +69,7 @@ public class HumanoidWalkAgent : Agent
         m_jointsDriver.orientForward = m_inputDirection != Vector3.zero ? m_inputDirection : m_jointsDriver.orientForward;
 
         float matchSpeedReward = GetMatchingVelocityReward();
-        float lookAtTargetReward = Mathf.Clamp01(Vector3.Dot(m_inputDirection, m_jointsDriver.headForward));
+        float lookAtTargetReward = Mathf.Clamp01(Vector3.Dot(m_inputDirection, m_jointsDriver.spineForward));
 
         if (targetWalkingSpeed == 0 || Vector3.Angle(m_jointsDriver.spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
         {
@@ -80,11 +81,11 @@ public class HumanoidWalkAgent : Agent
         if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
         {
             //AddReward(m_lookAtTargetReward * lookAtTargetReward);
+            AddReward(lookAtTargetReward * matchSpeedReward);
 
             rayColorUp = Color.green;
         }
 
-        AddReward(lookAtTargetReward * matchSpeedReward);
 
         Debug.DrawRay(m_jointsDriver.hips.position, m_jointsDriver.spineUp * 1.5f, rayColorUp);
         Debug.DrawRay(m_jointsDriver.hips.position, m_jointsDriver.spineForward * 1.5f, rayColorForward);
@@ -107,7 +108,7 @@ public class HumanoidWalkAgent : Agent
 
     private void GroundHitPenalty(bool endEpisode)
     {
-        AddReward(m_groundHitPenalty);
+        AddReward(-m_groundHitPenalty);
 
         if (endEpisode)
         {
@@ -164,6 +165,15 @@ public class HumanoidWalkAgent : Agent
         {
             Debug.LogWarning($"Actions count does not match: {actions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
         }
+
+        float s = 0;
+
+        for (int i = 0; i < actionsBuffer.ContinuousActions.Length; i++) 
+        {
+            s += Mathf.Abs(actionsBuffer.ContinuousActions[i]);
+        }
+
+        //AddReward(-m_energyPenalty * s);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

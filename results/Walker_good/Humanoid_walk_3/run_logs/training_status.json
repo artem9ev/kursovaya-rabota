@@ -1,0 +1,65 @@
+{
+    "Humanoid_walk": {
+        "checkpoints": [
+            {
+                "steps": 499993,
+                "file_path": "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-499993.onnx",
+                "reward": 14.292758632594253,
+                "creation_time": 1765922737.9655795,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-499993.pt"
+                ]
+            },
+            {
+                "steps": 999995,
+                "file_path": "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-999995.onnx",
+                "reward": 28.293759365044338,
+                "creation_time": 1765923687.7059386,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-999995.pt"
+                ]
+            },
+            {
+                "steps": 1499981,
+                "file_path": "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1499981.onnx",
+                "reward": 36.44661397355976,
+                "creation_time": 1765924638.7810802,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1499981.pt"
+                ]
+            },
+            {
+                "steps": 1999972,
+                "file_path": "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1999972.onnx",
+                "reward": 46.71067960059766,
+                "creation_time": 1765925580.8320396,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1999972.pt"
+                ]
+            },
+            {
+                "steps": 2096301,
+                "file_path": "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-2096301.onnx",
+                "reward": 47.96897147547814,
+                "creation_time": 1765925765.4821754,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-2096301.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2096301,
+            "file_path": "results\\Humanoid_walk_3\\Humanoid_walk.onnx",
+            "reward": 47.96897147547814,
+            "creation_time": 1765925765.4821754,
+            "auxillary_file_paths": [
+                "results\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-2096301.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

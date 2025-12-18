@@ -94,7 +94,7 @@ public class HumanoidStandAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        m_jointsDriver.ResetRagdoll();
+        m_jointsDriver.RandomResetRagdoll();
 
         m_startFlatPos = hipsFlatPos;
         m_jointsDriver.orientForward = m_jointsDriver.hips.flatForward;

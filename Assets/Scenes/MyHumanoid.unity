@@ -837,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -850,10 +850,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!1001 &1409864611
 PrefabInstance:
@@ -913,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -926,10 +923,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!43 &1521034539
 Mesh:
@@ -1167,7 +1161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -1180,10 +1174,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!43 &1807887944
 Mesh:
@@ -2208,21 +2199,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1194715600329064853, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 190c8ced817a6754cad5986b6d389adf, type: 3}
-    - target: {fileID: 1506779099917381212, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2264091532611582325, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 1086548381763890975, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2264091532611582325, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      propertyPath: m_BehaviorName
-      value: Humanoid_walk
+    - target: {fileID: 1194715600329064853, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4017623989797593285, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2264,13 +2247,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6253151244037160313, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      propertyPath: Record
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253151244037160313, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      propertyPath: NumStepsToRecord
+      value: 50000
+      objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Name
       value: Humanoid
-      objectReference: {fileID: 0}
-    - target: {fileID: 8113398235356821134, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,0 +1,101 @@
+{
+    "Humanoid_walk": {
+        "checkpoints": [
+            {
+                "steps": 499993,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-499993.onnx",
+                "reward": 17.160861579260725,
+                "creation_time": 1765903876.3054683,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-499993.pt"
+                ]
+            },
+            {
+                "steps": 999992,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-999992.onnx",
+                "reward": 29.25990414566302,
+                "creation_time": 1765905215.5410988,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-999992.pt"
+                ]
+            },
+            {
+                "steps": 1499988,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-1499988.onnx",
+                "reward": 43.080281945124064,
+                "creation_time": 1765907797.2895868,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-1499988.pt"
+                ]
+            },
+            {
+                "steps": 1999990,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-1999990.onnx",
+                "reward": 50.691899642700285,
+                "creation_time": 1765909227.5560045,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-1999990.pt"
+                ]
+            },
+            {
+                "steps": 2499972,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-2499972.onnx",
+                "reward": 56.0732849433838,
+                "creation_time": 1765910665.1456563,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-2499972.pt"
+                ]
+            },
+            {
+                "steps": 2999986,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-2999986.onnx",
+                "reward": 61.00743154498438,
+                "creation_time": 1765912235.8786993,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-2999986.pt"
+                ]
+            },
+            {
+                "steps": 3499979,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-3499979.onnx",
+                "reward": 65.54082284055345,
+                "creation_time": 1765913975.866792,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-3499979.pt"
+                ]
+            },
+            {
+                "steps": 3999983,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-3999983.onnx",
+                "reward": 66.02077418832637,
+                "creation_time": 1765915616.7695212,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-3999983.pt"
+                ]
+            },
+            {
+                "steps": 4298370,
+                "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-4298370.onnx",
+                "reward": 66.33038666331844,
+                "creation_time": 1765916530.9462614,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-4298370.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4298370,
+            "file_path": "results\\Humanoid_walk_GAIL_1\\Humanoid_walk.onnx",
+            "reward": 66.33038666331844,
+            "creation_time": 1765916530.9462614,
+            "auxillary_file_paths": [
+                "results\\Humanoid_walk_GAIL_1\\Humanoid_walk\\Humanoid_walk-4298370.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}
