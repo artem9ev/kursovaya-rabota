@@ -81,10 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 20
+    VectorObservationSize: 37
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 39
+      m_NumContinuousActions: 45
       BranchSizes: 02000000020000000200000002000000
     VectorActionSize: 
     VectorActionDescriptions: []
@@ -585,7 +585,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 190c8ced817a6754cad5986b6d389adf, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Humanoid_stand_up
