@@ -13,17 +13,19 @@ public class HumanoidJointsDriver : MonoBehaviour
     [Header("Right Leg")]
     [SerializeField] private BodyJoint m_rLeg;
     [SerializeField] private BodyJoint m_rKnee;
-    [SerializeField] private BodyJoint m_rFoot;
+    [SerializeField] private BodyLimb m_rFoot;
     [Header("Left Leg")]
     [SerializeField] private BodyJoint m_lLeg;
     [SerializeField] private BodyJoint m_lKnee;
-    [SerializeField] private BodyJoint m_lFoot;
+    [SerializeField] private BodyLimb m_lFoot;
     [Header("Right Arm")]
     [SerializeField] private BodyJoint m_rArm;
     [SerializeField] private BodyJoint m_rElbow;
+    [SerializeField] private BodyLimb m_rHand;
     [Header("Left Arm")]
     [SerializeField] private BodyJoint m_lArm;
     [SerializeField] private BodyJoint m_lElbow;
+    [SerializeField] private BodyLimb m_lHand;
 
     [Header("Joint Drive Settings")]
     [SerializeField] private float maxJointSpring;
@@ -33,7 +35,7 @@ public class HumanoidJointsDriver : MonoBehaviour
     [SerializeField, Min(0f)] private float m_projectionAngle = 2f;
     [SerializeField, Min(0f)] private float m_projectionDistance = 0.1f;
 
-    private List<BodyJoint> m_joints = new List<BodyJoint>();
+    private List<BodyJoint> m_bodyParts = new List<BodyJoint>();
 
     public BodyHips hips => m_hips;
     public Vector3 velocity => GetAvgVelocity();
@@ -53,14 +55,15 @@ public class HumanoidJointsDriver : MonoBehaviour
 
     public Vector3 position => m_hips.position;
 
-    public List<BodyJoint> joints => m_joints;
+    public List<BodyJoint> joints => m_bodyParts;
 
     private void OnValidate()
     {
         SetJoints();
 
-        foreach (var joint in m_joints)
+        foreach (var joint in m_bodyParts)
         {
+            if (joint == null) continue;
             joint.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
             joint.SetProjectionSettings(m_projectionAngle, m_projectionDistance);
         }
@@ -78,25 +81,28 @@ public class HumanoidJointsDriver : MonoBehaviour
 
     private void SetJoints()
     {
-        m_joints.Clear();
+        m_bodyParts.Clear();
 
-        m_joints.Add(m_spine);
-        m_joints.Add(m_chest);
-        m_joints.Add(m_head);
+        //m_bodyParts.Add(m_hips);
+        m_bodyParts.Add(m_spine);
+        m_bodyParts.Add(m_chest);
+        m_bodyParts.Add(m_head);
 
-        m_joints.Add(m_rLeg);
-        m_joints.Add(m_rKnee);
-        m_joints.Add(m_rFoot);
+        m_bodyParts.Add(m_rLeg);
+        m_bodyParts.Add(m_rKnee);
+        m_bodyParts.Add(m_rFoot);
 
-        m_joints.Add(m_lLeg);
-        m_joints.Add(m_lKnee);
-        m_joints.Add(m_lFoot);
+        m_bodyParts.Add(m_lLeg);
+        m_bodyParts.Add(m_lKnee);
+        m_bodyParts.Add(m_lFoot);
 
-        m_joints.Add(m_rArm);
-        m_joints.Add(m_rElbow);
+        m_bodyParts.Add(m_rArm);
+        m_bodyParts.Add(m_rElbow);
+        m_bodyParts.Add(m_rHand);
 
-        m_joints.Add(m_lArm);
-        m_joints.Add(m_lElbow);
+        m_bodyParts.Add(m_lArm);
+        m_bodyParts.Add(m_lElbow);
+        m_bodyParts.Add(m_lHand);
     }
 
     private Vector3 GetAvgVelocity()
@@ -105,12 +111,12 @@ public class HumanoidJointsDriver : MonoBehaviour
 
         sum += m_hips.velocity;
 
-        foreach (var joint in m_joints)
+        foreach (var joint in m_bodyParts)
         {
             sum += joint.velocity;
         }
 
-        return sum / (1 + m_joints.Count);
+        return sum / (1 + m_bodyParts.Count);
     }
 
     public Vector3 GetRelativeDirection(Vector3 direction)
@@ -132,7 +138,7 @@ public class HumanoidJointsDriver : MonoBehaviour
         m_hips.ResetBody();
         m_hips.RandomRotateY();
 
-        foreach (var joint in m_joints)
+        foreach (var joint in m_bodyParts)
         {
             joint.ResetBody();
         }
@@ -145,7 +151,7 @@ public class HumanoidJointsDriver : MonoBehaviour
         m_hips.ResetBody();
         m_hips.RandomRotate();
 
-        foreach (var joint in m_joints)
+        foreach (var joint in m_bodyParts)
         {
             joint.ResetBody();
         }

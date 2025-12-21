@@ -11,10 +11,10 @@ public class HumanoidStandAgent : Agent
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 15f;
 
     [Header("Penalties")]
-    [SerializeField, Min(0f)] private float m_energyPenalty = 1f;
+    //[SerializeField, Min(0f)] private float m_energyPenalty = 1f;
     [Header("Rewards")]
     [SerializeField, Min(0f)] private float m_lookAtTargetReward = 1f;
-    [SerializeField, Min(0f)] private float m_bonesOrientReward = 1f;
+    //[SerializeField, Min(0f)] private float m_bonesOrientReward = 1f;
     [SerializeField, Min(0f)] private float m_heightReward = 1f;
     [SerializeField, Min(0f)] private float m_flatPositionReward = 1f;
 
@@ -128,7 +128,7 @@ public class HumanoidStandAgent : Agent
 
         foreach (var joint in m_jointsDriver.joints)
         {
-            joint.SetJointMove(actions);
+            joint.SetContinuousActios(actions);
         }
 
         if (actions.Count != actionsBuffer.ContinuousActions.Length)

@@ -13,10 +13,10 @@ public class HumanoidWalkAgent : Agent
 
     [Header("Penalties")]
     [SerializeField, Min(0f)] private float m_groundHitPenalty = 1;
-    [SerializeField, Min(0f)] private float m_energyPenalty = 1f;
+    //[SerializeField, Min(0f)] private float m_energyPenalty = 1f;
     [Header("Rewards")]
-    [SerializeField, Min(0f)] private float m_lookAtTargetReward = 2f;
-    [SerializeField, Min(0f)] private float m_matchSpeedReward = 2f;
+    /*[SerializeField, Min(0f)] private float m_lookAtTargetReward = 2f;
+    [SerializeField, Min(0f)] private float m_matchSpeedReward = 2f;*/
 
     private Vector3 m_inputDirection;
 
@@ -57,6 +57,7 @@ public class HumanoidWalkAgent : Agent
 
         foreach (var joint in m_jointsDriver.joints)
         {
+            joint.SetJointStrength(0.002f);
             joint.GroundHitPenalty -= GroundHitPenalty;
         }
     }
@@ -73,14 +74,11 @@ public class HumanoidWalkAgent : Agent
 
         if (targetWalkingSpeed == 0 || Vector3.Angle(m_jointsDriver.spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
         {
-            //AddReward(m_matchSpeedReward * matchSpeedReward);
-
             rayColorForward = Color.green;
         }
 
         if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
         {
-            //AddReward(m_lookAtTargetReward * lookAtTargetReward);
             AddReward(lookAtTargetReward * matchSpeedReward);
 
             rayColorUp = Color.green;
@@ -123,12 +121,6 @@ public class HumanoidWalkAgent : Agent
         targetWalkingSpeed = Random.Range(m_maxSpeed / 3 * 2, m_maxSpeed);
     }
 
-    private void CollectObservationsJointPart(BodyJoint joint, VectorSensor sensor)
-    {
-        //sensor.AddObservation(joint.isGrounded); // +1
-        sensor.AddObservation(joint.maxStrenth > 0 ? joint.strenth / joint.maxStrenth : 0f); // +1
-    }
-
     public override void CollectObservations(VectorSensor sensor)
     {
         var velGoal = m_inputDirection * targetWalkingSpeed;
@@ -148,32 +140,35 @@ public class HumanoidWalkAgent : Agent
 
         foreach (var joint in m_jointsDriver.joints)
         {
-            CollectObservationsJointPart(joint, sensor);
+            joint.GetObservations(sensor);
         }
     }
 
     public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
-        MyCountedEnumerator actions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
+        MyCountedEnumerator continuousActions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
         foreach (var joint in m_jointsDriver.joints)
         {
-            joint.SetJointMove(actions);
+            joint.SetContinuousActios(continuousActions);
         }
 
-        if (actions.Count != actionsBuffer.ContinuousActions.Length)
+        if (continuousActions.Count != actionsBuffer.ContinuousActions.Length)
         {
-            Debug.LogWarning($"Actions count does not match: {actions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
+            Debug.LogWarning($"Continuous Actions count does not match: {continuousActions.Count} - getted, {actionsBuffer.ContinuousActions.Length} - buffer");
         }
 
-        float s = 0;
+        MyCountedEnumerator disctreteActions = new MyCountedEnumerator(actionsBuffer.DiscreteActions.GetEnumerator());
 
-        for (int i = 0; i < actionsBuffer.ContinuousActions.Length; i++) 
+        foreach (var joint in m_jointsDriver.joints)
         {
-            s += Mathf.Abs(actionsBuffer.ContinuousActions[i]);
+            joint.SetDiscreteActios(disctreteActions);
         }
 
-        //AddReward(-m_energyPenalty * s);
+        if (disctreteActions.Count != actionsBuffer.DiscreteActions.Length)
+        {
+            Debug.LogWarning($"Continuous Actions count does not match: {disctreteActions.Count} - getted, {actionsBuffer.DiscreteActions.Length} - buffer");
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

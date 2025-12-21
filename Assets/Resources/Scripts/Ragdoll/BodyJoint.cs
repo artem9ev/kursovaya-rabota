@@ -1,10 +1,13 @@
 using System.Collections;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 [RequireComponent(typeof(ConfigurableJoint))]
 public class BodyJoint : BodyPart
 {
-    private ConfigurableJoint m_joint;
+    protected ConfigurableJoint m_joint;
+
+    Vector3 m_thirdAxis, m_targetForward;
 
     private float m_maxJointSpring;
     private float m_jointDampen;
@@ -13,23 +16,15 @@ public class BodyJoint : BodyPart
     public float strenth => m_joint.slerpDrive.maximumForce;
     public float maxStrenth => m_maxJointForceLimit;
 
+    public Vector3 thirdAxis => m_thirdAxis;    
+    public Vector3 targetForward => m_targetForward;    
+
     protected override void Awake()
     {
         base.Awake();
 
         m_joint = GetComponent<ConfigurableJoint>();
-    }
-
-    private void SetJointStrength(float strength)
-    {
-        var rawVal = (strength + 1) / 2 * m_maxJointForceLimit;
-        var jd = new JointDrive
-        {
-            positionSpring = m_maxJointSpring,
-            positionDamper = m_jointDampen,
-            maximumForce = rawVal
-        };
-        m_joint.slerpDrive = jd;
+        m_thirdAxis = Vector3.Cross(m_joint.axis, m_joint.secondaryAxis).normalized;
     }
 
     private float TrySetMotion(IEnumerator actions, ConfigurableJointMotion motion)
@@ -42,7 +37,19 @@ public class BodyJoint : BodyPart
         return res;
     }
 
-    public void SetJointMove(IEnumerator actions)
+    public void SetJointStrength(float strength)
+    {
+        var rawVal = Mathf.Clamp01(strength) * m_maxJointForceLimit;
+        var jd = new JointDrive
+        {
+            positionSpring = m_maxJointSpring,
+            positionDamper = m_jointDampen,
+            maximumForce = rawVal
+        };
+        m_joint.slerpDrive = jd;
+    }
+
+    public override void SetContinuousActios(IEnumerator actions)
     {
         float x = TrySetMotion(actions, m_joint.angularXMotion);
         float y = TrySetMotion(actions, m_joint.angularYMotion);
@@ -54,36 +61,13 @@ public class BodyJoint : BodyPart
 
         m_joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
 
+        m_targetForward = m_transform.TransformDirection(m_joint.targetRotation * m_thirdAxis);
+
         if (actions.MoveNext()) 
         {
-            SetJointStrength((float)actions.Current);
+            float strength = ((float)actions.Current + 1) / 2;
+            SetJointStrength(strength);
         }
-    }
-
-    public void ResetBody(bool randRotation = false)
-    {
-        m_joint.slerpDrive = new JointDrive
-        {
-            positionSpring = 0,
-            positionDamper = 0,
-            maximumForce = 0
-        };
-
-        m_joint.targetRotation = Quaternion.Euler(0, 0, 0);
-
-        base.ResetBody();
-
-        if (randRotation) 
-        {
-            m_transform.localRotation = Quaternion.Euler(0, Random.value * 360f, 0);
-        }
-
-        m_joint.slerpDrive = new JointDrive
-        {
-            positionSpring = m_maxJointSpring,
-            positionDamper = m_jointDampen,
-            maximumForce = 0
-        };
     }
 
     public void SetSlerpDrive(float spring, float dampen, float maxForce)
@@ -99,5 +83,12 @@ public class BodyJoint : BodyPart
 
         m_joint.projectionAngle = angle;
         m_joint.projectionDistance = distance;
+    }
+
+    public virtual new void GetObservations(VectorSensor sensor)
+    {
+        base.GetObservations(sensor);
+
+        sensor.AddObservation(maxStrenth > 0 ? strenth / maxStrenth : 0f); // +1
     }
 }

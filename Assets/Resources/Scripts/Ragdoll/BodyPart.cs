@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -70,6 +71,21 @@ public abstract class BodyPart : MonoBehaviour
         {
             m_groundColliders.Remove(collision.collider);
         }
+    }
+
+    public virtual void GetObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(isGrounded); // +1
+    }
+
+    public virtual void SetContinuousActios(IEnumerator actions)
+    {
+
+    }
+
+    public virtual void SetDiscreteActios(IEnumerator actions)
+    {
+
     }
 
     public virtual void ResetBody()
