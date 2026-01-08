@@ -7,16 +7,20 @@ public class BodyJoint : BodyPart
 {
     protected ConfigurableJoint m_joint;
 
+    private float m_boneLenght;
+
     Vector3 m_thirdAxis, m_targetForward;
 
     private float m_maxJointSpring;
     private float m_jointDampen;
     private float m_maxJointForceLimit;
 
+    public float boneLength => m_boneLenght;
+
     public float strenth => m_joint.slerpDrive.maximumForce;
     public float maxStrenth => m_maxJointForceLimit;
 
-    public Vector3 thirdAxis => m_thirdAxis;    
+    public Vector3 thirdAxis => m_thirdAxis;
     public Vector3 targetForward => m_targetForward;    
 
     protected override void Awake()
@@ -25,6 +29,15 @@ public class BodyJoint : BodyPart
 
         m_joint = GetComponent<ConfigurableJoint>();
         m_thirdAxis = Vector3.Cross(m_joint.axis, m_joint.secondaryAxis).normalized;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 n = transform.TransformDirection(m_thirdAxis);
+        Gizmos.color = Color.yellow;
+
+        //Gizmos.DrawRay(transform.position, n);
+        Gizmos.DrawRay(transform.position, transform.parent.TransformDirection(m_joint.targetRotation * m_thirdAxis) * 0.5f);
     }
 
     private float TrySetMotion(IEnumerator actions, ConfigurableJointMotion motion)
@@ -80,7 +93,7 @@ public class BodyJoint : BodyPart
     public void SetProjectionSettings(float angle, float distance)
     {
         m_joint = m_joint != null ? m_joint : GetComponent<ConfigurableJoint>();
-
+        
         m_joint.projectionAngle = angle;
         m_joint.projectionDistance = distance;
     }

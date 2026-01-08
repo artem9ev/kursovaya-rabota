@@ -20,8 +20,6 @@ public class HumanoidStandAgent : Agent
 
     private Vector3 m_startFlatPos;
 
-    public Vector3 velocity => m_jointsDriver.velocity;
-    public Vector3 flatVelocity => new Vector3(m_jointsDriver.velocity.x, 0, m_jointsDriver.velocity.z);
     public Vector3 hipsFlatPos => new Vector3(m_jointsDriver.hips.position.x, 0, m_jointsDriver.hips.position.z);
 
     private void FixedUpdate()
@@ -79,7 +77,7 @@ public class HumanoidStandAgent : Agent
 
     public float GetMatchingVelocityReward()
     {
-        float velDeltaMagnitude = m_jointsDriver.GetRelativeDirection(flatVelocity).magnitude;
+        float velDeltaMagnitude = m_jointsDriver.GetRelativeDirection(m_jointsDriver.flatVelocity).magnitude;
 
         if (float.IsNaN(velDeltaMagnitude))
         {
@@ -100,12 +98,6 @@ public class HumanoidStandAgent : Agent
         m_jointsDriver.orientForward = m_jointsDriver.hips.flatForward;
     }
 
-    private void CollectObservationsJointPart(BodyJoint joint, VectorSensor sensor)
-    {
-        //sensor.AddObservation(joint.isGrounded); // +1
-        sensor.AddObservation(joint.maxStrenth > 0 ? joint.strenth / joint.maxStrenth : 0f); // +1
-    }
-
     public override void CollectObservations(VectorSensor sensor)
     {
         var avgVel = m_jointsDriver.velocity;
@@ -118,7 +110,7 @@ public class HumanoidStandAgent : Agent
 
         foreach (var joint in m_jointsDriver.joints)
         {
-            CollectObservationsJointPart(joint, sensor);
+            joint.GetObservations(sensor);
         }
     }
 

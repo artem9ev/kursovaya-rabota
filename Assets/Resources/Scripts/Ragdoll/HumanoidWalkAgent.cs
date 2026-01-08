@@ -22,8 +22,6 @@ public class HumanoidWalkAgent : Agent
 
     private float m_targetWalkingSpeed;
 
-    public Vector3 velocity => m_jointsDriver.velocity;
-
     public float targetWalkingSpeed
     {
         get { return m_targetWalkingSpeed * m_inputDirection.magnitude; }

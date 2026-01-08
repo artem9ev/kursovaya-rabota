@@ -39,6 +39,8 @@ public class HumanoidJointsDriver : MonoBehaviour
 
     public BodyHips hips => m_hips;
     public Vector3 velocity => GetAvgVelocity();
+    public Vector3 flatVelocity => new Vector3(velocity.x, 0, velocity.z);
+
     public Vector3 feetPos => (m_rFoot.position + m_lFoot.position) / 2;
     public Vector3 feetUp => (m_rFoot.up + m_lFoot.up) / 2;
 
@@ -57,6 +59,11 @@ public class HumanoidJointsDriver : MonoBehaviour
 
     public List<BodyJoint> joints => m_bodyParts;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(new Vector3(m_hips.transform.position.x, GetLowestPosOnY(), m_hips.transform.position.z), 0.1f);
+    }
+
     private void OnValidate()
     {
         SetJoints();
@@ -72,6 +79,18 @@ public class HumanoidJointsDriver : MonoBehaviour
     private void Awake()
     {
         SetJoints();
+
+        m_hips.rb.angularVelocity *= 0;
+        m_hips.rb.linearVelocity *= 0;
+        m_hips.rb.useGravity = false;
+        m_hips.rb.isKinematic = true;
+        foreach (var joint in m_bodyParts)
+        {
+            joint.rb.angularVelocity *= 0;
+            joint.rb.linearVelocity *= 0;
+            joint.rb.useGravity = false;
+            joint.rb.isKinematic = true;
+        }
     }
 
     private void FixedUpdate()
@@ -136,7 +155,14 @@ public class HumanoidJointsDriver : MonoBehaviour
     public void ResetRagdoll()
     {
         m_hips.ResetBody();
-        m_hips.RandomRotateY();
+
+        float diff = m_hips.transform.position.y - GetLowestPosOnY();
+        m_hips.transform.position = new Vector3(m_hips.transform.position.x, diff, m_hips.transform.position.z);
+
+        if (Application.isPlaying)
+        {
+            m_hips.RandomRotateY();
+        }
 
         foreach (var joint in m_bodyParts)
         {
@@ -151,11 +177,52 @@ public class HumanoidJointsDriver : MonoBehaviour
         m_hips.ResetBody();
         m_hips.RandomRotate();
 
+        float diff = m_hips.transform.position.y - GetLowestPosOnY();
+        m_hips.transform.position = new Vector3(m_hips.transform.position.x, diff, m_hips.transform.position.z);
+
         foreach (var joint in m_bodyParts)
         {
             joint.ResetBody();
         }
 
         Physics.SyncTransforms();
+    }
+
+    public void SetBodyPartsPos(List<Transform> transforms)
+    {
+        if (m_bodyParts.Count + 1 < transforms.Count || !Application.isPlaying)
+        {
+            return;
+        }
+
+        int i = 0;
+
+        m_hips.rb.MoveRotation(transforms[0].localRotation);
+
+        foreach (var joint in m_bodyParts)
+        {
+            i++;
+            Vector3 d = transforms[i].GetChild(0).localPosition.normalized;
+
+            Quaternion r = Quaternion.FromToRotation(joint.thirdAxis, d);
+
+            joint.transform.rotation = transforms[i].rotation * r;
+            joint.transform.localPosition = joint.localPosition;
+        }
+
+        float diff = m_hips.transform.position.y - GetLowestPosOnY();
+        m_hips.transform.position = new Vector3(m_hips.transform.position.x, diff, m_hips.transform.position.z);
+    }
+
+    private float GetLowestPosOnY()
+    {
+        float y = m_hips.collider.bounds.min.y;
+
+        foreach (var joint in m_bodyParts)
+        {
+            y = Mathf.Min(joint.collider.bounds.min.y, y);
+        }
+
+        return y;
     }
 }

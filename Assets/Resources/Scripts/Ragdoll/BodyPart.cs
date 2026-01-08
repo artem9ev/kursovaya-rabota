@@ -13,31 +13,62 @@ public abstract class BodyPart : MonoBehaviour
     public UnityAction<bool> GroundHitPenalty;
 
     protected Rigidbody m_rb;
+    protected Collider m_collider;
     protected Transform m_transform;
 
     protected List<Collider> m_groundColliders = new List<Collider>();
 
-    protected Vector3 m_startPos;
-    protected Quaternion m_startRot;
+    protected Vector3? m_startPos;
 
-    public Quaternion localRotation => m_transform.localRotation;
-    public Vector3 velocity => m_rb.linearVelocity;
-    public Vector3 angularVelocity => m_rb.angularVelocity;
-    public Vector3 position => m_rb.position;
-    public Vector3 forward => m_transform.forward;
-    public Vector3 up => m_transform.up;
-    public Vector3 flatForward => (m_transform.forward.x * Vector3.right + m_transform.forward.z * Vector3.forward).normalized;
+    public new Transform transform
+    {  
+        get 
+        {
+            m_transform = m_transform != null ? m_transform : base.transform;
+            return m_transform; 
+        } 
+    }
+
+    public Rigidbody rb 
+    { 
+        get 
+        { 
+            m_rb = m_rb != null ? m_rb : GetComponent<Rigidbody>();
+            return m_rb; 
+        } 
+    }
+
+    public new Collider collider
+    {
+        get
+        {
+            m_collider = m_collider != null ? m_collider : GetComponentInChildren<Collider>();
+            return m_collider;
+        }
+    }
+
+    public Quaternion localRotation 
+    {
+        get { return transform.localRotation; } 
+        set { transform.localRotation = value;}
+    }
+    public Vector3 localPosition => m_startPos.Value;
+    public Vector3 velocity => rb.linearVelocity;
+    public Vector3 angularVelocity => rb.angularVelocity;
+    public Vector3 position => rb.position;
+    public Vector3 forward => transform.forward;
+    public Vector3 up => transform.up;
+    public Vector3 flatForward => (transform.forward.x * Vector3.right + transform.forward.z * Vector3.forward).normalized;
 
     public bool isGrounded => m_groundColliders.Count > 0;
     public bool doGroundHitPenalty => m_groundHitPenalty;
 
+
     protected virtual void Awake()
     {
-        m_transform = transform;
         m_rb = GetComponent<Rigidbody>();
-
-        m_startPos = m_transform.localPosition;
-        m_startRot = m_transform.localRotation;
+        
+        m_startPos = transform.localPosition;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -73,6 +104,23 @@ public abstract class BodyPart : MonoBehaviour
         }
     }
 
+    public virtual void ResetBody()
+    {
+        if (m_startPos == null)
+        {
+            m_startPos = transform.localPosition;
+        }
+
+        if (!rb.isKinematic)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        transform.localRotation = Quaternion.identity;
+        transform.localPosition = m_startPos.Value;
+    }
+
     public virtual void GetObservations(VectorSensor sensor)
     {
         sensor.AddObservation(isGrounded); // +1
@@ -86,14 +134,5 @@ public abstract class BodyPart : MonoBehaviour
     public virtual void SetDiscreteActios(IEnumerator actions)
     {
 
-    }
-
-    public virtual void ResetBody()
-    {
-        m_rb.linearVelocity = Vector3.zero;
-        m_rb.angularVelocity = Vector3.zero;
-
-        m_transform.localPosition = m_startPos;
-        m_transform.localRotation = m_startRot;
     }
 }
