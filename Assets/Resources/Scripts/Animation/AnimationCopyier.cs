@@ -101,7 +101,7 @@ public class AnimationCopyier : MonoBehaviour
 
     private void Update()
     {
-        
+        m_jointsDriver.SetBodyPartsPos(m_bodyParts);
     }
 
     private void Draw(Transform parent)

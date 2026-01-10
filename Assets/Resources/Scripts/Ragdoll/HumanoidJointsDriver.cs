@@ -197,21 +197,28 @@ public class HumanoidJointsDriver : MonoBehaviour
 
         int i = 0;
 
-        m_hips.rb.MoveRotation(transforms[0].localRotation);
+        m_hips.transform.rotation = transforms[0].localRotation;
+
 
         foreach (var joint in m_bodyParts)
         {
             i++;
-            Vector3 d = transforms[i].GetChild(0).localPosition.normalized;
+            Vector3 d = (transforms[i].GetChild(0).position - transforms[i].position).normalized;
 
-            Quaternion r = Quaternion.FromToRotation(joint.thirdAxis, d);
+            Quaternion r = Quaternion.FromToRotation(joint.thirdAxis, joint.transform.parent.InverseTransformDirection(d));
 
-            joint.transform.rotation = transforms[i].rotation * r;
+            //Debug.DrawRay(joint.transform.position, joint.transform.parent.InverseTransformDirection(d) * 0.5f, Color.green);
+            //Debug.DrawRay(transforms[i].position, d * 0.5f, Color.green);
+
+            joint.transform.rotation = joint.transform.parent.rotation * r;
+
             joint.transform.localPosition = joint.localPosition;
         }
 
         float diff = m_hips.transform.position.y - GetLowestPosOnY();
         m_hips.transform.position = new Vector3(m_hips.transform.position.x, diff, m_hips.transform.position.z);
+
+        Physics.SyncTransforms();
     }
 
     private float GetLowestPosOnY()
