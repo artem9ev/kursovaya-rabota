@@ -1,0 +1,203 @@
+{
+    "animation_time_dec": {
+        "lesson_num": 0
+    },
+    "Humanoid_stand_up": {
+        "checkpoints": [
+            {
+                "steps": 12499965,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-12499965.onnx",
+                "reward": 46.3070171291677,
+                "creation_time": 1768285025.6988509,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-12499965.pt"
+                ]
+            },
+            {
+                "steps": 12999853,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-12999853.onnx",
+                "reward": null,
+                "creation_time": 1768286387.0973752,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-12999853.pt"
+                ]
+            },
+            {
+                "steps": 13499586,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-13499586.onnx",
+                "reward": 2.021903496213781,
+                "creation_time": 1768287745.0875356,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-13499586.pt"
+                ]
+            },
+            {
+                "steps": 13999992,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-13999992.onnx",
+                "reward": 14.188778197060206,
+                "creation_time": 1768289101.4274805,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-13999992.pt"
+                ]
+            },
+            {
+                "steps": 14499630,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-14499630.onnx",
+                "reward": 5.627881219364806,
+                "creation_time": 1768290462.8070538,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-14499630.pt"
+                ]
+            },
+            {
+                "steps": 14999730,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-14999730.onnx",
+                "reward": 31.457048868832107,
+                "creation_time": 1768291828.2336264,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-14999730.pt"
+                ]
+            },
+            {
+                "steps": 15499698,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-15499698.onnx",
+                "reward": 66.71519056880692,
+                "creation_time": 1768293187.6158347,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-15499698.pt"
+                ]
+            },
+            {
+                "steps": 15999862,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-15999862.onnx",
+                "reward": 118.50703746314402,
+                "creation_time": 1768294563.2509625,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-15999862.pt"
+                ]
+            },
+            {
+                "steps": 16499523,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-16499523.onnx",
+                "reward": null,
+                "creation_time": 1768295922.6903543,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-16499523.pt"
+                ]
+            },
+            {
+                "steps": 16999784,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-16999784.onnx",
+                "reward": 239.7305966376898,
+                "creation_time": 1768297271.8045077,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-16999784.pt"
+                ]
+            },
+            {
+                "steps": 17499884,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-17499884.onnx",
+                "reward": 347.5574035944107,
+                "creation_time": 1768298624.6399643,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-17499884.pt"
+                ]
+            },
+            {
+                "steps": 17999635,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-17999635.onnx",
+                "reward": 105.85005884107926,
+                "creation_time": 1768299986.9743521,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-17999635.pt"
+                ]
+            },
+            {
+                "steps": 18499849,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-18499849.onnx",
+                "reward": 17.546446617823676,
+                "creation_time": 1768301855.9872177,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-18499849.pt"
+                ]
+            },
+            {
+                "steps": 18999901,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-18999901.onnx",
+                "reward": 15.172196323491054,
+                "creation_time": 1768303746.9793587,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-18999901.pt"
+                ]
+            },
+            {
+                "steps": 19499507,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-19499507.onnx",
+                "reward": 0.919941049361114,
+                "creation_time": 1768305613.8714817,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-19499507.pt"
+                ]
+            },
+            {
+                "steps": 19999956,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-19999956.onnx",
+                "reward": 4.178969964792486,
+                "creation_time": 1768307555.9485395,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-19999956.pt"
+                ]
+            },
+            {
+                "steps": 20499594,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-20499594.onnx",
+                "reward": 1.0664701599625914,
+                "creation_time": 1768309463.8476348,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-20499594.pt"
+                ]
+            },
+            {
+                "steps": 20999935,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-20999935.onnx",
+                "reward": 7.075846404506592,
+                "creation_time": 1768311294.5682993,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-20999935.pt"
+                ]
+            },
+            {
+                "steps": 21499792,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-21499792.onnx",
+                "reward": 0.8112856520059392,
+                "creation_time": 1768312989.5117903,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-21499792.pt"
+                ]
+            },
+            {
+                "steps": 21855305,
+                "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-21855305.onnx",
+                "reward": 1.425707312945563,
+                "creation_time": 1768314164.1214836,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-21855305.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 21855305,
+            "file_path": "results\\Humanoid_stand_copier_1\\Humanoid_stand_up.onnx",
+            "reward": 1.425707312945563,
+            "creation_time": 1768314164.1214836,
+            "auxillary_file_paths": [
+                "results\\Humanoid_stand_copier_1\\Humanoid_stand_up\\Humanoid_stand_up-21855305.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

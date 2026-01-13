@@ -33,10 +33,8 @@ public class BodyJoint : BodyPart
 
     private void OnDrawGizmos()
     {
-        Vector3 n = transform.TransformDirection(m_thirdAxis);
         Gizmos.color = Color.yellow;
 
-        //Gizmos.DrawRay(transform.position, n);
         Gizmos.DrawRay(transform.position, transform.parent.TransformDirection(m_joint.targetRotation * m_thirdAxis) * 0.5f);
     }
 
@@ -96,6 +94,11 @@ public class BodyJoint : BodyPart
         
         m_joint.projectionAngle = angle;
         m_joint.projectionDistance = distance;
+    }
+
+    public void SetTargetRotation(Quaternion rotation)
+    {
+        m_joint.targetRotation = rotation;
     }
 
     public virtual new void GetObservations(VectorSensor sensor)

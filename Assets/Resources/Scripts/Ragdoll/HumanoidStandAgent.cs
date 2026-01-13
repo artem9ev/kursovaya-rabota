@@ -1,3 +1,4 @@
+using Unity.AppUI.UI;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class HumanoidStandAgent : Agent
 {
     [SerializeField] private HumanoidJointsDriver m_jointsDriver;
+    [SerializeField] private AnimationCopyier m_copier;
     [Header("Params")]
     [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 35f;
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 15f;
@@ -18,9 +20,42 @@ public class HumanoidStandAgent : Agent
     [SerializeField, Min(0f)] private float m_heightReward = 1f;
     [SerializeField, Min(0f)] private float m_flatPositionReward = 1f;
 
+    private DecisionRequester m_decisionRequester;
+
     private Vector3 m_startFlatPos;
 
     public Vector3 hipsFlatPos => new Vector3(m_jointsDriver.hips.position.x, 0, m_jointsDriver.hips.position.z);
+
+    private new void Awake()
+    {
+        base.Awake();
+
+        m_decisionRequester = GetComponent<DecisionRequester>();
+    }
+
+    private new void OnEnable()
+    {
+        base.OnEnable();
+
+        m_jointsDriver.OnBodyActive += OnBodyActive;
+    }
+
+    private new void OnDisable()
+    {
+        base.OnDisable();
+
+        m_jointsDriver.OnBodyActive -= OnBodyActive;
+    }
+
+    private void OnBodyActive(bool activated)
+    {
+        if (m_decisionRequester == null)
+        {
+            return;
+        }
+
+        m_decisionRequester.enabled = activated;
+    }
 
     private void FixedUpdate()
     {
@@ -72,7 +107,15 @@ public class HumanoidStandAgent : Agent
         float flatPositionReward = flatPositionCoef * m_flatPositionReward;
         float boneOrientReward = Mathf.Clamp01(Vector3.Dot(m_jointsDriver.feetUp, Vector3.up));
 
-        AddReward((lookAtTargetReward + flatPositionReward) * heightReward * boneOrientReward);
+        AddReward((lookAtTargetReward + flatPositionReward) * heightReward * boneOrientReward * (1.5f - AnimationCopyier.Time));
+
+        //Debug.Log((lookAtTargetReward + flatPositionReward) * heightReward * boneOrientReward);
+
+        if ((lookAtTargetReward + flatPositionReward) * heightReward * boneOrientReward > 0.85f)
+        {
+            m_copier.DecreaseTime();
+            EndEpisode();
+        }
     }
 
     public float GetMatchingVelocityReward()
@@ -92,7 +135,9 @@ public class HumanoidStandAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        m_jointsDriver.RandomResetRagdoll();
+        
+        //m_jointsDriver.RandomResetRagdoll();
+        m_copier.GetPose();
 
         m_startFlatPos = hipsFlatPos;
         m_jointsDriver.orientForward = m_jointsDriver.hips.flatForward;

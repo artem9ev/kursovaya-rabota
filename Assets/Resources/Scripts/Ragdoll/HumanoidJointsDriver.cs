@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HumanoidJointsDriver : MonoBehaviour
 {
@@ -36,6 +38,10 @@ public class HumanoidJointsDriver : MonoBehaviour
     [SerializeField, Min(0f)] private float m_projectionDistance = 0.1f;
 
     private List<BodyJoint> m_bodyParts = new List<BodyJoint>();
+
+    private Coroutine m_setBodyRoutine;
+
+    public UnityAction<bool> OnBodyActive;
 
     public BodyHips hips => m_hips;
     public Vector3 velocity => GetAvgVelocity();
@@ -80,16 +86,11 @@ public class HumanoidJointsDriver : MonoBehaviour
     {
         SetJoints();
 
-        m_hips.rb.angularVelocity *= 0;
-        m_hips.rb.linearVelocity *= 0;
-        m_hips.rb.useGravity = false;
-        m_hips.rb.isKinematic = true;
         foreach (var joint in m_bodyParts)
         {
-            joint.rb.angularVelocity *= 0;
-            joint.rb.linearVelocity *= 0;
-            joint.rb.useGravity = false;
-            joint.rb.isKinematic = true;
+            if (joint == null) continue;
+            joint.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
+            joint.SetProjectionSettings(m_projectionAngle, m_projectionDistance);
         }
     }
 
@@ -190,35 +191,78 @@ public class HumanoidJointsDriver : MonoBehaviour
 
     public void SetBodyPartsPos(List<Transform> transforms)
     {
-        if (m_bodyParts.Count + 1 < transforms.Count || !Application.isPlaying)
+        if (m_bodyParts.Count + 1 < transforms.Count || !Application.isPlaying || m_setBodyRoutine != null)
         {
             return;
         }
 
-        int i = 0;
+        m_setBodyRoutine = StartCoroutine(SetBodyRoutine(transforms));
+    }
 
-        m_hips.transform.rotation = transforms[0].localRotation;
+    private IEnumerator SetBodyRoutine(List<Transform> transforms)
+    {
+        OnBodyActive?.Invoke(false);
 
+        m_hips.rb.angularVelocity *= 0;
+        m_hips.rb.linearVelocity *= 0;
+        m_hips.rb.Sleep();
 
+        /*m_hips.rb.useGravity = false;
+        m_hips.rb.isKinematic = true;*/
         foreach (var joint in m_bodyParts)
         {
-            i++;
-            Vector3 d = (transforms[i].GetChild(0).position - transforms[i].position).normalized;
+            joint.SetJointStrength(0);
 
-            Quaternion r = Quaternion.FromToRotation(joint.thirdAxis, joint.transform.parent.InverseTransformDirection(d));
+            joint.rb.angularVelocity *= 0;
+            joint.rb.linearVelocity *= 0;
+            joint.rb.Sleep();
 
-            //Debug.DrawRay(joint.transform.position, joint.transform.parent.InverseTransformDirection(d) * 0.5f, Color.green);
-            //Debug.DrawRay(transforms[i].position, d * 0.5f, Color.green);
-
-            joint.transform.rotation = joint.transform.parent.rotation * r;
-
-            joint.transform.localPosition = joint.localPosition;
+            /*joint.rb.useGravity = false;
+            joint.rb.isKinematic = true;*/
         }
+
+        //yield return new WaitForFixedUpdate();
+
+        int i = 0;
+
+        m_orient.forward = Vector3.forward;
+
+        m_hips.ResetBody();
+        m_hips.transform.rotation = transforms[0].localRotation/* * Quaternion.Euler(0f, Random.Range(0f, 360f), 0f)*/;
+
+        Physics.SyncTransforms();
 
         float diff = m_hips.transform.position.y - GetLowestPosOnY();
         m_hips.transform.position = new Vector3(m_hips.transform.position.x, diff, m_hips.transform.position.z);
 
         Physics.SyncTransforms();
+
+        foreach (var joint in m_bodyParts)
+        {
+            i++;
+            Vector3 d = (transforms[i].GetChild(0).position - transforms[i].position).normalized;
+            Quaternion r = Quaternion.FromToRotation(joint.thirdAxis, joint.transform.parent.InverseTransformDirection(d));
+
+            joint.transform.rotation = joint.transform.parent.rotation * r;
+            joint.transform.localPosition = joint.localPosition;
+            joint.SetTargetRotation(r);
+
+            Physics.SyncTransforms();
+        }
+
+        yield return new WaitForFixedUpdate();
+
+        m_hips.rb.useGravity = true;
+        m_hips.rb.isKinematic = false;
+        foreach (var joint in m_bodyParts)
+        {
+            joint.rb.useGravity = true;
+            joint.rb.isKinematic = false;
+        }
+
+        m_setBodyRoutine = null;
+
+        OnBodyActive?.Invoke(true);
     }
 
     private float GetLowestPosOnY()

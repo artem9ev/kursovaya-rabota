@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.MLAgents;
 using UnityEngine;
 
 public class AnimationCopyier : MonoBehaviour
@@ -31,6 +32,10 @@ public class AnimationCopyier : MonoBehaviour
     private Transform m_transform;
     private Animator m_animator;
 
+    private static float s_time = 1f;
+
+    public static float Time => s_time;
+
     private List<Transform> m_bodyParts = new List<Transform>();
 
     int m_hashName;
@@ -55,6 +60,8 @@ public class AnimationCopyier : MonoBehaviour
 
     private void Start()
     {
+        Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.Average);
+
         SetJoints();
 
         m_transform = transform;
@@ -101,7 +108,7 @@ public class AnimationCopyier : MonoBehaviour
 
     private void Update()
     {
-        m_jointsDriver.SetBodyPartsPos(m_bodyParts);
+        //m_jointsDriver.SetBodyPartsPos(m_bodyParts);
     }
 
     private void Draw(Transform parent)
@@ -113,5 +120,27 @@ public class AnimationCopyier : MonoBehaviour
 
             Draw(parent.GetChild(i));
         }
+    }
+
+    public void GetPose()
+    {
+        m_animator.Play(m_hashName, 0, s_time);
+
+        m_jointsDriver.SetBodyPartsPos(m_bodyParts);
+    }
+
+    public void DecreaseTime()
+    {
+        s_time -= Academy.Instance.EnvironmentParameters.GetWithDefault("animation_time_dec", 0.01f);
+
+        if (s_time < 0)
+        {
+            s_time = 0;
+        }
+
+        Debug.Log($"Time: {s_time}");
+        m_animator.Play(m_hashName, 0, s_time);
+
+        Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.MostRecent);
     }
 }
