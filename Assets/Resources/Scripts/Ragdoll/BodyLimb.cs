@@ -64,19 +64,19 @@ public class BodyLimb : BodyJoint
 
     public override void SetDiscreteActios(IEnumerator actions)
     {
-        if (actions.MoveNext())
+        /*if (actions.MoveNext())
         {
             if (isGrounded)
             {
                 m_haveToFixPos = (Connection)actions.Current == Connection.Fixed;
             }
-        }
+        }*/
     }
 
     public virtual new void GetObservations(VectorSensor sensor)
     {
         base.GetObservations(sensor);
 
-        sensor.AddObservation(m_haveToFixPos); // +1
+        //sensor.AddObservation(m_haveToFixPos); // +1
     }
 }

@@ -1,0 +1,81 @@
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.8f1 (1c7db571dde0)
+[Subsystems] Discovering subsystems at path D:/hobby/projects/diplom_game/builds/humanoid_walker_trainer/humanoid_trainer_Data/UnitySubsystems
+[D3D12 Device Filter] Vendor Name: Intel
+[D3D12 Device Filter] Device Name: Intel(R) Iris(R) Xe Graphics
+[D3D12 Device Filter] Driver Version: 31.0.101.4032
+[D3D12 Device Filter] Feature Level: 12.1
+[D3D12 Device Filter] Graphics Memory: 8053 MB
+[D3D12 Device Filter] Processor Count: 16
+[D3D12 Device Filter] Device Type: Integrated
+[D3D12 Device Filter] D3D12 API denied by user filter: {"Vendor": "Intel", "Device Type:": Integrated}
+GfxDevice: creating device client; kGfxThreadingModeClientWorkerJobs
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0xa7a0)
+    Vendor:   Intel
+    VRAM:     8053 MB
+    Driver:   31.0.101.4032
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+<RI> Initializing input.
+Using Windows.Gaming.Input
+UnloadTime: 0.305200 ms
+Registered Communicator in Agent.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Unity.MLAgents.Agent:Awake()
+HumanoidStandAgent:Awake()
+
+Unexpected exception when trying to initialize communication: System.IO.FileNotFoundException: Error loading native library. Not found in any of the possible locations: D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\runtimes/win/native\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\../..\runtimes/win/native\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\../../..\Plugins\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\..\Plugins\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\..\Plugins\x86_64\grpc_csharp_ext.x64.dll,D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\..\Plugins\x86\grpc_csharp_ext.x64.dll
+  at Grpc.Core.Internal.UnmanagedLibrary..ctor (System.String[] libraryPathAlternatives) [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.Internal.NativeExtension.Load () [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.Internal.NativeExtension.Get () [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.GrpcEnvironment.GrpcNativeInit () [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.GrpcEnvironment..ctor () [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.GrpcEnvironment.AddRef () [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.Channel..ctor (System.String target, Grpc.Core.ChannelCredentials credentials, System.Collections.Generic.IEnumerable`1[T] options) [0x00000] in <00000000000000000000000000000000>:0 
+  at Grpc.Core.Channel..ctor (System.String target, Grpc.Core.ChannelCredentials credentials) [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.RpcCommunicator.Initialize (System.Int32 port, Unity.MLAgents.CommunicatorObjects.UnityOutputProto unityOutput, Unity.MLAgents.CommunicatorObjects.UnityInputProto& unityInput) [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.RpcCommunicator.Initialize (Unity.MLAgents.CommunicatorInitParameters initParameters, Unity.MLAgents.UnityRLInitParameters& initParametersOut) [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.Academy.InitializeEnvironment () [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.Academy..ctor () [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.Academy+<>c.<.cctor>b__85_0 () [0x00000] in <00000000000000000000000000000000>:0 
+  at System.Lazy`1[T].ViaFactory (System.Threading.LazyThreadSafetyMode mode) [0x00000] in <00000000000000000000000000000000>:0 
+  at System.Lazy`1[T].ExecutionAndPublication (System.LazyHelper executionAndPublication, System.Boolean useDefaultConstructor) [0x00000] in <00000000000000000000000000000000>:0 
+  at System.Lazy`1[T].CreateValue () [0x00000] in <00000000000000000000000000000000>:0 
+  at Unity.MLAgents.Agent.LazyInitialize () [0x00000] in <00000000000000000000000000000000>:0 
+  at HumanoidWalkAgent.OnEnable () [0x00000] in <00000000000000000000000000000000>:0 
+UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Unity.MLAgents.RpcCommunicator:Initialize(CommunicatorInitParameters, UnityRLInitParameters&)
+Unity.MLAgents.Academy:InitializeEnvironment()
+Unity.MLAgents.Academy:.ctor()
+Unity.MLAgents.<>c:<.cctor>b__85_0()
+System.Lazy`1:ViaFactory(LazyThreadSafetyMode)
+System.Lazy`1:ExecutionAndPublication(LazyHelper, Boolean)
+System.Lazy`1:CreateValue()
+Unity.MLAgents.Agent:LazyInitialize()
+HumanoidWalkAgent:OnEnable()
+
+Couldn't connect to trainer on port 5005 using API version 1.5.0. Will perform inference instead.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Unity.MLAgents.Academy:InitializeEnvironment()
+Unity.MLAgents.Academy:.ctor()
+Unity.MLAgents.<>c:<.cctor>b__85_0()
+System.Lazy`1:ViaFactory(LazyThreadSafetyMode)
+System.Lazy`1:ExecutionAndPublication(LazyHelper, Boolean)
+System.Lazy`1:CreateValue()
+Unity.MLAgents.Agent:LazyInitialize()
+HumanoidWalkAgent:OnEnable()
+

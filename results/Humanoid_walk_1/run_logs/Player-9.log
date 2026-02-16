@@ -1,0 +1,235 @@
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.8f1 (1c7db571dde0)
+[Subsystems] Discovering subsystems at path D:/hobby/projects/diplom_game/builds/humanoid_walker_trainer/humanoid_trainer_Data/UnitySubsystems
+[D3D12 Device Filter] Vendor Name: Intel
+[D3D12 Device Filter] Device Name: Intel(R) Iris(R) Xe Graphics
+[D3D12 Device Filter] Driver Version: 31.0.101.4032
+[D3D12 Device Filter] Feature Level: 12.1
+[D3D12 Device Filter] Graphics Memory: 8053 MB
+[D3D12 Device Filter] Processor Count: 16
+[D3D12 Device Filter] Device Type: Integrated
+[D3D12 Device Filter] D3D12 API denied by user filter: {"Vendor": "Intel", "Device Type:": Integrated}
+GfxDevice: creating device client; kGfxThreadingModeClientWorkerJobs
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0xa7a0)
+    Vendor:   Intel
+    VRAM:     8053 MB
+    Driver:   31.0.101.4032
+FMOD failed to initialize the output device.: "Error initializing output device. " (60)
+Forced to initialize FMOD to to the device driver's system output rate 48000, this may impact performance and/or give inconsistent experiences compared to selected sample rate 48000
+FMOD failed to initialize the output device.: "Error initializing output device. " (60)
+FMOD failed to initialize the output device.: "Not enough memory or resources. " (43)
+Unable to initalize any audio device (even FMOD nosound device), please check your audio drivers and/or hardware for malfunction
+Crash!!!
+  ERROR: SymInitialize, GetLastError: 'Недостаточно ресурсов памяти для обработки этой команды.' (Address: 0000000000000000)
+  ERROR: SymGetSearchPath, GetLastError: 'Неверный дескриптор.' (Address: 0000000000000000)
+SymInit: Symbol-SearchPath: '', symOptions: 534, UserName: ''
+OS-Version: 10.0.0
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\humanoid_trainer.exe:humanoid_trainer.exe (00007FF6F4150000), size: 684032 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 6000.3.8.32181
+C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (00007FF981970000), size: 2195456 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6060
+C:\Windows\System32\KERNEL32.DLL:KERNEL32.DLL (00007FF980660000), size: 802816 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\System32\KERNELBASE.dll:KERNELBASE.dll (00007FF97F0C0000), size: 4009984 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6060
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\UnityPlayer.dll:UnityPlayer.dll (00007FF867150000), size: 37089280 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 6000.3.8.32181
+C:\Windows\System32\USER32.dll:USER32.dll (00007FF980A30000), size: 1777664 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\win32u.dll:win32u.dll (00007FF97F010000), size: 155648 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\GDI32.dll:GDI32.dll (00007FF980A00000), size: 167936 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\gdi32full.dll:gdi32full.dll (00007FF97EBC0000), size: 1159168 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\msvcp_win.dll:msvcp_win.dll (00007FF97EEF0000), size: 630784 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3374
+C:\Windows\System32\ucrtbase.dll:ucrtbase.dll (00007FF97ECE0000), size: 1118208 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3593
+C:\Windows\System32\ole32.dll:ole32.dll (00007FF980D30000), size: 1708032 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\combase.dll:combase.dll (00007FF981520000), size: 3739648 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\RPCRT4.dll:RPCRT4.dll (00007FF981400000), size: 1146880 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5840
+C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (00007FF96D830000), size: 40960 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\System32\SHLWAPI.dll:SHLWAPI.dll (00007FF980CC0000), size: 430080 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\msvcrt.dll:msvcrt.dll (00007FF97F690000), size: 684032 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 7.0.22621.2506
+C:\Windows\System32\SETUPAPI.dll:SETUPAPI.dll (00007FF97F830000), size: 4669440 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\ADVAPI32.dll:ADVAPI32.dll (00007FF9810A0000), size: 724992 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5909
+C:\Windows\System32\sechost.dll:sechost.dll (00007FF981350000), size: 688128 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5909
+C:\Windows\System32\bcrypt.dll:bcrypt.dll (00007FF97EE00000), size: 163840 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.4746
+C:\Windows\System32\SHELL32.dll:SHELL32.dll (00007FF97FCB0000), size: 9027584 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\wintypes.dll:wintypes.dll (00007FF97EA80000), size: 1306624 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\OLEAUT32.dll:OLEAUT32.dll (00007FF980810000), size: 884736 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\IMM32.dll:IMM32.dll (00007FF980730000), size: 200704 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\CRYPT32.dll:CRYPT32.dll (00007FF97F4A0000), size: 1474560 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (00007FF976400000), size: 212992 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\System32\WS2_32.dll:WS2_32.dll (00007FF97F610000), size: 462848 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.4746
+C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (00007FF9288B0000), size: 1048576 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (00007FF97A0B0000), size: 1228800 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.4830
+C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (00007FF97D530000), size: 184320 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\SYSTEM32\HID.DLL:HID.DLL (00007FF97D260000), size: 57344 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (00007FF977F10000), size: 2453504 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (00007FF97B740000), size: 1011712 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\UIAutomationCore.DLL:UIAutomationCore.DLL (00007FF940740000), size: 4497408 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 7.2.22621.6133
+C:\Windows\SYSTEM32\dwmapi.dll:dwmapi.dll (00007FF97B850000), size: 176128 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (00007FF96E620000), size: 184320 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\SYSTEM32\dxcore.dll:dxcore.dll (00007FF97BF50000), size: 225280 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (00007FF97DB20000), size: 98304 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3958
+C:\Windows\System32\bcryptPrimitives.dll:bcryptPrimitives.dll (00007FF97EF90000), size: 503808 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.4317
+C:\Windows\system32\uxtheme.dll:uxtheme.dll (00007FF97B5C0000), size: 733184 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\shcore.dll:shcore.dll (00007FF980550000), size: 1064960 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\GameAssembly.dll:GameAssembly.dll (00007FF848F80000), size: 69337088 (result: 6), SymType: '-unknown-', PDB: ''
+C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FF97C3C0000), size: 2306048 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5471
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\baselib.dll:baselib.dll (00007FF9087C0000), size: 245760 (result: 6), SymType: '-unknown-', PDB: ''
+C:\Windows\System32\clbcatq.dll:clbcatq.dll (00007FF980BF0000), size: 720896 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 2001.12.10941.16384
+C:\Windows\System32\CoreMessaging.dll:CoreMessaging.dll (00007FF978920000), size: 1257472 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\humanoid_trainer_Data\Plugins\x86_64\AppUINativePlugin.dll:AppUINativePlugin.dll (00007FF977130000), size: 61440 (result: 6), SymType: '-unknown-', PDB: ''
+C:\Windows\SYSTEM32\MSVCP140.dll:MSVCP140.dll (00007FF96D310000), size: 557056 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\SYSTEM32\VCRUNTIME140_1.dll:VCRUNTIME140_1.dll (00007FF96D1B0000), size: 45056 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.6060_none_2712eda17382d24b\COMCTL32.dll:COMCTL32.dll (00007FF95D010000), size: 2736128 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 6.10.22621.6060
+C:\Windows\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (00007FF96D1D0000), size: 122880 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\System32\Windows.UI.dll:Windows.UI.dll (00007FF95A210000), size: 1564672 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\MSCTF.dll:MSCTF.dll (00007FF981160000), size: 1441792 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\directxdatabasehelper.dll:directxdatabasehelper.dll (00007FF975B40000), size: 299008 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\d3d12.dll:d3d12.dll (00007FF90E700000), size: 155648 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\D3D12\D3D12Core.dll:D3D12Core.dll (00007FF86AB00000), size: 4780032 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 1.618.1.0
+C:\Windows\SYSTEM32\cfgmgr32.dll:cfgmgr32.dll (00007FF97E770000), size: 319488 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\SYSTEM32\DEVOBJ.dll:DEVOBJ.dll (00007FF97E740000), size: 180224 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\WINTRUST.dll:WINTRUST.dll (00007FF97F040000), size: 507904 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6060
+C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (00007FF97E720000), size: 73728 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igc64.dll:igc64.dll (00007FF968080000), size: 72871936 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\D3DSCache.dll:D3DSCache.dll (00007FF90E490000), size: 192512 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\USERENV.dll:USERENV.dll (00007FF97E100000), size: 163840 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3527
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd12dxva64.dll:igd12dxva64.dll (00007FF92F250000), size: 58552320 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\windows.storage.dll:windows.storage.dll (00007FF97C940000), size: 9543680 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\SYSTEM32\twinapi.appcore.dll:twinapi.appcore.dll (00007FF9766B0000), size: 2777088 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5840
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd10iumd64.dll:igd10iumd64.dll (00007FF972C80000), size: 4419584 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\apphelp.dll:apphelp.dll (00007FF979FB0000), size: 618496 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd10um64xe.DLL:igd10um64xe.DLL (00007FF971400000), size: 25669632 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\ControlLib.dll:ControlLib.dll (00007FF9738A0000), size: 241664 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 1.0.127.0
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\IntelControlLib.dll:IntelControlLib.dll (00007FF973820000), size: 483328 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 1.0.127.0
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igdgmm64.dll:igdgmm64.dll (00007FF970AC0000), size: 4280320 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\System32\MMDevApi.dll:MMDevApi.dll (00007FF973C40000), size: 638976 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5547
+C:\Windows\SYSTEM32\AUDIOSES.DLL:AUDIOSES.DLL (00007FF970590000), size: 2023424 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\resourcepolicyclient.dll:resourcepolicyclient.dll (00007FF97C3A0000), size: 86016 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3527
+C:\Windows\SYSTEM32\powrprof.dll:powrprof.dll (00007FF97D8B0000), size: 315392 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.3958
+C:\Windows\SYSTEM32\UMPDC.dll:UMPDC.dll (00007FF97D870000), size: 77824 (result: 6), SymType: '-unknown-', PDB: '', fileVersion: 10.0.22621.5124
+
+========== OUTPUTTING STACK TRACE ==================
+
+SymInit: Symbol-SearchPath: '.;D:\hobby\projects\diplom_game;D:/hobby/projects/diplom_game/builds/humanoid_walker_trainer/humanoid_trainer_Data/Plugins\x86_64;D:/hobby/projects/diplom_game/builds/humanoid_walker_trainer/humanoid_trainer_Data/Plugins;D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer;C:\Windows;C:\Windows\system32;', symOptions: 534, UserName: 'artem'
+OS-Version: 10.0.0
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\humanoid_trainer.exe:humanoid_trainer.exe (00007FF6F4150000), size: 684032 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 6000.3.8.32181
+C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (00007FF981970000), size: 2195456 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6060
+C:\Windows\System32\KERNEL32.DLL:KERNEL32.DLL (00007FF980660000), size: 802816 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\System32\KERNELBASE.dll:KERNELBASE.dll (00007FF97F0C0000), size: 4009984 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6060
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\UnityPlayer.dll:UnityPlayer.dll (00007FF867150000), size: 37089280 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 6000.3.8.32181
+C:\Windows\System32\USER32.dll:USER32.dll (00007FF980A30000), size: 1777664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\win32u.dll:win32u.dll (00007FF97F010000), size: 155648 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\GDI32.dll:GDI32.dll (00007FF980A00000), size: 167936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\gdi32full.dll:gdi32full.dll (00007FF97EBC0000), size: 1159168 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\msvcp_win.dll:msvcp_win.dll (00007FF97EEF0000), size: 630784 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3374
+C:\Windows\System32\ucrtbase.dll:ucrtbase.dll (00007FF97ECE0000), size: 1118208 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3593
+C:\Windows\System32\ole32.dll:ole32.dll (00007FF980D30000), size: 1708032 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6199
+C:\Windows\System32\combase.dll:combase.dll (00007FF981520000), size: 3739648 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\RPCRT4.dll:RPCRT4.dll (00007FF981400000), size: 1146880 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5840
+C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (00007FF96D830000), size: 40960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\System32\SHLWAPI.dll:SHLWAPI.dll (00007FF980CC0000), size: 430080 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\msvcrt.dll:msvcrt.dll (00007FF97F690000), size: 684032 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.0.22621.2506
+C:\Windows\System32\SETUPAPI.dll:SETUPAPI.dll (00007FF97F830000), size: 4669440 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\ADVAPI32.dll:ADVAPI32.dll (00007FF9810A0000), size: 724992 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5909
+C:\Windows\System32\sechost.dll:sechost.dll (00007FF981350000), size: 688128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5909
+C:\Windows\System32\bcrypt.dll:bcrypt.dll (00007FF97EE00000), size: 163840 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.4746
+C:\Windows\System32\SHELL32.dll:SHELL32.dll (00007FF97FCB0000), size: 9027584 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\wintypes.dll:wintypes.dll (00007FF97EA80000), size: 1306624 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\OLEAUT32.dll:OLEAUT32.dll (00007FF980810000), size: 884736 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\IMM32.dll:IMM32.dll (00007FF980730000), size: 200704 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\System32\CRYPT32.dll:CRYPT32.dll (00007FF97F4A0000), size: 1474560 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (00007FF976400000), size: 212992 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\System32\WS2_32.dll:WS2_32.dll (00007FF97F610000), size: 462848 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.4746
+C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (00007FF9288B0000), size: 1048576 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (00007FF97A0B0000), size: 1228800 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.4830
+C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (00007FF97D530000), size: 184320 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\SYSTEM32\HID.DLL:HID.DLL (00007FF97D260000), size: 57344 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.1
+C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (00007FF977F10000), size: 2453504 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (00007FF97B740000), size: 1011712 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\UIAutomationCore.DLL:UIAutomationCore.DLL (00007FF940740000), size: 4497408 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.2.22621.6133
+C:\Windows\SYSTEM32\dwmapi.dll:dwmapi.dll (00007FF97B850000), size: 176128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5697
+C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (00007FF96E620000), size: 184320 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\SYSTEM32\dxcore.dll:dxcore.dll (00007FF97BF50000), size: 225280 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (00007FF97DB20000), size: 98304 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3958
+C:\Windows\System32\bcryptPrimitives.dll:bcryptPrimitives.dll (00007FF97EF90000), size: 503808 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.4317
+C:\Windows\system32\uxtheme.dll:uxtheme.dll (00007FF97B5C0000), size: 733184 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\shcore.dll:shcore.dll (00007FF980550000), size: 1064960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\GameAssembly.dll:GameAssembly.dll (00007FF848F80000), size: 69337088 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FF97C3C0000), size: 2306048 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5471
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\baselib.dll:baselib.dll (00007FF9087C0000), size: 245760 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\clbcatq.dll:clbcatq.dll (00007FF980BF0000), size: 720896 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2001.12.10941.16384
+C:\Windows\System32\CoreMessaging.dll:CoreMessaging.dll (00007FF978920000), size: 1257472 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\humanoid_trainer_Data\Plugins\x86_64\AppUINativePlugin.dll:AppUINativePlugin.dll (00007FF977130000), size: 61440 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\SYSTEM32\MSVCP140.dll:MSVCP140.dll (00007FF96D310000), size: 557056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\SYSTEM32\VCRUNTIME140_1.dll:VCRUNTIME140_1.dll (00007FF96D1B0000), size: 45056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.6060_none_2712eda17382d24b\COMCTL32.dll:COMCTL32.dll (00007FF95D010000), size: 2736128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 6.10.22621.6060
+C:\Windows\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (00007FF96D1D0000), size: 122880 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.50.35719.0
+C:\Windows\System32\Windows.UI.dll:Windows.UI.dll (00007FF95A210000), size: 1564672 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\System32\MSCTF.dll:MSCTF.dll (00007FF981160000), size: 1441792 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\directxdatabasehelper.dll:directxdatabasehelper.dll (00007FF975B40000), size: 299008 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\SYSTEM32\d3d12.dll:d3d12.dll (00007FF90E700000), size: 155648 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+D:\hobby\projects\diplom_game\builds\humanoid_walker_trainer\D3D12\D3D12Core.dll:D3D12Core.dll (00007FF86AB00000), size: 4780032 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.618.1.0
+C:\Windows\SYSTEM32\cfgmgr32.dll:cfgmgr32.dll (00007FF97E770000), size: 319488 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\SYSTEM32\DEVOBJ.dll:DEVOBJ.dll (00007FF97E740000), size: 180224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\WINTRUST.dll:WINTRUST.dll (00007FF97F040000), size: 507904 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6060
+C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (00007FF97E720000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.2506
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igc64.dll:igc64.dll (00007FF968080000), size: 72871936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\D3DSCache.dll:D3DSCache.dll (00007FF90E490000), size: 192512 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\USERENV.dll:USERENV.dll (00007FF97E100000), size: 163840 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3527
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd12dxva64.dll:igd12dxva64.dll (00007FF92F250000), size: 58552320 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\windows.storage.dll:windows.storage.dll (00007FF97C940000), size: 9543680 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.6133
+C:\Windows\SYSTEM32\twinapi.appcore.dll:twinapi.appcore.dll (00007FF9766B0000), size: 2777088 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5840
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd10iumd64.dll:igd10iumd64.dll (00007FF972C80000), size: 4419584 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\apphelp.dll:apphelp.dll (00007FF979FB0000), size: 618496 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5983
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igd10um64xe.DLL:igd10um64xe.DLL (00007FF971400000), size: 25669632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\SYSTEM32\ControlLib.dll:ControlLib.dll (00007FF9738A0000), size: 241664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.0.127.0
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\IntelControlLib.dll:IntelControlLib.dll (00007FF973820000), size: 483328 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.0.127.0
+C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_ea97caacfeaf3a2f\igdgmm64.dll:igdgmm64.dll (00007FF970AC0000), size: 4280320 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.101.4032
+C:\Windows\System32\MMDevApi.dll:MMDevApi.dll (00007FF973C40000), size: 638976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5547
+C:\Windows\SYSTEM32\AUDIOSES.DLL:AUDIOSES.DLL (00007FF970590000), size: 2023424 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5415
+C:\Windows\SYSTEM32\resourcepolicyclient.dll:resourcepolicyclient.dll (00007FF97C3A0000), size: 86016 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3527
+C:\Windows\SYSTEM32\powrprof.dll:powrprof.dll (00007FF97D8B0000), size: 315392 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.3958
+C:\Windows\SYSTEM32\UMPDC.dll:UMPDC.dll (00007FF97D870000), size: 77824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5124
+C:\Windows\SYSTEM32\SspiCli.dll:SspiCli.dll (00007FF97DD80000), size: 274432 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.22621.5909
+0x00007FF8493E7123 (GameAssembly) mono_type_size
+0x00007FF8493E78F3 (GameAssembly) mono_type_size
+0x00007FF8493E08AE (GameAssembly) mono_type_size
+0x00007FF8493E0C05 (GameAssembly) mono_type_size
+0x00007FF8493E2082 (GameAssembly) mono_type_size
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF8678C5199)
+0x00007FF8678C5199 (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF8678BFBEC)
+0x00007FF8678BFBEC (UnityPlayer) (function-name not available)
+0x00007FF8679919C5 (UnityPlayer) UnityMain
+0x00007FF86799D606 (UnityPlayer) UnityMain
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF8678C47EE)
+0x00007FF8678C47EE (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF8678C457E)
+0x00007FF8678C457E (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86792B2CC)
+0x00007FF86792B2CC (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86792CAAD)
+0x00007FF86792CAAD (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86792D1C3)
+0x00007FF86792D1C3 (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86744B66B)
+0x00007FF86744B66B (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF867256418)
+0x00007FF867256418 (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86744C5C7)
+0x00007FF86744C5C7 (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86771BD42)
+0x00007FF86771BD42 (UnityPlayer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF86795639B)
+0x00007FF86795639B (UnityPlayer) (function-name not available)
+0x00007FF867956B8B (UnityPlayer) UnityMain
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF6F41511F6)
+0x00007FF6F41511F6 (humanoid_trainer) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF98067259D)
+0x00007FF98067259D (KERNEL32) (function-name not available)
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Попытка обращения к неверному адресу.' (Address: 00007FF9819CAF78)
+0x00007FF9819CAF78 (ntdll) (function-name not available)
+
+========== END OF STACKTRACE ===========
+
+A crash has been intercepted by the crash handler. For call stack and other details, see the latest crash report generated in:
+ * C:/Windows/TEMP/DefaultCompany/humanoid_trainer/Crashes

@@ -38,10 +38,10 @@ env_settings:
   restarts_rate_limit_period_s: 60
   
 engine_settings:
-  width: 84
-  height: 84
-  quality_level: 5
-  time_scale: 5
-  target_frame_rate: -1
+  width: 50
+  height: 50
+  quality_level: 0
+  time_scale: 10
+  target_frame_rate: 30
   capture_frame_rate: 60
   no_graphics: false

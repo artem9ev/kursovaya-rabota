@@ -35,7 +35,7 @@ public class BodyJoint : BodyPart
     {
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawRay(transform.position, transform.parent.TransformDirection(m_joint.targetRotation * m_thirdAxis) * 0.5f);
+        //Gizmos.DrawRay(transform.position, transform.parent.TransformDirection(m_joint.targetRotation * m_thirdAxis) * 0.5f);
     }
 
     private float TrySetMotion(IEnumerator actions, ConfigurableJointMotion motion)

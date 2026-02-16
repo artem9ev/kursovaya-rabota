@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [RequireComponent(typeof(TextMeshPro))]
 public class AgentTextFollower : MonoBehaviour
@@ -45,11 +48,12 @@ public class AgentTextFollower : MonoBehaviour
         }
 
         Camera camera = Camera.main;
+#if UNITY_EDITOR
         if (SceneView.currentDrawingSceneView != null)
         {
             camera = SceneView.currentDrawingSceneView.camera;
         }
-
+#endif
         if (camera != null)
         {
             m_transform.position = m_anchor.position + Vector3.up;
