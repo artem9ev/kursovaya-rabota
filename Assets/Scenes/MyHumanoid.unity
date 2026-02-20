@@ -837,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -850,7 +850,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!1001 &1409864611
 PrefabInstance:
@@ -910,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -923,7 +926,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!43 &1521034539
 Mesh:
@@ -1161,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7791232289651584943, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Mesh
@@ -1174,7 +1180,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2641994298298302814, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
 --- !u!43 &1807887944
 Mesh:
@@ -2242,6 +2251,10 @@ PrefabInstance:
     - target: {fileID: 6981399682350039623, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
       propertyPath: m_Name
       value: Humanoid
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113398235356821134, guid: e8ff1156f5c2b6942aca5ba621a49d65, type: 3}
+      propertyPath: m_coef
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

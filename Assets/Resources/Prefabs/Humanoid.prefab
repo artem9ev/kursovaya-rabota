@@ -116,10 +116,12 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
   m_jointsDriver: {fileID: 6271824157810638927}
-  m_maxSpeed: 4
+  m_maxSpeed: 6
   m_spineUpDeflectionAngle: 35
   m_spineForwardDeflectionAngle: 15
-  m_penalty: 1
+  m_minFootVelocity: 1
+  m_penalty: 50
+  m_coef: 10
 --- !u!114 &6887519166791858968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,8 +1523,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2078282186243397398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,8 +1749,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2641994298298302814
 GameObject:
   m_ObjectHideFlags: 0

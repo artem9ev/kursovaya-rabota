@@ -44,6 +44,9 @@ public class HumanoidJointsDriver : MonoBehaviour
     public UnityAction<bool> OnBodyActive;
 
     public BodyHips hips => m_hips;
+    public BodyLimb leftFoot => m_lFoot;
+    public BodyLimb rightFoot => m_rFoot;
+
     public Vector3 velocity => GetAvgVelocity();
     public Vector3 flatVelocity => new Vector3(velocity.x, 0, velocity.z);
 
@@ -97,6 +100,8 @@ public class HumanoidJointsDriver : MonoBehaviour
     private void FixedUpdate()
     {
         m_orient.position = m_hips.position;
+
+        //Debug.Log($"L: \t{m_lFoot.velocity.magnitude:f4} | R: \t{m_rFoot.velocity.magnitude:f4}");
     }
 
     private void SetJoints()

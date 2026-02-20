@@ -11,8 +11,13 @@ public class HumanoidWalkAgent : Agent
     [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 35f;
     [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 15f;
 
+    [Header("Training")]
+    [SerializeField] private float m_minFootVelocity = 1f; 
+
     [Header("Penalties")]
-    [SerializeField, Min(0f)] private float m_penalty = 1;
+    [SerializeField, Min(0f)] private float m_penalty = 10f;
+    [Header("Rewards")]
+    [SerializeField] private float m_coef = 5f;
 
     private Vector3 m_inputDirection;
 
@@ -85,10 +90,15 @@ public class HumanoidWalkAgent : Agent
         float matchSpeedReward = GetMatchingVelocityReward();
         float lookAtTargetReward = Mathf.Clamp01(Vector3.Dot(m_inputDirection, m_jointsDriver.spineForward));
 
-        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
+        bool footCond = (m_jointsDriver.leftFoot.velocity.magnitude > m_minFootVelocity || m_jointsDriver.rightFoot.velocity.magnitude > m_minFootVelocity) 
+            && (m_jointsDriver.leftFoot.velocity.magnitude < m_minFootVelocity / 10f || m_jointsDriver.rightFoot.velocity.magnitude < m_minFootVelocity / 10f);
+
+        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle && footCond)
         {
             m_matchVelocityRewardSum += matchSpeedReward;
             m_lookAtTargetRewardSum += lookAtTargetReward;
+
+            AddReward(matchSpeedReward * m_coef + lookAtTargetReward / m_coef);
         }
     }
 
@@ -115,7 +125,7 @@ public class HumanoidWalkAgent : Agent
             return;
         }
 
-        AddReward((m_matchVelocityRewardSum + m_lookAtTargetRewardSum) / MaxStep * m_penalty);
+        //AddReward((m_matchVelocityRewardSum + m_lookAtTargetRewardSum) / MaxStep * m_penalty);
     }
 
     private void GroundHitPenalty(bool endEpisode)
@@ -136,6 +146,7 @@ public class HumanoidWalkAgent : Agent
         targetWalkingSpeed = Random.Range(m_maxSpeed / 5, m_maxSpeed);
 
         m_hasCalculatedRaward = false;
+        m_steps = 0;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -187,7 +198,7 @@ public class HumanoidWalkAgent : Agent
 
         UpdateRewards();
 
-        if (m_steps >= MaxStep)
+        if (m_steps >= MaxStep && m_steps != 0)
         {
             CalculateRewards();
         }
