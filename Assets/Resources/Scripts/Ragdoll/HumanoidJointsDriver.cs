@@ -44,6 +44,7 @@ public class HumanoidJointsDriver : MonoBehaviour
     public UnityAction<bool> OnBodyActive;
 
     public BodyHips hips => m_hips;
+    public BodyJoint spine => m_spine;
     public BodyLimb leftFoot => m_lFoot;
     public BodyLimb rightFoot => m_rFoot;
 

@@ -2,6 +2,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HumanoidWalkAgent : Agent
 {
@@ -28,6 +29,10 @@ public class HumanoidWalkAgent : Agent
     private float m_lookAtTargetRewardSum = 0;
     private bool m_hasCalculatedRaward;
 
+    public UnityAction ActionReceived;
+
+    public bool isLookingAtTargetDirection => targetWalkingSpeed == 0 || Vector3.Angle(m_jointsDriver.spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle;
+    public bool isSpinePostureCorrect => Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle;
     public float targetWalkingSpeed
     {
         get { return m_targetWalkingSpeed * m_inputDirection.magnitude; }
@@ -66,12 +71,12 @@ public class HumanoidWalkAgent : Agent
         Color rayColorForward = Color.red;
         Color rayColorUp = Color.red;
 
-        if (targetWalkingSpeed == 0 || Vector3.Angle(m_jointsDriver.spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle)
+        if (isLookingAtTargetDirection)
         {
             rayColorForward = Color.green;
         }
 
-        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
+        if (isSpinePostureCorrect)
         {
             rayColorUp = Color.green;
         }
@@ -95,8 +100,8 @@ public class HumanoidWalkAgent : Agent
 
         if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle && footCond)
         {
-            m_matchVelocityRewardSum += matchSpeedReward;
-            m_lookAtTargetRewardSum += lookAtTargetReward;
+            m_matchVelocityRewardSum += matchSpeedReward * m_coef;
+            m_lookAtTargetRewardSum += lookAtTargetReward / m_coef;
 
             AddReward(matchSpeedReward * m_coef + lookAtTargetReward / m_coef);
         }
@@ -126,6 +131,14 @@ public class HumanoidWalkAgent : Agent
         }
 
         //AddReward((m_matchVelocityRewardSum + m_lookAtTargetRewardSum) / MaxStep * m_penalty);
+        Academy.Instance.StatsRecorder.Add("Environment/matchVelocityReward", m_matchVelocityRewardSum, StatAggregationMethod.Average);
+        Academy.Instance.StatsRecorder.Add("Environment/lookAtTargetReward", m_lookAtTargetRewardSum, StatAggregationMethod.Average);
+
+        Academy.Instance.StatsRecorder.Add("Environment/norm_matchVelocityReward", m_matchVelocityRewardSum / m_steps * m_penalty, StatAggregationMethod.Average);
+        Academy.Instance.StatsRecorder.Add("Environment/norm_lookAtTargetReward", m_lookAtTargetRewardSum / m_steps * m_penalty, StatAggregationMethod.Average);
+
+        Academy.Instance.StatsRecorder.Add("Environment/norm2_matchVelocityReward", m_matchVelocityRewardSum / MaxStep * m_penalty, StatAggregationMethod.Average);
+        Academy.Instance.StatsRecorder.Add("Environment/norm2_lookAtTargetReward", m_lookAtTargetRewardSum / MaxStep * m_penalty, StatAggregationMethod.Average);
     }
 
     private void GroundHitPenalty(bool endEpisode)
@@ -174,6 +187,10 @@ public class HumanoidWalkAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
+        m_steps++;
+
+        ActionReceived?.Invoke();
+
         MyCountedEnumerator continuousActions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
         foreach (var joint in m_jointsDriver.joints)

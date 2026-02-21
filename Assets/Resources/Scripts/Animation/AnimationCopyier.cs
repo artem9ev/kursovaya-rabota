@@ -141,6 +141,6 @@ public class AnimationCopyier : MonoBehaviour
         Debug.Log($"Time: {s_time}");
         m_animator.Play(m_hashName, 0, s_time);
 
-        Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.MostRecent);
+        //Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.MostRecent);
     }
 }

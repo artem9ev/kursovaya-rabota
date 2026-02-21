@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3541859908458443979}
-  - component: {fileID: 3043207448474862832}
   - component: {fileID: 2264091532611582325}
   - component: {fileID: 8113398235356821134}
   - component: {fileID: 6887519166791858968}
@@ -37,37 +36,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4870836884683198189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3043207448474862832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636065303063347946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0772ded99232e974fa68fe5b7c161043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_onInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8113398235356821134}
-        m_TargetAssemblyTypeName: MyHumanoid, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_target: {fileID: 6010484210851433064}
-  m_jointsDriver: {fileID: 6271824157810638927}
-  m_stayMinTime: 2
-  m_stayMaxTime: 8
 --- !u!114 &2264091532611582325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +58,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 277f219c410606a4e8fe3876fc7f7dbc, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Humanoid_walk
@@ -106,7 +74,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636065303063347946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ba8fe4f0b21884fb5939ef69ee5947, type: 3}
   m_Name: 
@@ -119,9 +87,9 @@ MonoBehaviour:
   m_maxSpeed: 6
   m_spineUpDeflectionAngle: 35
   m_spineForwardDeflectionAngle: 15
-  m_minFootVelocity: 1
+  m_minFootVelocity: 3
   m_penalty: 50
-  m_coef: 10
+  m_coef: 5
 --- !u!114 &6887519166791858968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +631,72 @@ MonoBehaviour:
   NumStepsToRecord: 50000
   DemonstrationName: test_stand
   DemonstrationDirectory: Demos/
+--- !u!1 &1483284908444554009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426304226747192061}
+  - component: {fileID: 1240121116133426033}
+  m_Layer: 6
+  m_Name: Trainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1426304226747192061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483284908444554009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4017623989797593285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1240121116133426033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483284908444554009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0772ded99232e974fa68fe5b7c161043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8113398235356821134}
+        m_TargetAssemblyTypeName: MyHumanoid, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_target: {fileID: 6010484210851433064}
+  m_jointsDriver: {fileID: 6271824157810638927}
+  m_humanoid: {fileID: 8113398235356821134}
+  m_stepLength: 0.4
+  m_legTrainer: {fileID: 1426304226747192061}
+  m_stayMinTime: 2
+  m_stayMaxTime: 8
 --- !u!1 &1493797050158735249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1312,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3219,7 +3253,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3855,8 +3889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7f2d3fd3af17445ba67ad1b54d3f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BodyLimb
-  m_groundHitPenalty: 0
-  m_endEpisodPenalty: 0
+  m_groundHitPenalty: 1
+  m_endEpisodPenalty: 1
   m_haveToFixPos: 0
 --- !u!54 &6188687679622960825
 Rigidbody:
@@ -5537,6 +5571,7 @@ Transform:
   m_Children:
   - {fileID: 4870836884683198189}
   - {fileID: 7738354200410690163}
+  - {fileID: 1426304226747192061}
   - {fileID: 3898174808626544494}
   - {fileID: 1486404751683568009}
   - {fileID: 1478884130935457717}
@@ -5750,8 +5785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7f2d3fd3af17445ba67ad1b54d3f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BodyLimb
-  m_groundHitPenalty: 0
-  m_endEpisodPenalty: 0
+  m_groundHitPenalty: 1
+  m_endEpisodPenalty: 1
   m_haveToFixPos: 0
 --- !u!54 &1266816162951815277
 Rigidbody:
@@ -6318,6 +6353,10 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 2603582567353003115, guid: 19842cd7f4ea42a4099c2e27c7402ebf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3164429131379286450, guid: 19842cd7f4ea42a4099c2e27c7402ebf, type: 3}
       propertyPath: m_Icon
       value: 
@@ -6407,6 +6446,10 @@ PrefabInstance:
       value: 0.741
       objectReference: {fileID: 0}
     - target: {fileID: 5498233483764414291, guid: 19842cd7f4ea42a4099c2e27c7402ebf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498233483764414291, guid: 19842cd7f4ea42a4099c2e27c7402ebf, type: 3}
       propertyPath: m_jointsDriver
       value: 
       objectReference: {fileID: 6271824157810638927}
@@ -6441,7 +6484,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4944685166958858653}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d98fc5290ad72e740ae8596852c7c306, type: 3}
   m_Name: 

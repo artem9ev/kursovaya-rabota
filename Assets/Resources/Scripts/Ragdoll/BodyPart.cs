@@ -52,7 +52,7 @@ public abstract class BodyPart : MonoBehaviour
         get { return transform.localRotation; } 
         set { transform.localRotation = value;}
     }
-    public Vector3 localPosition => m_startPos.Value;
+    public Vector3 localPosition => m_startPos != null ? m_startPos.Value : transform.localPosition;
     public Vector3 velocity => rb.linearVelocity;
     public Vector3 angularVelocity => rb.angularVelocity;
     public Vector3 position => rb.position;
