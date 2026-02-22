@@ -98,12 +98,13 @@ public class HumanoidWalkAgent : Agent
         bool footCond = (m_jointsDriver.leftFoot.velocity.magnitude > m_minFootVelocity || m_jointsDriver.rightFoot.velocity.magnitude > m_minFootVelocity) 
             && (m_jointsDriver.leftFoot.velocity.magnitude < m_minFootVelocity / 10f || m_jointsDriver.rightFoot.velocity.magnitude < m_minFootVelocity / 10f);
 
-        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle && footCond)
+        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
         {
             m_matchVelocityRewardSum += matchSpeedReward * m_coef;
             m_lookAtTargetRewardSum += lookAtTargetReward / m_coef;
 
-            AddReward(matchSpeedReward * m_coef + lookAtTargetReward / m_coef);
+            AddReward(matchSpeedReward + lookAtTargetReward);
+            //AddReward(matchSpeedReward * lookAtTargetReward);
         }
     }
 
@@ -156,8 +157,10 @@ public class HumanoidWalkAgent : Agent
     {
         m_jointsDriver.ResetRagdoll();
 
-        targetWalkingSpeed = Random.Range(m_maxSpeed / 5, m_maxSpeed);
+        targetWalkingSpeed = Random.Range(m_maxSpeed / 2, m_maxSpeed);
 
+        m_matchVelocityRewardSum = 0;
+        m_lookAtTargetRewardSum = 0;
         m_hasCalculatedRaward = false;
         m_steps = 0;
     }
@@ -179,6 +182,14 @@ public class HumanoidWalkAgent : Agent
         sensor.AddObservation(m_jointsDriver.GetRelativeDirection(avgVel));
         sensor.AddObservation(m_jointsDriver.GetRelativeDirection(velGoal)); // + 6
 
+        // Положение стоп относительно центра масс (в системе координат ориентации)
+        sensor.AddObservation(m_jointsDriver.GetRelativePosition(m_jointsDriver.leftFoot.position));
+        sensor.AddObservation(m_jointsDriver.GetRelativePosition(m_jointsDriver.rightFoot.position)); // +6
+
+        // Скорости стоп
+        sensor.AddObservation(m_jointsDriver.GetRelativeDirection(m_jointsDriver.leftFoot.velocity));
+        sensor.AddObservation(m_jointsDriver.GetRelativeDirection(m_jointsDriver.rightFoot.velocity)); // +6
+
         foreach (var joint in m_jointsDriver.joints)
         {
             joint.GetObservations(sensor);
@@ -188,8 +199,6 @@ public class HumanoidWalkAgent : Agent
     public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
         m_steps++;
-
-        ActionReceived?.Invoke();
 
         MyCountedEnumerator continuousActions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
@@ -212,6 +221,8 @@ public class HumanoidWalkAgent : Agent
         {
             Debug.LogWarning($"Discrete Actions count does not match: {disctreteActions.Count} - getted, {actionsBuffer.DiscreteActions.Length} - buffer");
         }
+
+        ActionReceived?.Invoke();
 
         UpdateRewards();
 

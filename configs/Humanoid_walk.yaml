@@ -2,8 +2,8 @@ behaviors:
   Humanoid_walk:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 2048
-      buffer_size: 20480
+      batch_size: 4096
+      buffer_size: 40960
       learning_rate: 0.0003
       learning_rate_schedule: linear
 
@@ -13,8 +13,8 @@ behaviors:
       num_epoch: 3
     network_settings:
       normalize: true
-      hidden_units: 256
-      num_layers: 3
+      hidden_units: 512
+      num_layers: 2
       vis_encode_type: simple
     reward_signals:
       extrinsic:
@@ -27,8 +27,8 @@ behaviors:
       #   learning_rate: 3.0e-4
     keep_checkpoints: 20
     max_steps: 50000000
-    time_horizon: 512
-    summary_freq: 15000
+    time_horizon: 2048
+    summary_freq: 10000
     threaded: true
 
 env_settings:
@@ -46,7 +46,7 @@ engine_settings:
   width: 50
   height: 50
   quality_level: 0
-  time_scale: 10
-  target_frame_rate: 30
+  time_scale: 5
+  target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false

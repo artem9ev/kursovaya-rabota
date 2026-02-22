@@ -80,77 +80,90 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
         m_onInput?.Invoke(input);
     }
 
+    private void NewAnchor()
+    {
+        if (m_jointsDriver.leftFoot.isGrounded && !m_jointsDriver.rightFoot.isGrounded)
+        {
+            SetAnchor(m_jointsDriver.leftFoot, m_jointsDriver.rightFoot);
+            return;
+        }
+        if (!m_jointsDriver.leftFoot.isGrounded && m_jointsDriver.rightFoot.isGrounded)
+        {
+            SetAnchor(m_jointsDriver.rightFoot, m_jointsDriver.leftFoot);
+            return;
+        }
+
+        float leftLegPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_jointsDriver.leftFoot.position).z;
+        float rightLegPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_jointsDriver.rightFoot.position).z;
+
+        m_isLeftLegAnchor = leftLegPosZ >= rightLegPosZ;
+
+        m_isLookingAtTargetDir = true;
+
+        if (m_isLeftLegAnchor)
+        {
+            SetAnchor(m_jointsDriver.leftFoot, m_jointsDriver.rightFoot);
+        }
+        else
+        {
+            SetAnchor(m_jointsDriver.rightFoot, m_jointsDriver.leftFoot);
+        }
+    }
+
     private void OnHumanoidAction()
     {
         if (!m_isLookingAtTargetDir && m_humanoid.isLookingAtTargetDirection)
         {
-            float leftLegPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_jointsDriver.leftFoot.position).z;
-            float rightLegPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_jointsDriver.rightFoot.position).z;
+            NewAnchor();
 
-            m_isLeftLegAnchor = leftLegPosZ >= rightLegPosZ;
-
-            m_isLookingAtTargetDir = true;
-
-            if (m_isLeftLegAnchor)
-            {
-                SetAnchor(m_jointsDriver.leftFoot, m_jointsDriver.rightFoot);
-            }
-            else
-            {
-                SetAnchor(m_jointsDriver.rightFoot, m_jointsDriver.leftFoot);
-            }
-
-            m_legTrainer.position = m_anchorLeg.position;
         }
         else if (m_isLookingAtTargetDir && !m_humanoid.isLookingAtTargetDirection)
-        { 
+        {
             m_isLookingAtTargetDir = false;
         }
 
-        float reward = 0f;
-
         if (m_isLookingAtTargetDir && m_humanoid.isSpinePostureCorrect)
         {
-            float anchorReward = 1 - Vector3.Distance(m_anchorLeg.position, m_legTrainer.position);
+            // Награда за фиксацию опорной ноги (чем меньше смещение, тем лучше)
+            float anchorDist = Vector3.Distance(m_anchorLeg.position, m_legTrainer.position);
+            float anchorReward = Mathf.Exp(-anchorDist * 5f); // плавное затухание
 
-            float anchorPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_anchorLeg.position).z;
+            // Награда за вынос шагающей ноги вперёд
             float stepPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_steppingLeg.position).z;
-
-            float stepReward = 0;
-
-            if (m_oldLegPosZ < stepPosZ)
+            float stepDelta = stepPosZ - m_oldLegPosZ;
+            float stepReward = 0f;
+            if (stepDelta > 0.01f)
             {
-                stepReward = stepPosZ - m_oldLegPosZ;
+                stepReward = Mathf.Clamp01(stepDelta / 0.1f);
                 m_oldLegPosZ = stepPosZ;
             }
 
-            reward = stepReward * anchorReward;
+            // Дополнительно: награда за отрыв стопы от земли (чтобы не волочилась)
+            float liftReward = m_steppingLeg.isGrounded ? 0f : 0.2f;
 
-            // смена ролей ног
-            if (stepPosZ > m_stepLength / 2 || stepPosZ - anchorPosZ > m_stepLength)
+            float totalReward = anchorReward * (stepReward + liftReward) * 2f;
+            m_humanoid.AddReward(totalReward);
+
+            // Логирование
+            Academy.Instance.StatsRecorder.Add("Trainer/AnchorReward", anchorReward);
+            Academy.Instance.StatsRecorder.Add("Trainer/StepReward", stepReward);
+            Academy.Instance.StatsRecorder.Add("Trainer/LiftReward", liftReward);
+
+            // Смена ролей, если шагающая нога ушла достаточно далеко
+            float anchorPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_anchorLeg.position).z;
+            if (stepPosZ - anchorPosZ > m_stepLength || stepPosZ > m_stepLength * 0.8f)
             {
                 SetAnchor(m_steppingLeg, m_anchorLeg);
             }
-
-            Academy.Instance.StatsRecorder.Add("Environment/anchorReward", anchorReward, StatAggregationMethod.Sum);
-            Academy.Instance.StatsRecorder.Add("Environment/steppingReward", stepReward, StatAggregationMethod.Sum);
         }
-
-        m_humanoid.AddReward(reward);
     }
 
     private void SetAnchor(BodyLimb anchorLeg, BodyLimb steppingLeg)
     {
         m_anchorLeg = anchorLeg;
         m_steppingLeg = steppingLeg;
-        Debug.Log($"[{m_humanoid.gameObject.name}] Anchor: {m_anchorLeg.name} | Stepping: {m_steppingLeg.name}");
         m_oldLegPosZ = m_jointsDriver.spine.transform.InverseTransformPoint(m_steppingLeg.position).z;
-    }
-
-    private void SwitchLegs()
-    {
-        BodyLimb temp = m_anchorLeg;
-        m_anchorLeg = temp;
+        m_legTrainer.position = m_anchorLeg.position;
     }
 
     private IEnumerator StayRoutine()

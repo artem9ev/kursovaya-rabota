@@ -12,7 +12,6 @@ public class BodyLimb : BodyJoint
 
     [SerializeField] private bool m_haveToFixPos;
 
-    //private Connection m_connection;
     private Vector3? m_fixedPosition;
 
     private new void OnCollisionExit(Collision collision)

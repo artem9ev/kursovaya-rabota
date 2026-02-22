@@ -60,7 +60,7 @@ public class AnimationCopyier : MonoBehaviour
 
     private void Start()
     {
-        Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.Average);
+        //Academy.Instance.StatsRecorder.Add("Environment/animation_time", s_time, StatAggregationMethod.Average);
 
         SetJoints();
 
