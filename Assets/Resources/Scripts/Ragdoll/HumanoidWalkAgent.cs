@@ -9,30 +9,18 @@ public class HumanoidWalkAgent : Agent
     [SerializeField] private HumanoidJointsDriver m_jointsDriver;
     [Header("Params")]
     [SerializeField] private float m_maxSpeed = 8f;
-    [SerializeField][Range(0f, 45f)] private float m_spineUpDeflectionAngle = 35f;
-    [SerializeField][Range(0f, 45f)] private float m_spineForwardDeflectionAngle = 15f;
-
-    [Header("Training")]
-    [SerializeField] private float m_minFootVelocity = 1f; 
 
     [Header("Penalties")]
     [SerializeField, Min(0f)] private float m_penalty = 10f;
-    [Header("Rewards")]
-    [SerializeField] private float m_coef = 5f;
 
     private Vector3 m_inputDirection;
 
     private float m_targetWalkingSpeed;
 
-    private int m_steps = 0;
-    private float m_matchVelocityRewardSum = 0;
-    private float m_lookAtTargetRewardSum = 0;
-    private bool m_hasCalculatedRaward;
-
     public UnityAction ActionReceived;
+    public UnityAction EpisodeBegin;
+    public UnityAction EpisodeEnd;
 
-    public bool isLookingAtTargetDirection => targetWalkingSpeed == 0 || Vector3.Angle(m_jointsDriver.spineForward, m_inputDirection) <= m_spineForwardDeflectionAngle;
-    public bool isSpinePostureCorrect => Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle;
     public float targetWalkingSpeed
     {
         get { return m_targetWalkingSpeed * m_inputDirection.magnitude; }
@@ -66,91 +54,26 @@ public class HumanoidWalkAgent : Agent
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Color rayColorForward = Color.red;
-        Color rayColorUp = Color.red;
-
-        if (isLookingAtTargetDirection)
-        {
-            rayColorForward = Color.green;
-        }
-
-        if (isSpinePostureCorrect)
-        {
-            rayColorUp = Color.green;
-        }
-
-        Gizmos.color = rayColorUp;
-        Gizmos.DrawRay(m_jointsDriver.hips.position, m_jointsDriver.spineUp * 1.5f);
-
-        Gizmos.color = rayColorForward;
-        Gizmos.DrawRay(m_jointsDriver.hips.position, m_jointsDriver.spineForward * 1.5f);
-    }
-
-    private void UpdateRewards()
+    private void FixedUpdate()
     {
         m_jointsDriver.orientForward = m_inputDirection != Vector3.zero ? m_inputDirection : m_jointsDriver.orientForward;
-
-        float matchSpeedReward = GetMatchingVelocityReward();
-        float lookAtTargetReward = Mathf.Clamp01(Vector3.Dot(m_inputDirection, m_jointsDriver.spineForward));
-
-        bool footCond = (m_jointsDriver.leftFoot.velocity.magnitude > m_minFootVelocity || m_jointsDriver.rightFoot.velocity.magnitude > m_minFootVelocity) 
-            && (m_jointsDriver.leftFoot.velocity.magnitude < m_minFootVelocity / 10f || m_jointsDriver.rightFoot.velocity.magnitude < m_minFootVelocity / 10f);
-
-        if (Vector3.Angle(m_jointsDriver.spineUp, Vector3.up) <= m_spineUpDeflectionAngle)
-        {
-            m_matchVelocityRewardSum += matchSpeedReward * m_coef;
-            m_lookAtTargetRewardSum += lookAtTargetReward / m_coef;
-
-            AddReward(matchSpeedReward + lookAtTargetReward);
-            //AddReward(matchSpeedReward * lookAtTargetReward);
-        }
-    }
-
-    private float GetMatchingVelocityReward()
-    {
-        float velDeltaMagnitude = Vector3.Distance(m_inputDirection * targetWalkingSpeed, m_jointsDriver.velocity);
-
-        if (float.IsNaN(velDeltaMagnitude)) 
-        {
-            return 0;
-        }
-
-        float clampHighBorder = targetWalkingSpeed == 0 ? m_maxSpeed : targetWalkingSpeed;
-        float clampedDelta = Mathf.Clamp01(Mathf.Clamp(velDeltaMagnitude, 0, clampHighBorder) / clampHighBorder);
-
-        return Mathf.Pow(1 - Mathf.Pow(clampedDelta, 2), 2);
-    }
-
-    private void CalculateRewards()
-    {
-        if (m_hasCalculatedRaward)
-        {
-            Debug.LogWarning("Repeating call of calculate reward function");
-            return;
-        }
-
-        //AddReward((m_matchVelocityRewardSum + m_lookAtTargetRewardSum) / MaxStep * m_penalty);
-        Academy.Instance.StatsRecorder.Add("Environment/matchVelocityReward", m_matchVelocityRewardSum, StatAggregationMethod.Average);
-        Academy.Instance.StatsRecorder.Add("Environment/lookAtTargetReward", m_lookAtTargetRewardSum, StatAggregationMethod.Average);
-
-        Academy.Instance.StatsRecorder.Add("Environment/norm_matchVelocityReward", m_matchVelocityRewardSum / m_steps * m_penalty, StatAggregationMethod.Average);
-        Academy.Instance.StatsRecorder.Add("Environment/norm_lookAtTargetReward", m_lookAtTargetRewardSum / m_steps * m_penalty, StatAggregationMethod.Average);
-
-        Academy.Instance.StatsRecorder.Add("Environment/norm2_matchVelocityReward", m_matchVelocityRewardSum / MaxStep * m_penalty, StatAggregationMethod.Average);
-        Academy.Instance.StatsRecorder.Add("Environment/norm2_lookAtTargetReward", m_lookAtTargetRewardSum / MaxStep * m_penalty, StatAggregationMethod.Average);
     }
 
     private void GroundHitPenalty(bool endEpisode)
     {
         AddReward(-m_penalty);
-        CalculateRewards();
 
         if (endEpisode)
         {
             EndEpisode();
         }
+    }
+
+    public new void EndEpisode()
+    {
+        EpisodeEnd?.Invoke();
+
+        base.EndEpisode();
     }
 
     public override void OnEpisodeBegin()
@@ -159,10 +82,7 @@ public class HumanoidWalkAgent : Agent
 
         targetWalkingSpeed = Random.Range(m_maxSpeed / 2, m_maxSpeed);
 
-        m_matchVelocityRewardSum = 0;
-        m_lookAtTargetRewardSum = 0;
-        m_hasCalculatedRaward = false;
-        m_steps = 0;
+        EpisodeBegin?.Invoke();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -198,8 +118,6 @@ public class HumanoidWalkAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionsBuffer)
     {
-        m_steps++;
-
         MyCountedEnumerator continuousActions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
         foreach (var joint in m_jointsDriver.joints)
@@ -223,13 +141,6 @@ public class HumanoidWalkAgent : Agent
         }
 
         ActionReceived?.Invoke();
-
-        UpdateRewards();
-
-        if (m_steps >= MaxStep && m_steps != 0)
-        {
-            CalculateRewards();
-        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

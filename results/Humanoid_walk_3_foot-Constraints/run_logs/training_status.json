@@ -1,0 +1,110 @@
+{
+    "Humanoid_walk": {
+        "checkpoints": [
+            {
+                "steps": 499993,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-499993.onnx",
+                "reward": -38.086549939607316,
+                "creation_time": 1771760238.3942528,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-499993.pt"
+                ]
+            },
+            {
+                "steps": 999992,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-999992.onnx",
+                "reward": -31.47749102998022,
+                "creation_time": 1771761167.7852786,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-999992.pt"
+                ]
+            },
+            {
+                "steps": 1499986,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-1499986.onnx",
+                "reward": -19.13212737847008,
+                "creation_time": 1771762241.115153,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-1499986.pt"
+                ]
+            },
+            {
+                "steps": 1999940,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-1999940.onnx",
+                "reward": 34.31162858180863,
+                "creation_time": 1771763106.8967438,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-1999940.pt"
+                ]
+            },
+            {
+                "steps": 2499882,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-2499882.onnx",
+                "reward": 121.47274364743915,
+                "creation_time": 1771764019.0394545,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-2499882.pt"
+                ]
+            },
+            {
+                "steps": 2999743,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-2999743.onnx",
+                "reward": 629.4449462890625,
+                "creation_time": 1771765027.0078986,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-2999743.pt"
+                ]
+            },
+            {
+                "steps": 3499443,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-3499443.onnx",
+                "reward": 212.51942915074966,
+                "creation_time": 1771766020.6523128,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-3499443.pt"
+                ]
+            },
+            {
+                "steps": 3999340,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-3999340.onnx",
+                "reward": 730.5055017471313,
+                "creation_time": 1771767034.8819642,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-3999340.pt"
+                ]
+            },
+            {
+                "steps": 4499294,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-4499294.onnx",
+                "reward": 859.6683544158935,
+                "creation_time": 1771768051.2162437,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-4499294.pt"
+                ]
+            },
+            {
+                "steps": 4564336,
+                "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-4564336.onnx",
+                "reward": 937.022533603743,
+                "creation_time": 1771768180.8110976,
+                "auxillary_file_paths": [
+                    "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-4564336.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4564336,
+            "file_path": "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk.onnx",
+            "reward": 937.022533603743,
+            "creation_time": 1771768180.8110976,
+            "auxillary_file_paths": [
+                "results\\Humanoid_walk_3_foot-Constraints\\Humanoid_walk\\Humanoid_walk-4564336.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

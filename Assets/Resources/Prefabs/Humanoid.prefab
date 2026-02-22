@@ -58,7 +58,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 277f219c410606a4e8fe3876fc7f7dbc, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Humanoid_walk
@@ -86,10 +86,10 @@ MonoBehaviour:
   m_jointsDriver: {fileID: 6271824157810638927}
   m_maxSpeed: 4
   m_spineUpDeflectionAngle: 35
-  m_spineForwardDeflectionAngle: 30
+  m_spineForwardDeflectionAngle: 20
   m_minFootVelocity: 1
   m_penalty: 50
-  m_coef: 3
+  m_coef: 0.4
 --- !u!114 &6887519166791858968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_lElbow: {fileID: 1568213182034370979}
   m_lHand: {fileID: 4297816482295445551}
   maxJointSpring: 5000
-  jointDampen: 200
+  jointDampen: 400
   maxJointForceLimit: 2000
   m_projectionAngle: 1
   m_projectionDistance: 0.001
@@ -689,7 +689,8 @@ MonoBehaviour:
   m_target: {fileID: 6010484210851433064}
   m_jointsDriver: {fileID: 6271824157810638927}
   m_humanoid: {fileID: 8113398235356821134}
-  m_stepLength: 0.8
+  m_maxLookingAtTargetAngle: 60.4
+  m_stepLength: 0.5
   m_legTrainer: {fileID: 1426304226747192061}
   m_stayMinTime: 2
   m_stayMaxTime: 8
@@ -2633,7 +2634,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3175601897018116965}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2812,7 +2813,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3548429171647511471}
   serializedVersion: 4
-  m_Mass: 7
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2991,7 +2992,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603057503410746900}
   serializedVersion: 4
-  m_Mass: 7
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4590,7 +4591,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6128080799427178924}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

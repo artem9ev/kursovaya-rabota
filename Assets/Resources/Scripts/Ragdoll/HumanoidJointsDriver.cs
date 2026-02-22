@@ -54,10 +54,10 @@ public class HumanoidJointsDriver : MonoBehaviour
     public Vector3 feetPos => (m_rFoot.position + m_lFoot.position) / 2;
     public Vector3 feetUp => (m_rFoot.up + m_lFoot.up) / 2;
 
-    public Vector3 spineForward => (m_hips.forward + m_spine.forward + m_chest.forward + m_head.forward) / 4;
+    public Vector3 spineForward => (m_hips.flatForward + m_chest.flatForward).normalized;
     public Vector3 headForward => m_head.forward;
     public Vector3 headPosition => m_head.position;
-    public Vector3 spineUp => (m_hips.up + m_spine.up + m_chest.up + m_head.up) / 4;
+    public Vector3 spineUp => (m_hips.up + m_spine.up + m_chest.up + m_head.up).normalized;
 
     public Vector3 orientForward
     {
@@ -202,7 +202,7 @@ public class HumanoidJointsDriver : MonoBehaviour
             return;
         }
 
-        m_setBodyRoutine = StartCoroutine(SetBodyRoutine(transforms));
+        //m_setBodyRoutine = StartCoroutine(SetBodyRoutine(transforms));
     }
 
     private IEnumerator SetBodyRoutine(List<Transform> transforms)
