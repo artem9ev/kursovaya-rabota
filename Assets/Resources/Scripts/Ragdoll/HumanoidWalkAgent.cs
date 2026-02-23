@@ -96,6 +96,8 @@ public class HumanoidWalkAgent : Agent
         {
             velNormalized = 0f;
         }
+        Academy.Instance.StatsRecorder.Add("Trainer/AvgVelocity", velNormalized, StatAggregationMethod.Average);
+
 
         sensor.AddObservation(velNormalized); // + 1
 
@@ -141,6 +143,18 @@ public class HumanoidWalkAgent : Agent
         }
 
         ActionReceived?.Invoke();
+
+        if (m_jointsDriver.hips.isGrounded && m_jointsDriver.hips.doGroundHitPenalty)
+        {
+            GroundHitPenalty(m_jointsDriver.hips.doGroundHitPenalty);
+        }
+        for (int i = 0; i < m_jointsDriver.joints.Count; i++) 
+        {
+            if (m_jointsDriver.joints[i].isGrounded && m_jointsDriver.joints[i].doGroundHitPenalty)
+            {
+                GroundHitPenalty(m_jointsDriver.joints[i].doGroundHitPenalty);
+            }
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

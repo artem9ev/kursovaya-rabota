@@ -3,6 +3,13 @@ using Unity.MLAgents;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum AnchorLeg
+{
+    None,
+    Right,
+    Left
+}
+
 public class HumanoidWalkAgentTrainer : MonoBehaviour
 {
     [SerializeField] private UnityEvent<Vector2> m_onInput;
@@ -20,7 +27,7 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
     [SerializeField] private float m_stayMaxTime = 8f;
     [Header("Rewards")]
     [SerializeField] private float m_coefLookAtTarget = 0.2f;
-    [SerializeField] private float m_coefMatchSpeed = 2f;
+    [SerializeField] private float m_coefMatchSpeed = 20f;
     [SerializeField] private float m_coefStep = 10f;
     [SerializeField] private float m_coefLiftLeg = 0.2f;
 
@@ -31,7 +38,7 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
     private BodyLimb m_anchorLeg;
     private BodyLimb m_steppingLeg;
     private bool m_wasLookingAtTargetDir = false;
-    private bool m_isLeftLegAnchor = false;
+    private AnchorLeg m_anchor = AnchorLeg.None;
 
     private float m_oldLegPosZ;
 
@@ -141,10 +148,24 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
         m_steppingLeg = steppingLeg;
         m_oldLegPosZ = GetProjection(m_steppingLeg);
         m_legTrainer.position = anchorLeg.position;
+        if (anchorLeg == m_jointsDriver.leftFoot)
+        {
+            m_anchor = AnchorLeg.Left;
+        }
+        else if (anchorLeg == m_jointsDriver.rightFoot)
+        {
+            m_anchor = AnchorLeg.Right;
+        }
+        else 
+        {
+            m_anchor = AnchorLeg.None;
+        }
     }
 
     private void NewAnchor()
     {
+        m_wasLookingAtTargetDir = true;
+
         if (m_jointsDriver.leftFoot.isGrounded && !m_jointsDriver.rightFoot.isGrounded)
         {
             SetAnchor(m_jointsDriver.leftFoot, m_jointsDriver.rightFoot);
@@ -159,11 +180,7 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
         float leftLegPosZ = GetProjection(m_jointsDriver.leftFoot);
         float rightLegPosZ = GetProjection(m_jointsDriver.rightFoot);
 
-        m_isLeftLegAnchor = leftLegPosZ < rightLegPosZ;
-
-        m_wasLookingAtTargetDir = true;
-
-        if (m_isLeftLegAnchor)
+        if (leftLegPosZ < rightLegPosZ)
         {
             SetAnchor(m_jointsDriver.leftFoot, m_jointsDriver.rightFoot);
         }
@@ -185,33 +202,40 @@ public class HumanoidWalkAgentTrainer : MonoBehaviour
             !m_steppingLeg.isGrounded && m_anchorLeg.isGrounded)
         {
             // Награда за фиксацию опорной ноги (чем меньше смещение, тем лучше)
-            float anchorDist = Vector3.Distance(m_anchorLeg.position, m_legTrainer.position);
-            anchorReward = Mathf.Exp(-anchorDist * 5f); // плавное затухание
+            if (m_anchor == AnchorLeg.Left && m_jointsDriver.leftFoot.haveToFixPos || m_anchor == AnchorLeg.Right && m_jointsDriver.rightFoot.haveToFixPos)
+            {
+                float anchorDist = Vector3.Distance(m_anchorLeg.position, m_legTrainer.position);
+                anchorReward = Mathf.Clamp(Mathf.Exp(-anchorDist * 5f), 0.1f, 1f); // плавное затухание
+            }
+            else
+            {
+                anchorReward = 0.1f;
+            }
+
 
             float stepPosZ = GetProjection(m_steppingLeg);
             float stepDelta = stepPosZ - m_oldLegPosZ;
             if (stepDelta > 0.01f && m_humanoid.targetWalkingSpeed > 0)
             {
-                stepReward = Mathf.Clamp01(stepDelta / 0.1f) * m_coefStep;
+                stepReward = Mathf.Clamp01(stepDelta) * m_coefStep;
                 m_oldLegPosZ = stepPosZ;
             }
 
-            liftReward = !m_steppingLeg.isGrounded ? m_coefLiftLeg : 0f;
+            liftReward = !m_steppingLeg.isGrounded ? (m_steppingLeg.position.y - m_anchorLeg.position.y) * m_coefLiftLeg : 0f;
 
             Academy.Instance.StatsRecorder.Add("Trainer/AnchorReward", anchorReward, StatAggregationMethod.Average);
             Academy.Instance.StatsRecorder.Add("Trainer/StepReward", stepReward, StatAggregationMethod.Average);
-            Academy.Instance.StatsRecorder.Add("Trainer/LiftReward", liftReward, StatAggregationMethod.Average);
+            Academy.Instance.StatsRecorder.Add("Trainer/LiftReward", liftReward, StatAggregationMethod.Sum);
 
             // Смена ролей, если шагающая нога ушла достаточно далеко
             float anchorPosZ = GetProjection(m_anchorLeg);
-
             if (stepPosZ - anchorPosZ > m_stepLength)
             {
                 SetAnchor(m_steppingLeg, m_anchorLeg);
             }
         }
 
-        float totalReward = anchorReward * (stepReward + liftReward) + matchSpeedReward + lookAtTargetReward;
+        float totalReward = anchorReward * (stepReward + liftReward) + matchSpeedReward * lookAtTargetReward;
         m_humanoid.AddReward(totalReward);
 
 

@@ -3,10 +3,22 @@ using UnityEngine;
 
 public class CollisionsDisabler : MonoBehaviour
 {
-    [SerializeField] private List<HumanoidJointsDriver> m_jointDrivers;
+    [SerializeField] private List<Transform> m_humanoids;
+
+    private List<HumanoidJointsDriver> m_jointDrivers = new List<HumanoidJointsDriver>();
 
     void Start()
     {
+        foreach (var humanoid in m_humanoids)
+        {
+            for (int i = 0; i < humanoid.childCount; i++)
+            {
+                if (humanoid.gameObject.activeSelf && humanoid.GetChild(i).TryGetComponent(out HumanoidJointsDriver jointsDriver))
+                {
+                    m_jointDrivers.Add(jointsDriver);
+                }
+            }
+        }
         for (int i = 0; i < m_jointDrivers.Count; ++i) 
         {
             for (int j = i + 1; j < m_jointDrivers.Count; j++) 

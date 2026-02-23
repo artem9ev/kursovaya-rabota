@@ -1,0 +1,56 @@
+{
+    "Humanoid_walk": {
+        "checkpoints": [
+            {
+                "steps": 499996,
+                "file_path": "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-499996.onnx",
+                "reward": 3.5667314316545213,
+                "creation_time": 1771852811.2730827,
+                "auxillary_file_paths": [
+                    "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-499996.pt"
+                ]
+            },
+            {
+                "steps": 999599,
+                "file_path": "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-999599.onnx",
+                "reward": 115.67593205817127,
+                "creation_time": 1771855254.5438795,
+                "auxillary_file_paths": [
+                    "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-999599.pt"
+                ]
+            },
+            {
+                "steps": 1499992,
+                "file_path": "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1499992.onnx",
+                "reward": 423.63434450574914,
+                "creation_time": 1771857911.5915484,
+                "auxillary_file_paths": [
+                    "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1499992.pt"
+                ]
+            },
+            {
+                "steps": 1750825,
+                "file_path": "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1750825.onnx",
+                "reward": 574.8059828806731,
+                "creation_time": 1771859172.891435,
+                "auxillary_file_paths": [
+                    "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1750825.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1750825,
+            "file_path": "results/walker\\Humanoid_walk_3\\Humanoid_walk.onnx",
+            "reward": 574.8059828806731,
+            "creation_time": 1771859172.891435,
+            "auxillary_file_paths": [
+                "results/walker\\Humanoid_walk_3\\Humanoid_walk\\Humanoid_walk-1750825.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0+cpu"
+    }
+}

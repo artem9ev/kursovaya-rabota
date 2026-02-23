@@ -101,10 +101,10 @@ public class BodyJoint : BodyPart
         m_joint.targetRotation = rotation;
     }
 
-    public virtual new void GetObservations(VectorSensor sensor)
+    public override void GetObservations(VectorSensor sensor)
     {
         base.GetObservations(sensor);
-
+        
         sensor.AddObservation(maxStrenth > 0 ? strenth / maxStrenth : 0f); // +1
     }
 }

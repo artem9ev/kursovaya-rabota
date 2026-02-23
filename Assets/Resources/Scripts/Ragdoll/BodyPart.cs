@@ -67,13 +67,15 @@ public abstract class BodyPart : MonoBehaviour
     protected virtual void Awake()
     {
         m_rb = GetComponent<Rigidbody>();
-        
+
+        //Debug.Log($"[{gameObject.name}] collider: {collider.name} | parent: {collider.transform.parent.name}");
+
         m_startPos = transform.localPosition;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.parent != null && collision.transform.parent.TryGetComponent(out BodyJoint joint))
+        if (collision.transform.parent != null && collision.transform.parent.TryGetComponent(out BodyPart bodyPart))
         {
             return;
         }
@@ -82,14 +84,11 @@ public abstract class BodyPart : MonoBehaviour
         {
             ContactPoint point = collision.GetContact(i);
 
-            if (point.normal.y > Mathf.Sqrt(2) / 2)
-            {
-                m_groundColliders.Add(point.otherCollider);
+            m_groundColliders.Add(point.otherCollider);
 
-                if (m_groundHitPenalty)
-                {
-                    GroundHitPenalty?.Invoke(m_endEpisodPenalty);
-                }
+            if (m_groundHitPenalty)
+            {
+                GroundHitPenalty?.Invoke(m_endEpisodPenalty);
 
                 break;
             }
@@ -110,6 +109,8 @@ public abstract class BodyPart : MonoBehaviour
         {
             m_startPos = transform.localPosition;
         }
+
+        m_groundColliders.Clear();
 
         if (!rb.isKinematic)
         {

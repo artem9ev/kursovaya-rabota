@@ -96,13 +96,16 @@ public class HumanoidJointsDriver : MonoBehaviour
             joint.SetSlerpDrive(maxJointSpring, jointDampen, maxJointForceLimit);
             joint.SetProjectionSettings(m_projectionAngle, m_projectionDistance);
         }
+
+        for (int j = 0; j < m_bodyParts.Count; j++)
+        {
+            Physics.IgnoreCollision(m_hips.collider, m_bodyParts[j].collider);
+        }
     }
 
     private void FixedUpdate()
     {
         m_orient.position = m_hips.position;
-
-        //Debug.Log($"L: \t{m_lFoot.velocity.magnitude:f4} | R: \t{m_rFoot.velocity.magnitude:f4}");
     }
 
     private void SetJoints()
@@ -142,7 +145,7 @@ public class HumanoidJointsDriver : MonoBehaviour
             sum += joint.velocity;
         }
 
-        return sum / (1 + m_bodyParts.Count);
+        return sum / (m_bodyParts.Count + 1);
     }
 
     public Vector3 GetRelativeDirection(Vector3 direction)
