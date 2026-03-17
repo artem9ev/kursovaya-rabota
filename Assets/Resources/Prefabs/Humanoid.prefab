@@ -52,13 +52,13 @@ MonoBehaviour:
     VectorObservationSize: 53
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 45
+      m_NumContinuousActions: 48
       BranchSizes: 02000000020000000200000002000000
     VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 0b215018edf03634e96b823c36d1d49e, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Humanoid_walk
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_lArm: {fileID: 1823649585267210013}
   m_lElbow: {fileID: 1568213182034370979}
   m_lHand: {fileID: 4297816482295445551}
-  maxJointSpring: 5000
-  jointDampen: 400
-  maxJointForceLimit: 2000
+  maxJointSpring: 10000
+  jointDampen: 700
+  maxJointForceLimit: 4000
   m_projectionAngle: 1
   m_projectionDistance: 0.001
 --- !u!114 &3144888217061140690
@@ -671,7 +671,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8113398235356821134}
-        m_TargetAssemblyTypeName: MyHumanoid, Assembly-CSharp
+        m_TargetAssemblyTypeName: HumanoidWalkAgent, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -687,11 +687,11 @@ MonoBehaviour:
   m_humanoid: {fileID: 8113398235356821134}
   m_stepLength: 0.5
   m_legTrainer: {fileID: 1426304226747192061}
-  m_spineUpDeflectionAngle: 35
-  m_spineForwardDeflectionAngle: 25
-  m_stayMinTime: 2
-  m_stayMaxTime: 8
-  m_coefLookAtTarget: 0.5
+  m_spineUpDeflectionAngle: 25
+  m_spineForwardDeflectionAngle: 15
+  m_stayMinTime: 0.5
+  m_stayMaxTime: 5
+  m_coefLookAtTarget: 1
   m_coefMatchSpeed: 3
   m_coefStep: 20
   m_coefLiftLeg: 2
@@ -5972,6 +5972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyMainBodyPart
   m_groundHitPenalty: 1
   m_endEpisodPenalty: 1
+  m_torqueForces: {x: 3000, y: 3000, z: 3000}
 --- !u!54 &8821516651429297825
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -80,7 +80,8 @@ public class HumanoidWalkAgent : Agent
     {
         m_jointsDriver.ResetRagdoll();
 
-        targetWalkingSpeed = Random.Range(m_maxSpeed / 2, m_maxSpeed);
+        //targetWalkingSpeed = Random.Range(m_maxSpeed / 2, m_maxSpeed);
+        targetWalkingSpeed = m_maxSpeed;
 
         EpisodeBegin?.Invoke();
     }
@@ -96,8 +97,6 @@ public class HumanoidWalkAgent : Agent
         {
             velNormalized = 0f;
         }
-        Academy.Instance.StatsRecorder.Add("Trainer/AvgVelocity", velNormalized, StatAggregationMethod.Average);
-
 
         sensor.AddObservation(velNormalized); // + 1
 
@@ -122,6 +121,8 @@ public class HumanoidWalkAgent : Agent
     {
         MyCountedEnumerator continuousActions = new MyCountedEnumerator(actionsBuffer.ContinuousActions.GetEnumerator());
 
+        m_jointsDriver.hips.SetContinuousActios(continuousActions);
+
         foreach (var joint in m_jointsDriver.joints)
         {
             joint.SetContinuousActios(continuousActions);
@@ -133,6 +134,8 @@ public class HumanoidWalkAgent : Agent
 
         MyCountedEnumerator disctreteActions = new MyCountedEnumerator(actionsBuffer.DiscreteActions.GetEnumerator());
 
+        m_jointsDriver.hips.SetDiscreteActios(disctreteActions);
+
         foreach (var joint in m_jointsDriver.joints)
         {
             joint.SetDiscreteActios(disctreteActions);
@@ -143,18 +146,6 @@ public class HumanoidWalkAgent : Agent
         }
 
         ActionReceived?.Invoke();
-
-        if (m_jointsDriver.hips.isGrounded && m_jointsDriver.hips.doGroundHitPenalty)
-        {
-            GroundHitPenalty(m_jointsDriver.hips.doGroundHitPenalty);
-        }
-        for (int i = 0; i < m_jointsDriver.joints.Count; i++) 
-        {
-            if (m_jointsDriver.joints[i].isGrounded && m_jointsDriver.joints[i].doGroundHitPenalty)
-            {
-                GroundHitPenalty(m_jointsDriver.joints[i].doGroundHitPenalty);
-            }
-        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -162,8 +153,8 @@ public class HumanoidWalkAgent : Agent
 
     }
 
-    public void OnMove(Vector2 input)
+    public void OnMove(Vector3 input)
     {
-        m_inputDirection = input.x * Vector3.right + input.y * Vector3.forward;
+        m_inputDirection = input;
     }
 }
